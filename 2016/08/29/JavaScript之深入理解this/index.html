@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="this是函数运行时自动生成的内部对象，即调用函数的那个对象。（不一定很准确的定义，但还算通俗易懂） 在大多数情况下，this的值由函数调用方式决定，它不能在执行期间赋值来设置，它在每次执行下可能都有不同的值。"/>
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Hexo">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.4.x" />
+
+
+
+<link rel="canonical" href="http://yoursite.com/2016/08/29/JavaScript之深入理解this/"/>
+
+
+<meta name="description" content="this是函数运行时自动生成的内部对象，即调用函数的那个对象。（不一定很准确的定义，但还算通俗易懂） 在大多数情况下，this的值由函数调用方式决定，它不能在执行期间赋值来设置，它在每次执行下可能都有不同的值。">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript之深入理解this">
+<meta property="og:url" content="http://yoursite.com/2016/08/29/JavaScript之深入理解this/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="this是函数运行时自动生成的内部对象，即调用函数的那个对象。（不一定很准确的定义，但还算通俗易懂） 在大多数情况下，this的值由函数调用方式决定，它不能在执行期间赋值来设置，它在每次执行下可能都有不同的值。">
+<meta property="og:updated_time" content="2017-03-29T14:24:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript之深入理解this">
+<meta name="twitter:description" content="this是函数运行时自动生成的内部对象，即调用函数的那个对象。（不一定很准确的定义，但还算通俗易懂） 在大多数情况下，this的值由函数调用方式决定，它不能在执行期间赋值来设置，它在每次执行下可能都有不同的值。">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
+
+
+
+
+
+
+
+<script>
+  var CONFIG = {
+    search: false,
+    searchPath: "/search.xml",
+    fancybox: false,
+    toc: true,
+  }
+</script>
+
+
+
+
+  
+
+
+
+    <title> JavaScript之深入理解this · Hexo </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Hexo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Hexo</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          JavaScript之深入理解this
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Aug 29, 2016
+        </span>
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#定义"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#全局执行环境（outside-function）"><span class="toc-text">全局执行环境（outside function）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数执行环境（inside-function）"><span class="toc-text">函数执行环境（inside function）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#函数直接调用"><span class="toc-text">函数直接调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#call-apply-bind-改变this的指向"><span class="toc-text">call / apply / bind 改变this的指向</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#call-apply"><span class="toc-text">call / apply</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#bind-方法"><span class="toc-text">bind 方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对象方法调用"><span class="toc-text">对象方法调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构造函数调用"><span class="toc-text">构造函数调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#箭头函数"><span class="toc-text">箭头函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#案例"><span class="toc-text">案例</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <blockquote>
+<p>此文参考 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this" target="_blank" rel="external">MDN_this</a> 写成</p>
+</blockquote>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>this是函数运行时自动生成的内部对象，即调用函数的那个对象。（不一定很准确的定义，但还算通俗易懂）<br> 在大多数情况下，this的值由函数调用方式决定，它不能在执行期间赋值来设置，它在每次执行下可能都有不同的值。</p>
+<h2 id="全局执行环境（outside-function）"><a href="#全局执行环境（outside-function）" class="headerlink" title="全局执行环境（outside function）"></a>全局执行环境（outside function）</h2><p>在全局执行环境中，this一直指向全局对象（global object），不管是在严格模式还是在非严格模式中。</p>
+<p><strong>代码1</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">console.log(this.document === document);   //true</div><div class="line"></div><div class="line">// 在浏览器中，window对象也就是全局对象（global object）</div><div class="line">console.log(this === window);   //true</div><div class="line"></div><div class="line">this.a  = 37;</div><div class="line">console.log(window.a);   //37</div></pre></td></tr></table></figure>
+<h2 id="函数执行环境（inside-function）"><a href="#函数执行环境（inside-function）" class="headerlink" title="函数执行环境（inside function）"></a>函数执行环境（inside function）</h2><p>在函数执行环境中，this的值取决于函数的调用方式。</p>
+<p><strong>而函数的调用方式主要有4种：</strong></p>
+<ul>
+<li>函数直接调用</li>
+<li>对象方法调用</li>
+<li>构造函数调用</li>
+<li>call / apply / bind</li>
+<li>箭头函数（ES6）</li>
+</ul>
+<h3 id="函数直接调用"><a href="#函数直接调用" class="headerlink" title="函数直接调用"></a>函数直接调用</h3><p>下面的代码在非严格模式执行时，this的值会指向全局对象；而在严格模式中，this的值将会默认为undefined。</p>
+<p><strong>代码2</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">/* 非严格模式 */</div><div class="line">function f1 () &#123;</div><div class="line">  return this;</div><div class="line">&#125;</div><div class="line">console.log(f1() === window);   //true</div><div class="line"></div><div class="line">// in node;</div><div class="line">console.log(f1() === global);   //true</div><div class="line"></div><div class="line">/* 严格模式 */</div><div class="line">function f2 () &#123;</div><div class="line">  &apos;use strict&apos;</div><div class="line">  return this;</div><div class="line">&#125;</div><div class="line">console.log(f1() === undefined);   //true</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="call-apply-bind-改变this的指向"><a href="#call-apply-bind-改变this的指向" class="headerlink" title="call / apply / bind 改变this的指向"></a>call / apply / bind 改变this的指向</h3><h4 id="call-apply"><a href="#call-apply" class="headerlink" title="call / apply"></a>call / apply</h4><p>call和apply的用法很像，只是后面参数的传入形式不同。</p>
+<p><strong>代码3</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">function add(c, d) &#123;</div><div class="line">  return this.a + this.b + c + d;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var o = &#123;a: 1, b: 3&#125;;</div><div class="line"></div><div class="line">// call的第一个参数 是对象，也就是this的指向对象。后面的参数就是函数arguments对象的成员</div><div class="line">add.call(o, 5, 7); // 1 + 3 + 5 + 7 = 16</div><div class="line"></div><div class="line">// call的第一个参数 是对象，也就是this的指向对象。后面的参数是数组，数组里的成员也就是函数arguments对象成员</div><div class="line">add.apply(o, [10, 20]); // 1 + 3 + 10 + 20 = 34</div></pre></td></tr></table></figure>
+<p><strong>使用call和apply时需要注意的是</strong>，当传入的第一个参数的值不是对象时，JavaScript会尝试使用ToObject 操作将其转化为对象。</p>
+<p><strong>代码4</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function bar() &#123;</div><div class="line">  console.log(Object.prototype.toString.call(this));</div><div class="line">&#125;</div><div class="line"></div><div class="line">bar.call(7); // [object Number]</div></pre></td></tr></table></figure>
+<h4 id="bind-方法"><a href="#bind-方法" class="headerlink" title="bind 方法"></a>bind 方法</h4><p>ECMAScript 5 引入了 <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Function/bind" target="_blank" rel="external">Function.prototype.bind</a>。调用f.bind(someObject)会创建一个与f具有相同函数体和作用域的函数，但是在这个新函数中，this将永久地被绑定到了bind的第一个参数，无论这个函数是如何被调用的。</p>
+<p><strong>代码5</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function f() &#123;</div><div class="line">  return this.a;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var g = f.bind(&#123;a: &apos;azerty&apos;&#125;); //生成一个绑定函数g</div><div class="line">console.log(g()); // azerty</div><div class="line"></div><div class="line">var o = &#123;a: 10, f: f, g: g&#125;;</div><div class="line">console.log(o.f(), o.g());   //10, azerty</div><div class="line"></div><div class="line">//需要注意的是，绑定函数不可以再bind</div><div class="line">var h = g.bind(&#123;a: &apos;foo&apos;&#125;);</div><div class="line">console.log(h());  //azerty，不会变成foo</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="对象方法调用"><a href="#对象方法调用" class="headerlink" title="对象方法调用"></a>对象方法调用</h3><p>当以对象里的方法的方式调用函数时，它们的 this 是调用该函数的对象.</p>
+<p>下面的例子中，当 o.f() 被调用时，函数内的this将绑定到o对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var prop = 36;</div><div class="line">var o = &#123;</div><div class="line">  prop: 37,</div><div class="line">  bar: function() &#123;</div><div class="line">    return this.prop;</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line">console.log(o.bar());  //37</div></pre></td></tr></table></figure>
+<h3 id="构造函数调用"><a href="#构造函数调用" class="headerlink" title="构造函数调用"></a>构造函数调用</h3><p><strong>代码6</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function Person(name, age) &#123;</div><div class="line">  this.name = name;</div><div class="line">  this.age = age;</div><div class="line">  this.introduce = function () &#123;</div><div class="line">    console.log(&apos;My name is &apos; + this.name + &apos;, I\&apos;m &apos; + this.age);</div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line">var Joseph = new Person(&apos;Joseph&apos;, 19);</div><div class="line">Joseph.introduce();  // &quot;My name is Joseph, I&apos;m 19&quot;</div></pre></td></tr></table></figure>
+<p>由上述代码可以清晰的看到this与被新创建的对象绑定了。</p>
+<p><em>注意</em>：当构造器返回的默认值是一个this引用的对象时，可以手动设置返回其他的对象，如果返回值不是一个对象，返回this。（这句话看起来比较难理解，我们看下一个例子）。</p>
+<p><strong>代码7</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function Fn2() &#123;</div><div class="line">  this.a = 9;  // dead code</div><div class="line">  return &#123;a: 10&#125;;</div><div class="line">&#125;</div><div class="line">var o = new Fn2();</div><div class="line">console.log(o.a);  // 10</div></pre></td></tr></table></figure>
+<p>这个例子说明了当构造函数返回的是一个对象的话，此时this的值会变成此时返回的对象。‘this.a = 9’成了僵尸代码。</p>
+<h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><p>在箭头函数（ <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions" target="_blank" rel="external">Arrow functions</a>）中，this的值是封闭执行环境决定的。在全局环境中，那么被赋值为全局对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var globalObject = this;</div><div class="line">var foo = (() =&gt; this);</div><div class="line">console.log(foo() === globalObject); // true</div></pre></td></tr></table></figure>
+<p>更重要的是它与其他情况不同的是，不管函数如何调用，上面this的值一直都是全局对象。call / bind 也不能改变它的值。</p>
+<p><strong>代码8</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// 作为对象方法被调用</div><div class="line">var obj = &#123;foo: foo&#125;;</div><div class="line">console.log(obj.foo() === globalObject); // true</div><div class="line"></div><div class="line">// 尝试用 call 改变this的值</div><div class="line">console.log(foo.call(obj) === globalObject); // true //this的值并未变成obj</div><div class="line"></div><div class="line">// 尝试用 bind 改变this的值</div><div class="line">foo = foo.bind(obj);</div><div class="line">console.log(foo() === globalObject); // true</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><p>本文知识点都看完了。让我们看几个案例，检查自己的掌握情况。</p>
+<p>例1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">var prop = 36;</div><div class="line">var o = &#123;</div><div class="line">  prop: 37,</div><div class="line">  bar1: function() &#123;</div><div class="line">    function foo1() &#123;</div><div class="line">      return this.prop;</div><div class="line">    &#125;</div><div class="line">    return foo1;</div><div class="line">  &#125;,</div><div class="line">  bar2: function() &#123;</div><div class="line">    var foo2  = (() =&gt; this.prop); //ES6箭头函数</div><div class="line">    return foo2;</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line">console.log(&apos;result1:&apos;+o.bar1()()); // result1 ?</div><div class="line">console.log(&apos;result2:&apos;+o.bar2()()); // result2 ?</div><div class="line">var fn2 = o.bar2;</div><div class="line">console.log(&apos;result3:&apos;+fn2()()); // result3 ?</div></pre></td></tr></table></figure>
+<p>先揭晓答案：例1 result1 = 36，result2 = 37，result3 = 36。我的理解是，在result1中，o.bar1()执行导致foo函数return到了全局环境中，然后执行就变成了在全局中执行，所以得到的是全局中36的值。result2呢？因为this在箭头函数中。它的值不会改变。所以this仍指向o。那为什么result3又重新变了呢？因为此时‘var fn2  = o.bar2’相当于重新定义了一个函数，而this的值当然也就变为了全局对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// 相当于这样</div><div class="line">var fn2 = function() &#123;</div><div class="line">    function foo1() &#123;</div><div class="line">      return this.prop;</div><div class="line">    &#125;</div><div class="line">    return foo1;</div><div class="line">  &#125;</div><div class="line">fn2()();</div></pre></td></tr></table></figure></p>
+<p>例2</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function sum(a,b) &#123;</div><div class="line"> return a+b;</div><div class="line">&#125;;</div><div class="line">var o = &#123;</div><div class="line">  num: 1,</div><div class="line">  fn: function() &#123;</div><div class="line">        function handle() &#123;</div><div class="line">          return this.num = sum(this.num, this.num);</div><div class="line">        &#125;</div><div class="line">    handle();</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line">console.log(&apos;result:&apos;+o.fn());  // result ?</div></pre></td></tr></table></figure>
+<p>同样先揭晓答案：result = undefined，用控制台可以看到此时this指向window，而不是o。这是个比较容易掉进去的坑。看似函数是由对象方法调用的，其实细心的话，我们可以看到。handle函数的执行，前面的没有对象的。这种情况下，this指向全局对象。解决办法也很简单。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// 1、取消 handle函数的定义，直接在对象的方法中使用this</div><div class="line">fn2: function() &#123;</div><div class="line">    this.value = sum(this.value, this.value);  //2</div><div class="line">&#125;,</div><div class="line">///2、使用变量保存外部函数的this。</div><div class="line">fn3: function() &#123;</div><div class="line">    var that = this;   // that == o</div><div class="line">    function handle() &#123;</div><div class="line">        that.value = add(that.value, that.value);</div><div class="line">    &#125;</div><div class="line">    handle();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<p>参考文章：</p>
+<ul>
+<li><a href="https://segmentfault.com/a/1190000006150835" target="_blank" rel="external">Javascript中this与闭包学习笔记</a></li>
+<li><a href="https://segmentfault.com/a/1190000004905145" target="_blank" rel="external">理解JS中的this</a></li>
+</ul>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <span>John Doe</span>
+    </p>
+    <p class="copyright-item">
+      <span>Origin: </span>
+      <a href="http://yoursite.com">http://yoursite.com</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="http://yoursite.com/2016/08/29/JavaScript之深入理解this/">http://yoursite.com/2016/08/29/JavaScript之深入理解this/</a>
+    </p>
+
+    <p class="copyright-item lincese">
+      
+      本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">Reward</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/wechat.jpeg" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/alipay.jpeg" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/08/25/JavaScript之理解作用域/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">JavaScript之理解作用域</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/08/29/JavaScript之理解闭包/">
+        <span class="next-text nav-default">JavaScript之理解闭包</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:howell95@outlook.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/Howell5" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2016 - 
+    
+    2017
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">John Doe</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2016/08/29/JavaScript之深入理解this/';
+        this.page.identifier = '2016/08/29/JavaScript之深入理解this/';
+        this.page.title = 'JavaScript之深入理解this';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//howell5.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.4.x"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.4.x"></script>
+
+    
+  </body>
+</html>

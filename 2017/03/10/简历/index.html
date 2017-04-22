@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="JavaScript详解跨域"/>
+
+
+
+
+  <meta name="keywords" content="resume," />
+
+
+
+
+  <link rel="alternate" href="/default" title="Hexo">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.4.x" />
+
+
+
+<link rel="canonical" href="http://yoursite.com/2017/03/10/简历/"/>
+
+
+<meta name="description" content="求职意向：web前端实习生（能实习2-4个月） 个人简介洪家伟，男，大三，2018年本科毕业，就读于江西南昌的华东交通大学软件工程专业    手机 email github 个人博客     15279181729 howell95@outlook.com https://github.com/Howell5 http://blog.josephong.me    能力简述 开发：于2016年开始">
+<meta name="keywords" content="resume">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript详解跨域">
+<meta property="og:url" content="http://yoursite.com/2017/03/10/简历/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="求职意向：web前端实习生（能实习2-4个月） 个人简介洪家伟，男，大三，2018年本科毕业，就读于江西南昌的华东交通大学软件工程专业    手机 email github 个人博客     15279181729 howell95@outlook.com https://github.com/Howell5 http://blog.josephong.me    能力简述 开发：于2016年开始">
+<meta property="og:updated_time" content="2017-04-22T14:17:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript详解跨域">
+<meta name="twitter:description" content="求职意向：web前端实习生（能实习2-4个月） 个人简介洪家伟，男，大三，2018年本科毕业，就读于江西南昌的华东交通大学软件工程专业    手机 email github 个人博客     15279181729 howell95@outlook.com https://github.com/Howell5 http://blog.josephong.me    能力简述 开发：于2016年开始">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
+
+
+
+
+
+
+
+<script>
+  var CONFIG = {
+    search: false,
+    searchPath: "/search.xml",
+    fancybox: false,
+    toc: true,
+  }
+</script>
+
+
+
+
+  
+
+
+
+    <title> JavaScript详解跨域 · Hexo </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Hexo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Hexo</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          JavaScript详解跨域
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Mar 10, 2017
+        </span>
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#个人简介"><span class="toc-text">个人简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#能力简述"><span class="toc-text">能力简述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目经历"><span class="toc-text">项目经历</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#大三下：-HTML5-移动webapp阅读器"><span class="toc-text">大三下： HTML5 移动webapp阅读器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#大三上：-百度前端学院2015春季班任务"><span class="toc-text">大三上： 百度前端学院2015春季班任务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其它经历"><span class="toc-text">其它经历</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>求职意向：web前端实习生（能实习2-4个月）</p>
+<h2 id="个人简介"><a href="#个人简介" class="headerlink" title="个人简介"></a>个人简介</h2><p>洪家伟，男，大三，2018年本科毕业，就读于江西南昌的华东交通大学软件工程专业</p>
+<table>
+<thead>
+<tr>
+<th>手机</th>
+<th>email</th>
+<th>github</th>
+<th>个人博客</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>15279181729</td>
+<td>howell95@outlook.com</td>
+<td><a href="https://github.com/Howell5" target="_blank" rel="external">https://github.com/Howell5</a></td>
+<td><a href="http://blog.josephong.me" target="_blank" rel="external">http://blog.josephong.me</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="能力简述"><a href="#能力简述" class="headerlink" title="能力简述"></a>能力简述</h2><ul>
+<li>开发：于2016年开始学习前端，对前端领域知识有不错的掌握，能胜任大多数前端开发任务</li>
+<li>工具平台：主要开发平台 mac， 熟悉 git，熟悉 sublime，了解 atom</li>
+<li>开源爱好者：有十几个项目的代码托管在 github。</li>
+<li>自学能力强：喜欢阅读经典书籍，写博客。擅长使用 google、stackoverflow，阅读英文文档。</li>
+</ul>
+<h2 id="项目经历"><a href="#项目经历" class="headerlink" title="项目经历"></a>项目经历</h2><h3 id="大三下：-HTML5-移动webapp阅读器"><a href="#大三下：-HTML5-移动webapp阅读器" class="headerlink" title="大三下： HTML5 移动webapp阅读器"></a>大三下： HTML5 移动webapp阅读器</h3><blockquote>
+<p>在线地址：<a href="http://blog.josephong.me/ReaderH5/" target="_blank" rel="external">HTML5 移动webapp阅读器</a></p>
+</blockquote>
+<ul>
+<li>文本数据由JSONP跨域请求获得</li>
+<li>可实现基本的翻页，更换背景色，更改字体大小等交互。且这些操作数据会存入localStorage中</li>
+<li>使用ES6的Promise解决了回调过多的问题，base64格式图片优化了性能</li>
+</ul>
+<h3 id="大三上：-百度前端学院2015春季班任务"><a href="#大三上：-百度前端学院2015春季班任务" class="headerlink" title="大三上： 百度前端学院2015春季班任务"></a>大三上： 百度前端学院2015春季班任务</h3><blockquote>
+<p>在线地址: <a href="http://blog.josephong.me/IFE-2015/intro.html" target="_blank" rel="external">IFE-2015-spring</a></p>
+</blockquote>
+<ul>
+<li>task2实现了轮播图组件，运动框架组件，拖拽，Ajax，事件代理等常用方法的封装库</li>
+<li>task3实现了一个SPA简易个人任务管理系统,数据存在localStorage中</li>
+</ul>
+<h2 id="其它经历"><a href="#其它经历" class="headerlink" title="其它经历"></a>其它经历</h2><ul>
+<li>大三上 作为学院主力成员(10号)获得校足球杯赛第三名</li>
+<li>大二上 作为主要策划负责人举办了学校大型音乐节(与vivo合作)。经费8000元，现场人数800人左右</li>
+<li>大一 获院三等奖学金</li>
+</ul>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <span>John Doe</span>
+    </p>
+    <p class="copyright-item">
+      <span>Origin: </span>
+      <a href="http://yoursite.com">http://yoursite.com</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="http://yoursite.com/2017/03/10/简历/">http://yoursite.com/2017/03/10/简历/</a>
+    </p>
+
+    <p class="copyright-item lincese">
+      
+      本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">Reward</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/wechat.jpeg" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/alipay.jpeg" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/resume/">resume</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/09/16/JavaScript基本数据结构/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">JavaScript基本数据结构</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/04/22/hello-world/">
+        <span class="next-text nav-default">Hello World</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:howell95@outlook.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/Howell5" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2016 - 
+    
+    2017
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">John Doe</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2017/03/10/简历/';
+        this.page.identifier = '2017/03/10/简历/';
+        this.page.title = 'JavaScript详解跨域';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//howell5.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.4.x"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.4.x"></script>
+
+    
+  </body>
+</html>

@@ -12,10 +12,12 @@
 
 
 
-  <meta name="description" content="Hello World"/>
+  <meta name="description" content="JavaScript详解跨域"/>
 
 
 
+
+  <meta name="keywords" content="JavaScript CORS," />
 
 
 
@@ -29,20 +31,20 @@
 
 
 
-<link rel="canonical" href="http://yoursite.com/2017/04/22/hello-world/"/>
+<link rel="canonical" href="http://yoursite.com/2016/09/12/JavaScript详解跨域/"/>
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
-<meta name="keywords">
+<meta name="description" content="对于web开发来讲，由于浏览器的同源策略，我们需要经常使用一些hack的方法去跨域获取资源，但是hack的方法总归是hack。直到W3C出了一个标准－CORS－”跨域资源共享”（Cross-origin resource sharing）。它允许浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制。首先来说 CORS 需要浏览器和服务端同时支持的，对于兼容">
+<meta name="keywords" content="JavaScript CORS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2017/04/22/hello-world/index.html">
+<meta property="og:title" content="JavaScript详解跨域">
+<meta property="og:url" content="http://yoursite.com/2016/09/12/JavaScript详解跨域/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
-<meta property="og:updated_time" content="2017-04-22T14:34:36.000Z">
+<meta property="og:description" content="对于web开发来讲，由于浏览器的同源策略，我们需要经常使用一些hack的方法去跨域获取资源，但是hack的方法总归是hack。直到W3C出了一个标准－CORS－”跨域资源共享”（Cross-origin resource sharing）。它允许浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制。首先来说 CORS 需要浏览器和服务端同时支持的，对于兼容">
+<meta property="og:updated_time" content="2017-04-22T14:13:25.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="JavaScript详解跨域">
+<meta name="twitter:description" content="对于web开发来讲，由于浏览器的同源策略，我们需要经常使用一些hack的方法去跨域获取资源，但是hack的方法总归是hack。直到W3C出了一个标准－CORS－”跨域资源共享”（Cross-origin resource sharing）。它允许浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制。首先来说 CORS 需要浏览器和服务端同时支持的，对于兼容">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
@@ -69,7 +71,7 @@
 
 
 
-    <title> Hello World · Hexo </title>
+    <title> JavaScript详解跨域 · Hexo </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -150,38 +152,23 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          Hello World
+          JavaScript详解跨域
         
       </h1>
 
       <div class="post-meta">
         <span class="post-time">
-          Apr 22, 2017
+          Sep 12, 2016
         </span>
       </div>
     </header>
 
     
     
-  <div class="post-toc" id="post-toc">
-    <h2 class="post-toc-title">Contents</h2>
-    <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
-    </div>
-  </div>
-
 
     <div class="post-content">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <p>对于web开发来讲，由于浏览器的同源策略，我们需要经常使用一些hack的方法去跨域获取资源，但是hack的方法总归是hack。直到W3C出了一个标准－CORS－”跨域资源共享”（Cross-origin resource sharing）。<br>它允许浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制。<br>首先来说 CORS 需要浏览器和服务端同时支持的，对于兼容性来说主要是ie10+，其它现代浏览器都是支持的。</p>
 
       
     </div>
@@ -201,7 +188,7 @@
     </p>
     <p class="copyright-item">
       <span>Link: </span>
-      <a href="http://yoursite.com/2017/04/22/hello-world/">http://yoursite.com/2017/04/22/hello-world/</a>
+      <a href="http://yoursite.com/2016/09/12/JavaScript详解跨域/">http://yoursite.com/2016/09/12/JavaScript详解跨域/</a>
     </p>
 
     <p class="copyright-item lincese">
@@ -237,16 +224,28 @@
     
       <footer class="post-footer">
         
+          <div class="post-tags">
+            
+              <a href="/tags/JavaScript-CORS/">JavaScript CORS</a>
+            
+          </div>
+        
         
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2017/03/10/简历/">
+      <a class="prev" href="/2016/09/10/CSS系列之从box-sizing的值谈盒模型/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">JavaScript详解跨域</span>
+        <span class="prev-text nav-default">CSS系列之从box-sizing的值谈浏览器的渲染模式</span>
         <span class="prev-text nav-mobile">Prev</span>
       </a>
     
+    
+      <a class="next" href="/2016/09/16/JavaScript基本数据结构/">
+        <span class="next-text nav-default">JavaScript基本数据结构</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
     
   </nav>
 
@@ -350,9 +349,9 @@
   
   <script type="text/javascript">
     var disqus_config = function () {
-        this.page.url = 'http://yoursite.com/2017/04/22/hello-world/';
-        this.page.identifier = '2017/04/22/hello-world/';
-        this.page.title = 'Hello World';
+        this.page.url = 'http://yoursite.com/2016/09/12/JavaScript详解跨域/';
+        this.page.identifier = '2016/09/12/JavaScript详解跨域/';
+        this.page.title = 'JavaScript详解跨域';
     };
     (function() {
     var d = document, s = d.createElement('script');

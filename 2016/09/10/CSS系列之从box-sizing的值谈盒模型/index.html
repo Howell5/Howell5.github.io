@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="CSS系列之从box-sizing的值谈浏览器的渲染模式"/>
+
+
+
+
+  <meta name="keywords" content="css,盒模型," />
+
+
+
+
+  <link rel="alternate" href="/default" title="Hexo">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.4.x" />
+
+
+
+<link rel="canonical" href="http://yoursite.com/2016/09/10/CSS系列之从box-sizing的值谈盒模型/"/>
+
+
+<meta name="description" content="标准模式与怪异模式在标准模式下，浏览器按照W3C标准对文档进行解析和渲染；而在怪异模式下，浏览器则按照旧有的非标准的实现方式对文档进行解析和渲染。 这样的话，对于旧有的网页，浏览器启动怪异模式，就能够使得旧网页正常显示；对于新的网页，则可以启动标准模式，使得新网页能够使用HTML与CSS的标准特性。 那浏览器根据什么来判断 采用哪种模式来渲染打开的网页呢？答案是我们经常在HTML头部看到的DOCT">
+<meta name="keywords" content="css,盒模型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS系列之从box-sizing的值谈浏览器的渲染模式">
+<meta property="og:url" content="http://yoursite.com/2016/09/10/CSS系列之从box-sizing的值谈盒模型/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="标准模式与怪异模式在标准模式下，浏览器按照W3C标准对文档进行解析和渲染；而在怪异模式下，浏览器则按照旧有的非标准的实现方式对文档进行解析和渲染。 这样的话，对于旧有的网页，浏览器启动怪异模式，就能够使得旧网页正常显示；对于新的网页，则可以启动标准模式，使得新网页能够使用HTML与CSS的标准特性。 那浏览器根据什么来判断 采用哪种模式来渲染打开的网页呢？答案是我们经常在HTML头部看到的DOCT">
+<meta property="og:updated_time" content="2017-04-22T14:13:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS系列之从box-sizing的值谈浏览器的渲染模式">
+<meta name="twitter:description" content="标准模式与怪异模式在标准模式下，浏览器按照W3C标准对文档进行解析和渲染；而在怪异模式下，浏览器则按照旧有的非标准的实现方式对文档进行解析和渲染。 这样的话，对于旧有的网页，浏览器启动怪异模式，就能够使得旧网页正常显示；对于新的网页，则可以启动标准模式，使得新网页能够使用HTML与CSS的标准特性。 那浏览器根据什么来判断 采用哪种模式来渲染打开的网页呢？答案是我们经常在HTML头部看到的DOCT">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
+
+
+
+
+
+
+
+<script>
+  var CONFIG = {
+    search: false,
+    searchPath: "/search.xml",
+    fancybox: false,
+    toc: true,
+  }
+</script>
+
+
+
+
+  
+
+
+
+    <title> CSS系列之从box-sizing的值谈浏览器的渲染模式 · Hexo </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Hexo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Hexo</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          CSS系列之从box-sizing的值谈浏览器的渲染模式
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Sep 10, 2016
+        </span>
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#标准模式与怪异模式"><span class="toc-text">标准模式与怪异模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lt-DOCTYPE-gt"><span class="toc-text"><!DOCTYPE></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用法"><span class="toc-text">用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用的-DOCTYPE-声明"><span class="toc-text">常用的 DOCTYPE 声明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML5-为什么声明这么短"><span class="toc-text">HTML5 为什么声明这么短</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#box-sizing的两个值"><span class="toc-text">box-sizing的两个值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文档："><span class="toc-text">参考文档：</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h2 id="标准模式与怪异模式"><a href="#标准模式与怪异模式" class="headerlink" title="标准模式与怪异模式"></a>标准模式与怪异模式</h2><p>在<strong>标准模式</strong>下，浏览器按照W3C标准对文档进行解析和渲染；而在<strong>怪异模式</strong>下，浏览器则按照旧有的非标准的实现方式对文档进行解析和渲染。</p>
+<p>这样的话，对于旧有的网页，浏览器启动怪异模式，就能够使得旧网页正常显示；对于新的网页，则可以启动标准模式，使得新网页能够使用HTML与CSS的标准特性。</p>
+<p>那浏览器根据什么来判断 采用哪种模式来渲染打开的网页呢？答案是我们经常在HTML头部看到的DOCTYPE；</p>
+<h2 id="lt-DOCTYPE-gt"><a href="#lt-DOCTYPE-gt" class="headerlink" title="&lt;!DOCTYPE&gt;"></a>&lt;!DOCTYPE&gt;</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><ul>
+<li>DOCTYPE是Document Type（文档类型）的简写，用来告知浏览器该文档使用哪种 HTML 或 XHTML 规范；</li>
+<li>不属于HTML或XHTML标签，是一种声明，不需要闭合；</li>
+<li>必须位于HTML或XHTML文档第一行；</li>
+<li>大小写不敏感；</li>
+<li>所有浏览器都支持&lt;!DOCTYPE&gt;声明</li>
+</ul>
+<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><p>&lt;!DOCTYPE html</p>
+<p>PUBLIC “-//W3C//DTD XHTML 1.0 Strict//EN”</p>
+<p>“<a href="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;" target="_blank" rel="external">http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;</a></p>
+<p>以上代码</p>
+<p>第一行：声明文档的根元素是 html，</p>
+<p>第二行：在公共标识符被定义为 “-//W3C//DTD XHTML 1.0 Strict//EN” 的 DTD 中进行了定义，浏览器将明白如何寻找匹配此公共标识符的 DTD，</p>
+<p>第三行：如果浏览器匹配不到第二行中的标识符，浏览器将使用公共标识符后面的 URL 作为寻找 <strong>DTD</strong> （文档类型定义，规定了标记语言的规则，这样浏览器才能正确地呈现内容）的位置。</p>
+<h3 id="常用的-DOCTYPE-声明"><a href="#常用的-DOCTYPE-声明" class="headerlink" title="常用的 DOCTYPE 声明"></a>常用的 DOCTYPE 声明</h3><ul>
+<li><p>HTML 5<br> &lt;!DOCTYPE html&gt;</p>
+<ul>
+<li><p>HTML 4.01 Strict</p>
+<p>该 DTD 包含所有 HTML 元素和属性，但不包括展示性的和弃用的元素（比如 font）。不允许框架集（Framesets）。<br>&lt;!DOCTYPE HTML PUBLIC “-//W3C//DTD HTML 4.01//EN” “<a href="http://www.w3.org/TR/html4/strict.dtd&quot;&gt;" target="_blank" rel="external">http://www.w3.org/TR/html4/strict.dtd&quot;&gt;</a></p>
+</li>
+<li><p>HTML 4.01 Transitional</p>
+<p>该 DTD 包含所有 HTML 元素和属性，包括展示性的和弃用的元素（比如 font）。不允许框架集（Framesets）。<br>&lt;!DOCTYPE HTML PUBLIC “-//W3C//DTD HTML 4.01 Transitional//EN”  “<a href="http://www.w3.org/TR/html4/loose.dtd&quot;&gt;" target="_blank" rel="external">http://www.w3.org/TR/html4/loose.dtd&quot;&gt;</a></p>
+</li>
+<li><p>HTML 4.01 Frameset</p>
+<p>该 DTD 等同于 HTML 4.01 Transitional，但允许框架集内容。<br>&lt;!DOCTYPE HTML PUBLIC “-//W3C//DTD HTML 4.01 Frameset//EN”  “<a href="http://www.w3.org/TR/html4/frameset.dtd&quot;&gt;" target="_blank" rel="external">http://www.w3.org/TR/html4/frameset.dtd&quot;&gt;</a></p>
+</li>
+<li><p>XHTML 1.0 Strict</p>
+<p>该 DTD 包含所有 HTML 元素和属性，但不包括展示性的和弃用的元素（比如 font）。不允许框架集（Framesets）。必须以格式正确的 XML 来编写标记。<br>&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Strict//EN”  “<a href="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;" target="_blank" rel="external">http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;</a></p>
+</li>
+<li><p>XHTML 1.0 Transitional</p>
+<p>该 DTD 包含所有 HTML 元素和属性，包括展示性的和弃用的元素（比如 font）。不允许框架集（Framesets）。必须以格式正确的 XML 来编写标记。<br>&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Transitional//EN”  “<a href="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;" target="_blank" rel="external">http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</a></p>
+</li>
+<li><p>XHTML 1.0 Frameset</p>
+<p>该 DTD 等同于 XHTML 1.0 Transitional，但允许框架集内容。<br>&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Frameset//EN”  “<a href="http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd&quot;&gt;" target="_blank" rel="external">http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd&quot;&gt;</a></p>
+</li>
+<li><p>XHTML 1.1</p>
+<p>该 DTD 等同于 XHTML 1.0 Strict，但允许添加模型（例如提供对东亚语系的 ruby 支持）。<br>&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.1//EN” “<a href="http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd&quot;&gt;" target="_blank" rel="external">http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd&quot;&gt;</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="HTML5-为什么声明这么短"><a href="#HTML5-为什么声明这么短" class="headerlink" title="HTML5 为什么声明这么短"></a>HTML5 为什么声明这么短</h3><p>HTML4.01 DOCTYPE需要对 DTD 进行引用，是因为 HTML4.01基于 SGML，而 HTML 5 不基于 SGML，因此不需要对 DTD 进行引用，但是需要 DOCTYPE 来规范浏览器的行为。至于 DTD 和 SGML 具体是什么，可以看这两段描述:<br>&gt;</p>
+<ul>
+<li>DTD is a set of markup declarations that define a document type for an SGML-family markup language (SGML, XML, HTML). A Document Type Definition (DTD) defines the legal building blocks of an XML document. It defines the document structure with a list of legal elements and attributes.</li>
+<li>SGML is a standard for how to specify a document markup language or tag set. Such a specification is itself a document type definition (DTD). SGML is not in itself a document language, but a description of how to specify one. It is metadata.</li>
+</ul>
+<h2 id="box-sizing的两个值"><a href="#box-sizing的两个值" class="headerlink" title="box-sizing的两个值"></a>box-sizing的两个值</h2><p>box-sizing有两个值一个是content-box，另一个是border-box。</p>
+<ul>
+<li><p>当设置为box-sizing:content-box时，将采用标准模式解析计算，也是默认模式；</p>
+</li>
+<li><p>当设置为box-sizing:border-box时，将采用怪异模式解析计算；</p>
+</li>
+</ul>
+<p>为了理解，我们写个例子：<br>一个div我们加上这些属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">div &#123;</div><div class="line">     background-color: red;</div><div class="line">    width: 300px;</div><div class="line">    height: 300px;</div><div class="line">    margin: 50px;</div><div class="line">    padding: 50px;</div><div class="line">    border: 20px solid;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这时的box-sizing默认为content-box；这个div的width = 300 + 50*2 + 20*2 = 440px; height亦然。而它的盒子模型的总宽度是 width + 50*2 = 540px;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">div &#123;</div><div class="line">    ...</div><div class="line">    ...</div><div class="line">    box-sizing: border-box;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>而我们给它的box-sizing属性设为 border-box时，盒子模型的计算方式发生改变。这时这个div的width = 300px。而它的盒子模型的总宽度是 width + 50*2 = 400px;</p>
+<p>言而总之就是 怪异模式的 盒子模型的宽度/高度 是包括 padding 和 border 的宽和高的，你给它设置了一定的宽高，无论里面的padding、border宽高怎么变，盒子的width和height一直是你设置的值而不会撑大。</p>
+<h3 id="参考文档："><a href="#参考文档：" class="headerlink" title="参考文档："></a>参考文档：</h3><ul>
+<li><a href="http://www.cnblogs.com/slp-qm/p/5611268.html" target="_blank" rel="external">CSS盒模型全面讲解，怪异模式盒模型，CSS3 box-sizing属性</a></li>
+<li><a href="http://lib.csdn.net/article/html5/14445" target="_blank" rel="external">HTML5中回归简单的&lt;!DOCTYPE&gt;声明</a></li>
+</ul>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <span>John Doe</span>
+    </p>
+    <p class="copyright-item">
+      <span>Origin: </span>
+      <a href="http://yoursite.com">http://yoursite.com</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="http://yoursite.com/2016/09/10/CSS系列之从box-sizing的值谈盒模型/">http://yoursite.com/2016/09/10/CSS系列之从box-sizing的值谈盒模型/</a>
+    </p>
+
+    <p class="copyright-item lincese">
+      
+      本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">Reward</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/wechat.jpeg" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/alipay.jpeg" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/css/">css</a>
+            
+              <a href="/tags/盒模型/">盒模型</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/09/04/CSS系列之Flexbox布局/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">CSS系列之Flexbox布局</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/09/12/JavaScript详解跨域/">
+        <span class="next-text nav-default">JavaScript详解跨域</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:howell95@outlook.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/Howell5" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2016 - 
+    
+    2017
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">John Doe</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2016/09/10/CSS系列之从box-sizing的值谈盒模型/';
+        this.page.identifier = '2016/09/10/CSS系列之从box-sizing的值谈盒模型/';
+        this.page.title = 'CSS系列之从box-sizing的值谈浏览器的渲染模式';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//howell5.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.4.x"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.4.x"></script>
+
+    
+  </body>
+</html>

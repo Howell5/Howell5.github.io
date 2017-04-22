@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="近期学了较多移动web开发的相关知识，所以在这里写点东西，也算坐个简单总结。"/>
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Hexo">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.4.x" />
+
+
+
+<link rel="canonical" href="http://yoursite.com/2016/08/10/移动web学习笔记/"/>
+
+
+<meta name="description" content="近期学了较多移动web开发的相关知识，所以在这里写点东西，也算坐个简单总结。">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动web学习笔记">
+<meta property="og:url" content="http://yoursite.com/2016/08/10/移动web学习笔记/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="近期学了较多移动web开发的相关知识，所以在这里写点东西，也算坐个简单总结。">
+<meta property="og:updated_time" content="2017-03-29T14:21:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动web学习笔记">
+<meta name="twitter:description" content="近期学了较多移动web开发的相关知识，所以在这里写点东西，也算坐个简单总结。">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
+
+
+
+
+
+
+
+<script>
+  var CONFIG = {
+    search: false,
+    searchPath: "/search.xml",
+    fancybox: false,
+    toc: true,
+  }
+</script>
+
+
+
+
+  
+
+
+
+    <title> 移动web学习笔记 · Hexo </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Hexo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Hexo</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          移动web学习笔记
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Aug 10, 2016
+        </span>
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#pixel像素基础"><span class="toc-text">pixel像素基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Viewport视图"><span class="toc-text">Viewport视图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设计移动Web"><span class="toc-text">设计移动Web</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#移动web特别样式"><span class="toc-text">移动web特别样式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一像素边框"><span class="toc-text">一像素边框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#相对单位-rem"><span class="toc-text">相对单位 rem</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多行文本溢出···"><span class="toc-text">多行文本溢出···</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <hr>
+<p>近期学了较多移动web开发的相关知识，所以在这里写点东西，也算坐个简单总结。</p>
+<hr>
+<h3 id="pixel像素基础"><a href="#pixel像素基础" class="headerlink" title="pixel像素基础"></a>pixel像素基础</h3><ul>
+<li>px：CSS pixels 逻辑像素，浏览器使用的抽象单位</li>
+<li>dp，pt：device independent pixels 设备独立像素</li>
+<li>dpr：devicePixelRatio 设备像素缩放比</li>
+</ul>
+<blockquote>
+<p>计算公式：1px=(dpr)² * dp</p>
+<p>在JavaScript中，可以通过<code>window.devicePixelRatio</code>获取当前设备的dpr</p>
+</blockquote>
+<p>这里盗个图：</p>
+<p>![][1]</p>
+<ul>
+<li>DPI:打印机每英寸可以喷的墨汁点（印刷行业）</li>
+<li>PPI:屏幕每英寸的像素数量，即单位英寸内的像素密度(ppi越高，像素越高，图像越清晰)</li>
+</ul>
+<p><strong>这几个属性之间的关系，以iPhone5为例</strong>：<br>iPhone5设备分辨率1136<em>640dp –&gt;<br>根号[(1136²+640²)]/4 = 326ppi –&gt; 326ppi属于Retina屏幕,所以根据规定dpr=2 –&gt;<br>1px = dpr² </em> dp –&gt;<br>iphone5的屏幕宽高为320*568px。</p>
+<blockquote>
+<p>例如这样，设计师可以根据<code>320px</code>为<code>基准</code>设计<code>视觉稿</code>。</p>
+</blockquote>
+<hr>
+<h3 id="Viewport视图"><a href="#Viewport视图" class="headerlink" title="Viewport视图"></a>Viewport视图</h3><p>为了让手机能获得良好的网页浏览体验，Apple 找到了一个办法：在移动版的 Safari（iOS平台）中定义了 viewport meta 标签，它的作用就是创建一个虚拟的窗口（viewport），而且这个虚拟窗口的分辨率接近于桌面显示器，Apple 将其定位为 980px.<br>手机浏览器默认为我们做了两件事情<br>一、页面渲染在一个980px（ios）的Viewport<br>二、缩放</p>
+<ul>
+<li>visual viewport（度量/视口）<br>= 窗口缩放 scalce，让手机页面可以看到多少</li>
+<li>layout viewport（布局）<br>负责渲染底层页面</li>
+</ul>
+<p><strong>最常用移动web viewport设置</strong></p>
+<p>【布局viewport】=【设备宽度】=【度量viewport】</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">//常见viewport设置</div><div class="line">&lt;meta name=&quot;viewport&quot; </div><div class="line">content=&quot;width=device-width, //根据设备调整width</div><div class="line">initial-scale=1, //比例为1</div><div class="line">user-scalable=no&quot; //不允许用户缩放</div><div class="line"></div><div class="line">//在开发调试过程中，可以通过JS代码获得当前layout和visual的值</div><div class="line">document.body.clientWidth //获得layout viewport值</div><div class="line">window.innerWidth //获得visual viewport值</div></pre></td></tr></table></figure>
+<h3 id="设计移动Web"><a href="#设计移动Web" class="headerlink" title="设计移动Web"></a>设计移动Web</h3><ul>
+<li>方案一：根据设备的实际宽度来设计（常用）<br>手机宽320 px，我们就拿320 px设计</li>
+<li>方案二：1px=1dp<br>缩放0.5（initial-scale=0.5）。根据设备的物理像素 dp 等于抽象像素 px 来设计。1像素边框和高清图片都不需要额外处理。</li>
+</ul>
+<hr>
+<h1 id="移动web特别样式"><a href="#移动web特别样式" class="headerlink" title="移动web特别样式"></a>移动web特别样式</h1><hr>
+<h3 id="一像素边框"><a href="#一像素边框" class="headerlink" title="一像素边框"></a>一像素边框</h3><p>比如想让border的线更细些，我们虽然会设置成border：1px；但在是retina屏幕下，1px使用2dp渲染。使之看起来有2px，那我们就用border：0.5px咯。但很可惜，这种语法只在ios8以上的情况下有用，所以不是好方案。<br>这时我们就常用到scaleY(0.5),大致代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">.scale&#123;</div><div class="line">    position: relative;</div><div class="line">&#125;</div><div class="line">.scale:after&#123;</div><div class="line">    content:&quot;&quot;;</div><div class="line">    position: absolute;</div><div class="line">    bottom:0px;</div><div class="line">    left:0px;</div><div class="line">    right:0px;</div><div class="line">    border-bottom:1px solid #ddd;</div><div class="line">    -webkit-transform:scaleY(.5);</div><div class="line">    -webkit-transform-origin:0 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="相对单位-rem"><a href="#相对单位-rem" class="headerlink" title="相对单位 rem"></a>相对单位 rem</h3><ul>
+<li><p>为了适应各大屏幕的手机，px略显固定,不能根据尺寸的大小而改变，使用相对单位更能体验页面兼容性</p>
+<ul>
+<li><p>em：是根据父节点的font-size为相对单位<br>但em在多层嵌套下，变得非常难以操作</p>
+</li>
+<li><p>rem：是根据html的font-size为相对单位<br>rem更加能作为全局统一设置的度量（但在实际产品交互体验上还需考量是否使用）</p>
+</li>
+</ul>
+</li>
+<li><p>引出另一个问题rem的基值设置多少好？<br>回归我们的目的：为了适应各大手机屏幕<br>rem = screen.width/20<br>有时我们也会看到在业界中会用如下方案：</p>
+<blockquote>
+<p>将<code>scale</code>设置为<code>1/dpr</code> , 而<code>&lt;html&gt;</code>的<code>font-size</code>计算为<code>screen.width * dpr / &gt;10</code>,然后再以<code>less</code>将UE图上得到的尺寸透明转换为对应的<code>rem</code>值。</p>
+</blockquote>
+</li>
+</ul>
+<p>关于这一方案的实现，推荐大家看看这篇文章： [数学方法解释 dpr/scale/rem 三者的关系][2]。</p>
+<ul>
+<li><p>iphone5上的rem基值为32px，渲染一张64 <em> 64px的div，则用2rem </em> 2rem去渲染。换算公式非常简单：<br>width：px/rem基值<br>height：px/rem基值</p>
+</li>
+<li><p>不使用rem的情况：font-size</p>
+<ul>
+<li>一般来说font-size是不应该使用rem等相对单位的。因为字体的大小是趋向于阅读的实用性，并不适合与排版布局。</li>
+<li>同理趋向于一些固定的元素的特性。我们不使用rem而改为使用px去确保在不同屏幕上表现一致（和rem的目的相反）。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="多行文本溢出···"><a href="#多行文本溢出···" class="headerlink" title="多行文本溢出···"></a>多行文本溢出···</h3><p>单行文本溢出，对title类的使用非常多，<br>而多行文本类，在详情介绍则用的比较多。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">//单行文本溢出...</div><div class="line">.inaline &#123;</div><div class="line">    overflow: hidden;</div><div class="line">    white-space: nowrap;</div><div class="line">    text-flow: ellipsis;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//多行文本溢出...</div><div class="line">.intwoline &#123;</div><div class="line">    display: -webkit-box !important;</div><div class="line">    overflow: hidden;</div><div class="line">    </div><div class="line">    text-overflow: ellipsis;</div><div class="line">    word-break: break-all; </div><div class="line">    </div><div class="line">    -webkit-box-orient: vertical;</div><div class="line">    -webkit-line-clamp: 2; //关键属性，限制行数</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>大概就是这些了，写的比较乱。如有错误欢迎指正。</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <span>John Doe</span>
+    </p>
+    <p class="copyright-item">
+      <span>Origin: </span>
+      <a href="http://yoursite.com">http://yoursite.com</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="http://yoursite.com/2016/08/10/移动web学习笔记/">http://yoursite.com/2016/08/10/移动web学习笔记/</a>
+    </p>
+
+    <p class="copyright-item lincese">
+      
+      本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">Reward</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/wechat.jpeg" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/alipay.jpeg" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/07/29/CSS系列之双飞翼布局/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">CSS系列之双飞翼布局</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/08/25/JavaScript之理解作用域/">
+        <span class="next-text nav-default">JavaScript之理解作用域</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:howell95@outlook.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/Howell5" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2016 - 
+    
+    2017
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">John Doe</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2016/08/10/移动web学习笔记/';
+        this.page.identifier = '2016/08/10/移动web学习笔记/';
+        this.page.title = '移动web学习笔记';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//howell5.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.4.x"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.4.x"></script>
+
+    
+  </body>
+</html>
