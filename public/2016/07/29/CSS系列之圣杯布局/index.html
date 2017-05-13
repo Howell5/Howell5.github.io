@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="css经典圣杯布局"/>
+
+
+
+
+  <meta name="keywords" content="css,布局," />
+
+
+
+
+  <link rel="alternate" href="/default" title="Howell5's blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.4.x" />
+
+
+
+<link rel="canonical" href="blog.josephong.me/2016/07/29/CSS系列之圣杯布局/"/>
+
+
+<meta name="description" content="css经典圣杯布局">
+<meta name="keywords" content="css,布局">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS系列之圣杯布局">
+<meta property="og:url" content="blog.josephong.me/2016/07/29/CSS系列之圣杯布局/index.html">
+<meta property="og:site_name" content="Howell5's blog">
+<meta property="og:description" content="css经典圣杯布局">
+<meta property="og:image" content="http://alistapart.com/d/_made/d/ALA211_grail_300_348_421_81.jpg">
+<meta property="og:image" content="http://alistapart.com/d/holygrail/diagram_01.gif">
+<meta property="og:image" content="http://alistapart.com/d/holygrail/diagram_02.gif">
+<meta property="og:image" content="http://alistapart.com/d/holygrail/diagram_03.gif">
+<meta property="og:image" content="http://alistapart.com/d/holygrail/diagram_04.gif">
+<meta property="og:image" content="http://alistapart.com/d/holygrail/diagram_05.gif">
+<meta property="og:updated_time" content="2016-11-10T15:15:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS系列之圣杯布局">
+<meta name="twitter:description" content="css经典圣杯布局">
+<meta name="twitter:image" content="http://alistapart.com/d/_made/d/ALA211_grail_300_348_421_81.jpg">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
+
+
+
+
+
+
+
+<script>
+  var CONFIG = {
+    search: false,
+    searchPath: "/search.xml",
+    fancybox: false,
+    toc: true,
+  }
+</script>
+
+
+
+
+  
+
+
+
+    <title> CSS系列之圣杯布局 · Howell5's blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Howell5's blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Howell5's blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          CSS系列之圣杯布局
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Jul 29, 2016
+        </span>
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#圣杯布局的概念"><span class="toc-text">圣杯布局的概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现步骤"><span class="toc-text">实现步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#STEP-1：CREAT-THE-FRAME"><span class="toc-text">STEP 1：CREAT THE FRAME</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#STEP-2：ADD-THE-COLUMNS"><span class="toc-text">STEP 2：ADD THE COLUMNS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#STEP-3-PULL-THE-LEFT-COLUMN-INTO-PLACE"><span class="toc-text">STEP 3: PULL THE LEFT COLUMN INTO PLACE</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#STEP-4-PULL-THE-RIGHT-COLUMN-INTO-PLACE"><span class="toc-text">STEP 4: PULL THE RIGHT COLUMN INTO PLACE</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h2 id="圣杯布局的概念"><a href="#圣杯布局的概念" class="headerlink" title="圣杯布局的概念"></a>圣杯布局的概念</h2><hr>
+<p><img src="http://alistapart.com/d/_made/d/ALA211_grail_300_348_421_81.jpg" alt="Holy Grial"></p>
+<p>即一种轻便，广泛使用的三栏流体布局。它具有以下的优秀特性：</p>
+<ol>
+<li>两边固定宽度而中间可以流动；</li>
+<li>允许中间栏代码最先出现；</li>
+<li>允许任一栏的高度都最高；</li>
+<li>仅需一个额外的<code>div</code>标签；</li>
+<li>仅需很少必要css代码及最少兼容性补丁代码。</li>
+</ol>
+<p>我们先看看实现效果：<a href="http://alistapart.com/d/holygrail/example_1.html" target="_blank" rel="external">Take a look</a></p>
+<h2 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h2><h4 id="STEP-1：CREAT-THE-FRAME"><a href="#STEP-1：CREAT-THE-FRAME" class="headerlink" title="STEP 1：CREAT THE FRAME"></a>STEP 1：CREAT THE FRAME</h4><p>html代码:</p>
+<pre><code>&lt;div id=&quot;header&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;container&quot;&gt;
+&lt;div id=&quot;footer&quot;&gt;&lt;/div&gt;
+</code></pre><p>给<code>container</code>设置<code>padding</code>，为两栏预留空间</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#container &#123;</div><div class="line">  padding-left: 200px;   /* LC width */</div><div class="line">  padding-right: 150px;  /* RC width */</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>效果像是这样：</p>
+<p><img src="http://alistapart.com/d/holygrail/diagram_01.gif" alt="img1"></p>
+<h4 id="STEP-2：ADD-THE-COLUMNS"><a href="#STEP-2：ADD-THE-COLUMNS" class="headerlink" title="STEP 2：ADD THE COLUMNS"></a>STEP 2：ADD THE COLUMNS</h4><p>加上三栏：</p>
+<pre><code>&lt;div id=&quot;center&quot; class=&quot;column&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;left&quot; class=&quot;column&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;right&quot; class=&quot;column&quot;&gt;&lt;/div&gt;
+</code></pre><p>给两边加上适合的宽度，然后让中间栏自适应，让三栏全部浮动，当然也要给底栏<code>footer</code>清除浮动：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">#container .column &#123;</div><div class="line">  float: left;</div><div class="line">&#125;</div><div class="line">#center &#123;</div><div class="line">  width: 100%;</div><div class="line">&#125;</div><div class="line">#left &#123;</div><div class="line">  width: 200px;  /* LC width */</div><div class="line">&#125;</div><div class="line">#right &#123;</div><div class="line">  width: 150px;  /* RC width */</div><div class="line">&#125;</div><div class="line">#footer &#123;</div><div class="line">  clear: both;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这时的效果图是这样的：</p>
+<p><img src="http://alistapart.com/d/holygrail/diagram_02.gif" alt=""></p>
+<h4 id="STEP-3-PULL-THE-LEFT-COLUMN-INTO-PLACE"><a href="#STEP-3-PULL-THE-LEFT-COLUMN-INTO-PLACE" class="headerlink" title="STEP 3: PULL THE LEFT COLUMN INTO PLACE"></a>STEP 3: PULL THE LEFT COLUMN INTO PLACE</h4><p>这里才开始精妙的部分，我们先看代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#left &#123;</div><div class="line">  width: 200px;        /* LC width */</div><div class="line">  margin-left: -100%;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>margin-left: -100%</code> 这条语句使左栏向左浮动了100%，center和left栏就会重叠，效果是这样的：</p>
+<p><img src="http://alistapart.com/d/holygrail/diagram_03.gif" alt=""></p>
+<p>这时我们再利用relative的特性，使left移动到左栏，即：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#container .columns &#123;</div><div class="line">  float: left;</div><div class="line">  position: relative;</div><div class="line">&#125;</div><div class="line">#left &#123;</div><div class="line">  width: 200px;        /* LC width */</div><div class="line">  margin-left: -100%;  </div><div class="line">  right: 200px;        /* LC width */</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>左栏想要的效果就达到了：</p>
+<p><img src="http://alistapart.com/d/holygrail/diagram_04.gif" alt=""></p>
+<h4 id="STEP-4-PULL-THE-RIGHT-COLUMN-INTO-PLACE"><a href="#STEP-4-PULL-THE-RIGHT-COLUMN-INTO-PLACE" class="headerlink" title="STEP 4: PULL THE RIGHT COLUMN INTO PLACE"></a>STEP 4: PULL THE RIGHT COLUMN INTO PLACE</h4><p>接下来我们把放置右栏就简单多了，利用margin的负值法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#right &#123;</div><div class="line">  width: 150px;          /* RC width */</div><div class="line">  margin-right: -150px;  /* RC width */</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>ok，每栏都到达了正确位置，效果是这样的：</p>
+<p><img src="http://alistapart.com/d/holygrail/diagram_05.gif" alt=""></p>
+<p><strong>圣杯布局就是这样了。如果想要更多了解，推荐看这篇原文</strong>：<a href="http://alistapart.com/article/holygrail" target="_blank" rel="external">In Search of the Holy Grail</a></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <span>Howell5</span>
+    </p>
+    <p class="copyright-item">
+      <span>Origin: </span>
+      <a href="blog.josephong.me">blog.josephong.me</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="blog.josephong.me/2016/07/29/CSS系列之圣杯布局/">blog.josephong.me/2016/07/29/CSS系列之圣杯布局/</a>
+    </p>
+
+    <p class="copyright-item lincese">
+      
+      本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">Reward</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/wechat.jpeg" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/alipay.jpeg" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/css/">css</a>
+            
+              <a href="/tags/布局/">布局</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/07/27/css系列之常见布局/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">css系列之常见布局</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/07/29/CSS系列之双飞翼布局/">
+        <span class="next-text nav-default">CSS系列之双飞翼布局</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:howell95@outlook.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/Howell5" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2016 - 
+    
+    2017
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Howell5</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'blog.josephong.me/2016/07/29/CSS系列之圣杯布局/';
+        this.page.identifier = '2016/07/29/CSS系列之圣杯布局/';
+        this.page.title = 'CSS系列之圣杯布局';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//howell5.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.4.x"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.4.x"></script>
+
+    
+  </body>
+</html>
