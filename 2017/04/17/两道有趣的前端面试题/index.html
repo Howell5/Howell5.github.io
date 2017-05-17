@@ -5,16 +5,16 @@
   
   <title>两道有趣的前端面试题 | Howell</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在知乎上看到了两道有趣且知识点非常丰富的JavaScript面试题，所以引用过来，做个记录。   一、for循环内的输出”变形记”1、原型123for (var i = 0; i &amp;lt; 5; i++) &amp;#123;  console.log(i);&amp;#125; 这个不用说了，最简单的输出。会直接输出0，1，2，3，4 2、变形112345for (var i = 0; i &amp;lt; 5; i">
+  <meta name="description" content="在知乎上看到了两道有趣且知识点非常丰富的JavaScript面试题，所以引用过来，做个记录。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="两道有趣的前端面试题">
 <meta property="og:url" content="http://blog.josephong.me/2017/04/17/两道有趣的前端面试题/index.html">
 <meta property="og:site_name" content="Howell">
-<meta property="og:description" content="在知乎上看到了两道有趣且知识点非常丰富的JavaScript面试题，所以引用过来，做个记录。   一、for循环内的输出”变形记”1、原型123for (var i = 0; i &amp;lt; 5; i++) &amp;#123;  console.log(i);&amp;#125; 这个不用说了，最简单的输出。会直接输出0，1，2，3，4 2、变形112345for (var i = 0; i &amp;lt; 5; i">
-<meta property="og:updated_time" content="2017-05-17T09:57:06.000Z">
+<meta property="og:description" content="在知乎上看到了两道有趣且知识点非常丰富的JavaScript面试题，所以引用过来，做个记录。">
+<meta property="og:updated_time" content="2017-05-17T10:56:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="两道有趣的前端面试题">
-<meta name="twitter:description" content="在知乎上看到了两道有趣且知识点非常丰富的JavaScript面试题，所以引用过来，做个记录。   一、for循环内的输出”变形记”1、原型123for (var i = 0; i &amp;lt; 5; i++) &amp;#123;  console.log(i);&amp;#125; 这个不用说了，最简单的输出。会直接输出0，1，2，3，4 2、变形112345for (var i = 0; i &amp;lt; 5; i">
+<meta name="twitter:description" content="在知乎上看到了两道有趣且知识点非常丰富的JavaScript面试题，所以引用过来，做个记录。">
   
     <link rel="alternate" href="/atom.xml" title="Howell" type="application/atom+xml">
   
@@ -88,6 +88,7 @@
         <blockquote>
 <p>在知乎上看到了两道有趣且知识点非常丰富的JavaScript面试题，所以引用过来，做个记录。 </p>
 </blockquote>
+<a id="more"></a>
 <h2 id="一、for循环内的输出”变形记”"><a href="#一、for循环内的输出”变形记”" class="headerlink" title="一、for循环内的输出”变形记”"></a>一、for循环内的输出”变形记”</h2><h4 id="1、原型"><a href="#1、原型" class="headerlink" title="1、原型"></a>1、原型</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">for (var i = 0; i &lt; 5; i++) &#123;</div><div class="line">  console.log(i);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这个不用说了，最简单的输出。会直接输出0，1，2，3，4</p>
 <h4 id="2、变形1"><a href="#2、变形1" class="headerlink" title="2、变形1"></a>2、变形1</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">for (var i = 0; i &lt; 5; i++) &#123;</div><div class="line">  setTimeout(function() &#123;</div><div class="line">    console.log(i);</div><div class="line">  &#125;, 1000 * i);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -121,7 +122,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.josephong.me/2017/04/17/两道有趣的前端面试题/" data-id="cj2sv5pgu0009jz1c7hr13s0w" class="article-share-link">Share</a>
+      <a data-url="http://blog.josephong.me/2017/04/17/两道有趣的前端面试题/" data-id="cj2svhrxs0008lc1cezkvjgq9" class="article-share-link">Share</a>
       
       
     </footer>
