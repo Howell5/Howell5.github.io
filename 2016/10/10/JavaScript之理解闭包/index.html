@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://blog.josephong.me/2016/10/10/JavaScript之理解闭包/index.html">
 <meta property="og:site_name" content="Howell">
 <meta property="og:description" content="一个简单的闭包例112345678function sayHello(name) &amp;#123;  var text = &amp;apos;Hello &amp;apos; + name;  var say = function() &amp;#123; console.log(text); &amp;#125;    //say()是个内部函数，  //a closures use variable declared in t">
-<meta property="og:updated_time" content="2017-05-17T09:51:23.000Z">
+<meta property="og:updated_time" content="2017-05-17T10:59:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript之理解闭包">
 <meta name="twitter:description" content="一个简单的闭包例112345678function sayHello(name) &amp;#123;  var text = &amp;apos;Hello &amp;apos; + name;  var say = function() &amp;#123; console.log(text); &amp;#125;    //say()是个内部函数，  //a closures use variable declared in t">
@@ -86,6 +86,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="一个简单的闭包"><a href="#一个简单的闭包" class="headerlink" title="一个简单的闭包"></a>一个简单的闭包</h2><p>例1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function sayHello(name) &#123;</div><div class="line">  var text = &apos;Hello &apos; + name;</div><div class="line">  var say = function() &#123; console.log(text); &#125;  </div><div class="line">  //say()是个内部函数，</div><div class="line">  //a closures use variable declared in the parent function </div><div class="line">  say();</div><div class="line">&#125;</div><div class="line">sayHello(&apos;Joe&apos;);</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <h2 id="理解闭包"><a href="#理解闭包" class="headerlink" title="理解闭包"></a>理解闭包</h2><p>闭包是指在 JavaScript 中，内部函数总是可以访问其所在的外部函数中声明的参数和变量，即使在其外部函数被返回（寿命终结）了之后。</p>
 <p>闭包是一个集合（combination）；它由两部分组成：函数，以及<strong>创建</strong>该函数的环境。环境由闭包创建时在作用域中的任何局部变量组成。可以赋值给某个变量，可以作为参数传递给函数，也可以作为一个函数返回值返回。</p>
 <p>在我们的例子中say就是个闭包，因为它含有创建函数的环境，而环境中有着被定义的变量 text，所以它能使用该变量。</p>

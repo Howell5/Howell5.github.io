@@ -5,18 +5,18 @@
   
   <title>JavaScript之深入之事件轮询 | Howell</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在详细聊event-loop前，我们先厘清几个基本概念：JavaScript是单线程的，即同一个时间只能做一件事，但浏览器中是会存在异步任务的，总不能按着正常顺序等到异步任务（万一异步任务是请求一个很大的文件，耗时很长）结束了，才去执行下一步事。这显然是反人类的。而我们平常打开的网页也没有这样反人类的体验，这说明JavaScript的运行机制解决了这点。  执行栈与任务队列当程序往下执行时，遇到">
+  <meta name="description" content="在详细聊event-loop前，我们先厘清几个基本概念：JavaScript是单线程的，即同一个时间只能做一件事，但浏览器中是会存在异步任务的，总不能按着正常顺序等到异步任务（万一异步任务是请求一个很大的文件，耗时很长）结束了，才去执行下一步事。这显然是反人类的。而我们平常打开的网页也没有这样反人类的体验，这说明JavaScript的运行机制解决了这点。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript之深入之事件轮询">
 <meta property="og:url" content="http://blog.josephong.me/2017/03/02/JavaScript之深入之事件轮询/index.html">
 <meta property="og:site_name" content="Howell">
-<meta property="og:description" content="在详细聊event-loop前，我们先厘清几个基本概念：JavaScript是单线程的，即同一个时间只能做一件事，但浏览器中是会存在异步任务的，总不能按着正常顺序等到异步任务（万一异步任务是请求一个很大的文件，耗时很长）结束了，才去执行下一步事。这显然是反人类的。而我们平常打开的网页也没有这样反人类的体验，这说明JavaScript的运行机制解决了这点。  执行栈与任务队列当程序往下执行时，遇到">
+<meta property="og:description" content="在详细聊event-loop前，我们先厘清几个基本概念：JavaScript是单线程的，即同一个时间只能做一件事，但浏览器中是会存在异步任务的，总不能按着正常顺序等到异步任务（万一异步任务是请求一个很大的文件，耗时很长）结束了，才去执行下一步事。这显然是反人类的。而我们平常打开的网页也没有这样反人类的体验，这说明JavaScript的运行机制解决了这点。">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2575359-77bbd6427c25c6fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2575359-d8fe0a4efb36f750.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-05-17T09:54:54.000Z">
+<meta property="og:updated_time" content="2017-05-17T10:59:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript之深入之事件轮询">
-<meta name="twitter:description" content="在详细聊event-loop前，我们先厘清几个基本概念：JavaScript是单线程的，即同一个时间只能做一件事，但浏览器中是会存在异步任务的，总不能按着正常顺序等到异步任务（万一异步任务是请求一个很大的文件，耗时很长）结束了，才去执行下一步事。这显然是反人类的。而我们平常打开的网页也没有这样反人类的体验，这说明JavaScript的运行机制解决了这点。  执行栈与任务队列当程序往下执行时，遇到">
+<meta name="twitter:description" content="在详细聊event-loop前，我们先厘清几个基本概念：JavaScript是单线程的，即同一个时间只能做一件事，但浏览器中是会存在异步任务的，总不能按着正常顺序等到异步任务（万一异步任务是请求一个很大的文件，耗时很长）结束了，才去执行下一步事。这显然是反人类的。而我们平常打开的网页也没有这样反人类的体验，这说明JavaScript的运行机制解决了这点。">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2575359-77bbd6427c25c6fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternate" href="/atom.xml" title="Howell" type="application/atom+xml">
@@ -91,6 +91,7 @@
         <blockquote>
 <p>在详细聊event-loop前，我们先厘清几个基本概念：JavaScript是单线程的，即同一个时间只能做一件事，但浏览器中是会存在异步任务的，总不能按着正常顺序等到异步任务（万一异步任务是请求一个很大的文件，耗时很长）结束了，才去执行下一步事。这显然是反人类的。而我们平常打开的网页也没有这样反人类的体验，这说明JavaScript的运行机制解决了这点。</p>
 </blockquote>
+<a id="more"></a>
 <h2 id="执行栈与任务队列"><a href="#执行栈与任务队列" class="headerlink" title="执行栈与任务队列"></a>执行栈与任务队列</h2><p>当程序往下执行时，遇到了异步任务，主线程这时不管异步任务，挂起处于等待中的任务，先运行排在后面的任务。等到异步任务返回了结果，再回过头，把挂起的任务继续执行下去。<br>于是，所有任务可以分成两种，一种是同步任务（synchronous），另一种是异步任务（asynchronous）。同步任务指的是，在主线程上排队执行的任务，只有前一个任务执行完毕，才能执行后一个任务；异步任务指的是，不进入主线程、而进入”任务队列”（task queue）的任务，只有”任务队列”通知主线程，某个异步任务可以执行了，该任务才会进入主线程执行。</p>
 <p>具体来说，异步执行的运行机制如下：</p>
 <ul>

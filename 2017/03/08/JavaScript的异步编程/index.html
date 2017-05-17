@@ -5,18 +5,18 @@
   
   <title>JavaScript的异步编程 | Howell</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="写JavaScript代码少不了处理回调函数，如果只是很少的回调嵌套，倒也还好。但是遇到需要用了过多回调嵌套的时候，就会很麻烦（主要是语法层面的难以阅读和不支持异常的捕捉），为了解决这一麻烦，主要有以下几种方法。  PromisePromise 是 ES6 引入的解决办法，表示一个现在或将来可用，亦或永远不可用的值。把原来嵌套的回调改为了级联的方式如果说原始的回调函数是这样  那么Promise">
+  <meta name="description" content="写JavaScript代码少不了处理回调函数，如果只是很少的回调嵌套，倒也还好。但是遇到需要用了过多回调嵌套的时候，就会很麻烦（主要是语法层面的难以阅读和不支持异常的捕捉），为了解决这一麻烦，主要有以下几种方法。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript的异步编程">
 <meta property="og:url" content="http://blog.josephong.me/2017/03/08/JavaScript的异步编程/index.html">
 <meta property="og:site_name" content="Howell">
-<meta property="og:description" content="写JavaScript代码少不了处理回调函数，如果只是很少的回调嵌套，倒也还好。但是遇到需要用了过多回调嵌套的时候，就会很麻烦（主要是语法层面的难以阅读和不支持异常的捕捉），为了解决这一麻烦，主要有以下几种方法。  PromisePromise 是 ES6 引入的解决办法，表示一个现在或将来可用，亦或永远不可用的值。把原来嵌套的回调改为了级联的方式如果说原始的回调函数是这样  那么Promise">
+<meta property="og:description" content="写JavaScript代码少不了处理回调函数，如果只是很少的回调嵌套，倒也还好。但是遇到需要用了过多回调嵌套的时候，就会很麻烦（主要是语法层面的难以阅读和不支持异常的捕捉），为了解决这一麻烦，主要有以下几种方法。">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2575359-7141d9b562ca062f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2575359-2f8d767ce860d5db.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-05-17T09:56:10.000Z">
+<meta property="og:updated_time" content="2017-05-17T10:58:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript的异步编程">
-<meta name="twitter:description" content="写JavaScript代码少不了处理回调函数，如果只是很少的回调嵌套，倒也还好。但是遇到需要用了过多回调嵌套的时候，就会很麻烦（主要是语法层面的难以阅读和不支持异常的捕捉），为了解决这一麻烦，主要有以下几种方法。  PromisePromise 是 ES6 引入的解决办法，表示一个现在或将来可用，亦或永远不可用的值。把原来嵌套的回调改为了级联的方式如果说原始的回调函数是这样  那么Promise">
+<meta name="twitter:description" content="写JavaScript代码少不了处理回调函数，如果只是很少的回调嵌套，倒也还好。但是遇到需要用了过多回调嵌套的时候，就会很麻烦（主要是语法层面的难以阅读和不支持异常的捕捉），为了解决这一麻烦，主要有以下几种方法。">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2575359-7141d9b562ca062f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternate" href="/atom.xml" title="Howell" type="application/atom+xml">
@@ -91,6 +91,7 @@
         <blockquote>
 <p>写JavaScript代码少不了处理回调函数，如果只是很少的回调嵌套，倒也还好。但是遇到需要用了过多回调嵌套的时候，就会很麻烦（主要是语法层面的难以阅读和不支持异常的捕捉），为了解决这一麻烦，主要有以下几种方法。</p>
 </blockquote>
+<a id="more"></a>
 <h2 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h2><p>Promise 是 ES6 引入的解决办法，表示一个<strong>现在</strong>或<strong>将来</strong>可用，亦或<strong>永远不</strong>可用的值。把原来嵌套的回调改为了级联的方式<br>如果说原始的回调函数是这样</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/2575359-7141d9b562ca062f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
 <p>那么Promise的示意图就是这样</p>

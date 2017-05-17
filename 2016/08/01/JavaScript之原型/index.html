@@ -5,18 +5,18 @@
   
   <title>JavaScript之原型 | Howell</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在 JavaScript 中，每个对象都有一个指向它的原型（prototype）对象的内部链接。这个原型对象又有自己的原型，直到某个对象的原型为 null 为止（也就是不再有原型指向），组成这条链的最后一环。这种一级一级的链结构就称为原型链（prototype chain）。          — MDN  原型链1234567891011121314151617181920212223//创建">
+  <meta name="description" content="在 JavaScript 中，每个对象都有一个指向它的原型（prototype）对象的内部链接。这个原型对象又有自己的原型，直到某个对象的原型为 null 为止（也就是不再有原型指向），组成这条链的最后一环。这种一级一级的链结构就称为原型链（prototype chain）。          — MDN">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript之原型">
 <meta property="og:url" content="http://blog.josephong.me/2016/08/01/JavaScript之原型/index.html">
 <meta property="og:site_name" content="Howell">
-<meta property="og:description" content="在 JavaScript 中，每个对象都有一个指向它的原型（prototype）对象的内部链接。这个原型对象又有自己的原型，直到某个对象的原型为 null 为止（也就是不再有原型指向），组成这条链的最后一环。这种一级一级的链结构就称为原型链（prototype chain）。          — MDN  原型链1234567891011121314151617181920212223//创建">
+<meta property="og:description" content="在 JavaScript 中，每个对象都有一个指向它的原型（prototype）对象的内部链接。这个原型对象又有自己的原型，直到某个对象的原型为 null 为止（也就是不再有原型指向），组成这条链的最后一环。这种一级一级的链结构就称为原型链（prototype chain）。          — MDN">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2575359-9e891bdd0eb3485f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2575359-28c82cb4080e2919.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-05-17T09:50:23.000Z">
+<meta property="og:updated_time" content="2017-05-17T10:58:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript之原型">
-<meta name="twitter:description" content="在 JavaScript 中，每个对象都有一个指向它的原型（prototype）对象的内部链接。这个原型对象又有自己的原型，直到某个对象的原型为 null 为止（也就是不再有原型指向），组成这条链的最后一环。这种一级一级的链结构就称为原型链（prototype chain）。          — MDN  原型链1234567891011121314151617181920212223//创建">
+<meta name="twitter:description" content="在 JavaScript 中，每个对象都有一个指向它的原型（prototype）对象的内部链接。这个原型对象又有自己的原型，直到某个对象的原型为 null 为止（也就是不再有原型指向），组成这条链的最后一环。这种一级一级的链结构就称为原型链（prototype chain）。          — MDN">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2575359-9e891bdd0eb3485f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternate" href="/atom.xml" title="Howell" type="application/atom+xml">
@@ -91,6 +91,7 @@
         <blockquote>
 <p>在 JavaScript 中，每个对象都有一个指向它的原型（prototype）对象的内部链接。这个原型对象又有自己的原型，直到某个对象的原型为 null 为止（也就是不再有原型指向），组成这条链的最后一环。这种一级一级的链结构就称为原型链（prototype chain）。          — MDN</p>
 </blockquote>
+<a id="more"></a>
 <h3 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">//创建构造函数</div><div class="line">function Person(name)&#123;</div><div class="line">    this.name = name</div><div class="line">&#125;</div><div class="line"></div><div class="line">//每个构造函数JS引擎都会自动添加一个prototype属性，我们称之为原型，这是一个对象</div><div class="line">//每个由构造函数创建的对象都会共享prototype上面的属性与方法</div><div class="line">console.log(typeof Person.prototype) // &apos;object&apos;</div><div class="line"></div><div class="line"></div><div class="line">//我们为Person.prototype添加sayName方法</div><div class="line">Person.prototype.sayName = function()&#123;</div><div class="line">    console.log(this.name)</div><div class="line">&#125;</div><div class="line"></div><div class="line">//创建实例</div><div class="line">var person1 = new Person(&apos;Messi&apos;)</div><div class="line">var person2 = new Person(&apos;Suarez&apos;)</div><div class="line"></div><div class="line">person1.sayName() // &apos;Messi&apos;</div><div class="line">person2.sayName() // &apos;Suarez&apos;</div><div class="line"></div><div class="line">person1.sayName === person2.sayName //true</div></pre></td></tr></table></figure>
 <p>借助这个例子，我们理清几个概念</p>
 <ul>

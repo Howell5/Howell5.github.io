@@ -5,17 +5,17 @@
   
   <title>JavaScript之理解作用域 | Howell</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在javascript的学习中，执行环境、作用域是2个非常非常重要和基本的概念，理解了这2个概念对于javsacript中很多脚本的运行结果就能明白其中的道理了，比如搞清作用域和执行环境对于闭包的理解至关重要。  一、执行环境（exection context,也有称之为执行上下文） 执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象 (va">
+  <meta name="description" content="在javascript的学习中，执行环境、作用域是2个非常非常重要和基本的概念，理解了这2个概念对于javsacript中很多脚本的运行结果就能明白其中的道理了，比如搞清作用域和执行环境对于闭包的理解至关重要。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript之理解作用域">
 <meta property="og:url" content="http://blog.josephong.me/2016/07/09/JavaScript之理解作用域/index.html">
 <meta property="og:site_name" content="Howell">
-<meta property="og:description" content="在javascript的学习中，执行环境、作用域是2个非常非常重要和基本的概念，理解了这2个概念对于javsacript中很多脚本的运行结果就能明白其中的道理了，比如搞清作用域和执行环境对于闭包的理解至关重要。  一、执行环境（exection context,也有称之为执行上下文） 执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象 (va">
+<meta property="og:description" content="在javascript的学习中，执行环境、作用域是2个非常非常重要和基本的概念，理解了这2个概念对于javsacript中很多脚本的运行结果就能明白其中的道理了，比如搞清作用域和执行环境对于闭包的理解至关重要。">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2575359-31c07041f11d1e92.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-05-17T09:49:14.000Z">
+<meta property="og:updated_time" content="2017-05-17T10:59:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript之理解作用域">
-<meta name="twitter:description" content="在javascript的学习中，执行环境、作用域是2个非常非常重要和基本的概念，理解了这2个概念对于javsacript中很多脚本的运行结果就能明白其中的道理了，比如搞清作用域和执行环境对于闭包的理解至关重要。  一、执行环境（exection context,也有称之为执行上下文） 执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象 (va">
+<meta name="twitter:description" content="在javascript的学习中，执行环境、作用域是2个非常非常重要和基本的概念，理解了这2个概念对于javsacript中很多脚本的运行结果就能明白其中的道理了，比如搞清作用域和执行环境对于闭包的理解至关重要。">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2575359-31c07041f11d1e92.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternate" href="/atom.xml" title="Howell" type="application/atom+xml">
@@ -90,6 +90,7 @@
         <blockquote>
 <p>在javascript的学习中，执行环境、作用域是2个非常非常重要和基本的概念，理解了这2个概念对于javsacript中很多脚本的运行结果就能明白其中的道理了，比如搞清作用域和执行环境对于闭包的理解至关重要。</p>
 </blockquote>
+<a id="more"></a>
 <h2 id="一、执行环境（exection-context-也有称之为执行上下文）"><a href="#一、执行环境（exection-context-也有称之为执行上下文）" class="headerlink" title="一、执行环境（exection context,也有称之为执行上下文）"></a>一、执行环境（exection context,也有称之为执行上下文）</h2><blockquote>
 <p>执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的<strong>变量对象</strong> (variable object)，环境中定义的所有变量和函数都保存在这个对象中。虽然我们编写的代码无法访问这个对象，但解析器会处理数据时会在后台使用它。                                  —《JavaScript高程》</p>
 </blockquote>

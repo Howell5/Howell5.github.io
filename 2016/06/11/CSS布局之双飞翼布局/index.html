@@ -5,17 +5,17 @@
   
   <title>CSS布局之双飞翼布局 | Howell</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="概念理解了上篇文章的圣杯布局，再来学习双飞翼布局就简单许多了。同样引用上次的元素命名。 圣杯布局是给包裹着三栏的container加一个padding,让padding-left和padding-right的数值是左栏和右栏的宽度，然后利用相对定位把他们再移动在两旁。 而双飞翼布局是在center里面再添加一个div，然后对这个div进行margin-left和margin-right，即：123">
+  <meta name="description" content="概念理解了上篇文章的圣杯布局，再来学习双飞翼布局就简单许多了。同样引用上次的元素命名。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS布局之双飞翼布局">
 <meta property="og:url" content="http://blog.josephong.me/2016/06/11/CSS布局之双飞翼布局/index.html">
 <meta property="og:site_name" content="Howell">
-<meta property="og:description" content="概念理解了上篇文章的圣杯布局，再来学习双飞翼布局就简单许多了。同样引用上次的元素命名。 圣杯布局是给包裹着三栏的container加一个padding,让padding-left和padding-right的数值是左栏和右栏的宽度，然后利用相对定位把他们再移动在两旁。 而双飞翼布局是在center里面再添加一个div，然后对这个div进行margin-left和margin-right，即：123">
+<meta property="og:description" content="概念理解了上篇文章的圣杯布局，再来学习双飞翼布局就简单许多了。同样引用上次的元素命名。">
 <meta property="og:image" content="https://segmentfault.com/image?src=https://cloud.githubusercontent.com/assets/7554325/13628574/2e28562c-e60e-11e5-9bae-905c4c7bf56a.png&objectId=1190000004579886&token=9bb8b342939860ca25c504a051283e89">
-<meta property="og:updated_time" content="2017-05-17T09:47:59.000Z">
+<meta property="og:updated_time" content="2017-05-17T10:58:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS布局之双飞翼布局">
-<meta name="twitter:description" content="概念理解了上篇文章的圣杯布局，再来学习双飞翼布局就简单许多了。同样引用上次的元素命名。 圣杯布局是给包裹着三栏的container加一个padding,让padding-left和padding-right的数值是左栏和右栏的宽度，然后利用相对定位把他们再移动在两旁。 而双飞翼布局是在center里面再添加一个div，然后对这个div进行margin-left和margin-right，即：123">
+<meta name="twitter:description" content="概念理解了上篇文章的圣杯布局，再来学习双飞翼布局就简单许多了。同样引用上次的元素命名。">
 <meta name="twitter:image" content="https://segmentfault.com/image?src=https://cloud.githubusercontent.com/assets/7554325/13628574/2e28562c-e60e-11e5-9bae-905c4c7bf56a.png&objectId=1190000004579886&token=9bb8b342939860ca25c504a051283e89">
   
     <link rel="alternate" href="/atom.xml" title="Howell" type="application/atom+xml">
@@ -88,6 +88,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>理解了上篇文章的圣杯布局，再来学习双飞翼布局就简单许多了。同样引用上次的元素命名。</p>
+<a id="more"></a>
 <p><strong>圣杯布局</strong>是给包裹着三栏的<code>container</code>加一个<code>padding</code>,让<code>padding-left</code>和<code>padding-right</code>的数值是左栏和右栏的宽度，然后利用相对定位把他们再移动在两旁。</p>
 <p>而<strong>双飞翼布局</strong>是在<code>center</code><strong>里面</strong>再添加一个div，然后对这个div进行<code>margin-left</code>和<code>margin-right</code>，即：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;header&quot;&gt;&lt;/div&gt;</div><div class="line">  &lt;div id=&quot;container&quot;&gt; </div><div class="line">    &lt;div id=&quot;center&quot; class=&quot;column&quot;&gt; &lt;div class=&quot;wrap&quot;&gt;&lt;/div&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">  &lt;div id=&quot;left&quot; class=&quot;column&quot;&gt;&lt;/div&gt;</div><div class="line">  &lt;div id=&quot;right&quot; class=&quot;column&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div id=&quot;footer&quot;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure></p>
 <p>wrap的 css 部分：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.wrap &#123;</div><div class="line">margin-left: 200px;</div><div class="line">margin-right: 150px;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
