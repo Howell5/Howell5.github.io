@@ -5,22 +5,22 @@
   
   <title>CSS系列之探秘BFC | Howell</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="BFC很早就知道这个名词，但却没有真正的去了解它。只知道它能解决margin折叠和清除浮动的问题。这篇文章攫取其他文章和官方文档写成。如有错误，欢迎指出。  定义Google完，我们得到这样一句话。“A block formatting context is a part of a visual CSS rendering of a Web page. It is the region in w">
+  <meta name="description" content="BFC很早就知道这个名词，但却没有真正的去了解它。只知道它能解决margin折叠和清除浮动的问题。这篇文章攫取其他文章和官方文档写成。如有错误，欢迎指出。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS系列之探秘BFC">
 <meta property="og:url" content="http://blog.josephong.me/2017/03/14/CSS系列之探秘BFC/index.html">
 <meta property="og:site_name" content="Howell">
-<meta property="og:description" content="BFC很早就知道这个名词，但却没有真正的去了解它。只知道它能解决margin折叠和清除浮动的问题。这篇文章攫取其他文章和官方文档写成。如有错误，欢迎指出。  定义Google完，我们得到这样一句话。“A block formatting context is a part of a visual CSS rendering of a Web page. It is the region in w">
+<meta property="og:description" content="BFC很早就知道这个名词，但却没有真正的去了解它。只知道它能解决margin折叠和清除浮动的问题。这篇文章攫取其他文章和官方文档写成。如有错误，欢迎指出。">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2575359-cad958e92d9e3d9e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2575359-7f76e9a5b4aa9f58.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2575359-4c226a88d8588370.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2575359-4ce9373867ad5d99.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2575359-9c535e8f5ed91f61.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2575359-1a9a92c37dd0f492.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-05-17T09:58:40.000Z">
+<meta property="og:updated_time" content="2017-05-17T11:00:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS系列之探秘BFC">
-<meta name="twitter:description" content="BFC很早就知道这个名词，但却没有真正的去了解它。只知道它能解决margin折叠和清除浮动的问题。这篇文章攫取其他文章和官方文档写成。如有错误，欢迎指出。  定义Google完，我们得到这样一句话。“A block formatting context is a part of a visual CSS rendering of a Web page. It is the region in w">
+<meta name="twitter:description" content="BFC很早就知道这个名词，但却没有真正的去了解它。只知道它能解决margin折叠和清除浮动的问题。这篇文章攫取其他文章和官方文档写成。如有错误，欢迎指出。">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2575359-cad958e92d9e3d9e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternate" href="/atom.xml" title="Howell" type="application/atom+xml">
@@ -95,6 +95,7 @@
         <blockquote>
 <p>BFC很早就知道这个名词，但却没有真正的去了解它。只知道它能解决margin折叠和清除浮动的问题。这篇文章攫取其他文章和官方文档写成。如有错误，欢迎指出。</p>
 </blockquote>
+<a id="more"></a>
 <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>Google完，我们得到这样一句话。“A block formatting context is a part of a visual CSS rendering of a Web page. It is the region in which the layout of block boxes occurs and in which floats interact with each other”.<br>大概句义：“块格式化上下文（block formatting context） 是Web页面的可视CSS渲染的一部分。它是块盒子的布局发生及浮动体彼此交互的区域。”<br>抓住关键词，它是CSS渲染的一块区域，在并且区域内部与区域外部交互有其的规则。具体查看 <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Block_formatting_context" target="_blank" rel="external">MDN_BFC</a> 。</p>
 <h2 id="触发BFC"><a href="#触发BFC" class="headerlink" title="触发BFC"></a>触发BFC</h2><ul>
 <li>根元素<br>根元素这个，很好理解。<br>html文档建立，就会触发根元素的BFC，我们在根元素内写几个div元素，会发现内部div垂直排列，本身没有兄弟元素，自然满足B、D、E、F这几条规则，内部块级盒子来自同一个BFC(html)，所以相邻margin会重叠，行内盒子横向就不会重叠。</li>
