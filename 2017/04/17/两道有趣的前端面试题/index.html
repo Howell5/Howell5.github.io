@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://blog.josephong.me/2017/04/17/两道有趣的前端面试题/index.html">
 <meta property="og:site_name" content="Howell">
 <meta property="og:description" content="在知乎上看到了两道有趣且知识点非常丰富的JavaScript面试题，所以引用过来并分析，做个记录。">
-<meta property="og:updated_time" content="2017-05-17T14:14:11.000Z">
+<meta property="og:updated_time" content="2017-05-17T14:20:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="两道有趣的前端面试题">
 <meta name="twitter:description" content="在知乎上看到了两道有趣且知识点非常丰富的JavaScript面试题，所以引用过来并分析，做个记录。">
@@ -52,9 +52,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.josephong.me"></form>
@@ -125,11 +125,12 @@
 <h3 id="Ployfill"><a href="#Ployfill" class="headerlink" title="Ployfill"></a>Ployfill</h3><p>然而bind函数还有第三个特性，绑定函数适用于用new操作符 new 去构造一个由目标函数创建的新的实例。当一个绑定函数是用来构建一个值的，原来提供的 this 就会被忽略。然而, 原先提供的那些参数仍然会被前置到构造函数调用的前面。</p>
 <p>而这个特性在<strong>中级实现</strong>中无法实现，进一步模拟。也是MDN给出的Ployfill：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Function.prototype.bind = Function.prototype.bind || function (context) &#123;</div><div class="line">    var me = this;</div><div class="line">    var args = Array.prototype.slice.call(arguments, 1);</div><div class="line">    var F = function () &#123;&#125;;</div><div class="line">    F.prototype = this.prototype;</div><div class="line">    var bound = function () &#123;</div><div class="line">        var innerArgs = Array.prototype.slice.call(arguments);</div><div class="line">        var finalArgs = args.contact(innerArgs);</div><div class="line">        return me.apply(this instanceof F ? this : context || this, finalArgs);</div><div class="line">    &#125;</div><div class="line">    bound.prototype = new F();</div><div class="line">    return bound;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>知乎原文地址：<a href="https://zhuanlan.zhihu.com/p/25379434" target="_blank" rel="external">从一道面试题的进阶，到“我可能看了假源码”</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.josephong.me/2017/04/17/两道有趣的前端面试题/" data-id="cj2svhrxs0008lc1cezkvjgq9" class="article-share-link">Share</a>
+      <a data-url="http://blog.josephong.me/2017/04/17/两道有趣的前端面试题/" data-id="cj2svhrxs0008lc1cezkvjgq9" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -140,8 +141,8 @@
   
   
     <a href="/2017/04/15/洪家伟+前端实习+2018届/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">前端面试简历</div>
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">我的简历</div>
     </a>
   
 </nav>
@@ -173,7 +174,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
         
@@ -182,7 +183,7 @@
           </li>
         
           <li>
-            <a href="/2017/04/15/洪家伟+前端实习+2018届/">前端面试简历</a>
+            <a href="/2017/04/15/洪家伟+前端实习+2018届/">我的简历</a>
           </li>
         
           <li>
@@ -210,7 +211,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 Howell<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
