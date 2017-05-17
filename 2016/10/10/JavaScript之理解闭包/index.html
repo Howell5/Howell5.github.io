@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>JavaScript之理解闭包 | Howell</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一个简单的闭包例112345678function sayHello(name) &amp;#123;  var text = &amp;apos;Hello &amp;apos; + name;  var say = function() &amp;#123; console.log(text); &amp;#125;    //say()是个内部函数，  //a closures use variable declared in t">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript之理解闭包">
+<meta property="og:url" content="http://blog.josephong.me/2016/10/10/JavaScript之理解闭包/index.html">
+<meta property="og:site_name" content="Howell">
+<meta property="og:description" content="一个简单的闭包例112345678function sayHello(name) &amp;#123;  var text = &amp;apos;Hello &amp;apos; + name;  var say = function() &amp;#123; console.log(text); &amp;#125;    //say()是个内部函数，  //a closures use variable declared in t">
+<meta property="og:updated_time" content="2017-05-17T09:51:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript之理解闭包">
+<meta name="twitter:description" content="一个简单的闭包例112345678function sayHello(name) &amp;#123;  var text = &amp;apos;Hello &amp;apos; + name;  var say = function() &amp;#123; console.log(text); &amp;#125;    //say()是个内部函数，  //a closures use variable declared in t">
+  
+    <link rel="alternate" href="/atom.xml" title="Howell" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Howell</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.josephong.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JavaScript之理解闭包" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/10/JavaScript之理解闭包/" class="article-date">
+  <time datetime="2016-10-09T16:00:00.000Z" itemprop="datePublished">2016-10-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JavaScript之理解闭包
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一个简单的闭包"><a href="#一个简单的闭包" class="headerlink" title="一个简单的闭包"></a>一个简单的闭包</h2><p>例1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function sayHello(name) &#123;</div><div class="line">  var text = &apos;Hello &apos; + name;</div><div class="line">  var say = function() &#123; console.log(text); &#125;  </div><div class="line">  //say()是个内部函数，</div><div class="line">  //a closures use variable declared in the parent function </div><div class="line">  say();</div><div class="line">&#125;</div><div class="line">sayHello(&apos;Joe&apos;);</div></pre></td></tr></table></figure></p>
+<h2 id="理解闭包"><a href="#理解闭包" class="headerlink" title="理解闭包"></a>理解闭包</h2><p>闭包是指在 JavaScript 中，内部函数总是可以访问其所在的外部函数中声明的参数和变量，即使在其外部函数被返回（寿命终结）了之后。</p>
+<p>闭包是一个集合（combination）；它由两部分组成：函数，以及<strong>创建</strong>该函数的环境。环境由闭包创建时在作用域中的任何局部变量组成。可以赋值给某个变量，可以作为参数传递给函数，也可以作为一个函数返回值返回。</p>
+<p>在我们的例子中say就是个闭包，因为它含有创建函数的环境，而环境中有着被定义的变量 text，所以它能使用该变量。</p>
+<h2 id="闭包的用途"><a href="#闭包的用途" class="headerlink" title="闭包的用途"></a>闭包的用途</h2><p> 可以访问函数内部的量，闭包允许将函数与其所操作的某些数据（环境）关连起来。这显然类似于面向对象编程。在面对象编程中，对象允许我们将某些数据（对象的属性）与一个或者多个方法相关联。</p>
+<p>因而，一般说来，可以使用只有一个方法的对象的地方，都可以使用闭包</p>
+<p>例2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">function makeAdder(x) &#123;</div><div class="line">  return function(y) &#123;</div><div class="line">    return x + y;</div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var add5 = makeAdder(5);  //闭包</div><div class="line">var add10 = makeAdder(10);  //闭包</div><div class="line"></div><div class="line">console.log(add5(2));  // 7</div><div class="line">console.log(add10(2)); // 12</div></pre></td></tr></table></figure></p>
+<p>例3<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">var invrement,decrement,value;</div><div class="line"></div><div class="line">var makeCounter = function() &#123;</div><div class="line">  var privateCounter = 0;</div><div class="line">  increment = function ()&#123;</div><div class="line">    privateCounter += 1;</div><div class="line">  &#125;;</div><div class="line">  decrement = function ()&#123;</div><div class="line">    privateCounter -= 1;</div><div class="line">  &#125;;</div><div class="line">  setCounter = function (x) &#123;</div><div class="line">    privateCounter = x;</div><div class="line">  &#125;;</div><div class="line">  value = function () &#123;</div><div class="line">    return privateCounter;</div><div class="line">  &#125;;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">makeCounter();</div><div class="line">increment();</div><div class="line">console.log(value());  //1</div><div class="line"></div><div class="line">setCounter(5);</div><div class="line">console.log(value());  //5</div><div class="line"></div><div class="line">var oldCounter = value;</div><div class="line"></div><div class="line">makeCounter();</div><div class="line">decrement();</div><div class="line">console.log(value());  //-1</div><div class="line"></div><div class="line">console.log(oldCounter());  //5</div></pre></td></tr></table></figure></p>
+<p>从例3我们可以看到，setupSomeGlobals每次执行，都会重新创建一个闭包。而且两个闭包互不影响。即它们具有独立性。</p>
+<p>我们将例3稍稍改变一下，就可以看到如何用闭包<strong>模仿私有方法</strong></p>
+<p>例4<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">var makeCounter = function() &#123;</div><div class="line">  var privateCounter = 0;</div><div class="line">  function changeBy(val) &#123;</div><div class="line">    privateCounter += val;</div><div class="line">  &#125;</div><div class="line">  return &#123;</div><div class="line">    increment: function() &#123;</div><div class="line">      changeBy(1);</div><div class="line">    &#125;,</div><div class="line">    decrement: function() &#123;</div><div class="line">      changeBy(-1);</div><div class="line">    &#125;,</div><div class="line">    setCouter: function(x) &#123;</div><div class="line">      privateCounter = x;</div><div class="line">    &#125;,</div><div class="line">    value: function() &#123;</div><div class="line">      return privateCounter;</div><div class="line">    &#125;</div><div class="line">  &#125;  </div><div class="line">&#125;;</div><div class="line"></div><div class="line">var Counter1 = makeCounter();</div><div class="line">var Counter2 = makeCounter();</div><div class="line">console.log(Counter1.value()); /* logs 0 */</div><div class="line">Counter1.increment();</div><div class="line">Counter1.increment();</div><div class="line">console.log(Counter1.value()); /* logs 2 */</div><div class="line">Counter1.decrement();</div><div class="line">console.log(Counter1.value()); /* logs 1 */</div><div class="line">console.log(Counter2.value()); /* logs 0 */</div></pre></td></tr></table></figure></p>
+<p>在例4中，changeBy就是一个私有方法，无法从外部直接调用。</p>
+<p>另一特点就是 保存变量。这是通俗的说法。</p>
+<p>从根本上说，闭包是函数开始执行的时候被分配的一个<a href="http://baike.baidu.com/link?url=x9za8fl-K8Gsdc0IFBbC5fTininX3H8qVBuSPsChIJd8bmzTRXvd8scDL1uCYKLS26m6GMbXgHFC5K8yXz7nZ3eImibufpfwiBWzlBDAyT_" target="_blank" rel="external">栈帧</a>，在函数执行结束返回后仍不会被释放(就好像一个栈帧被分配在堆里而不是栈里！)</p>
+<p>例5<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">function say667() &#123;</div><div class="line">  var num = 42;</div><div class="line">    num+=1;</div><div class="line">  </div><div class="line">  var say3 = function() &#123;</div><div class="line">    console.log(num+=1);</div><div class="line">  &#125;;</div><div class="line">  say3();</div><div class="line">  var say4 = function() &#123;</div><div class="line">    console.log(num+=1);</div><div class="line">  &#125;;</div><div class="line">  return say4;</div><div class="line">&#125;</div><div class="line">say667(); //44</div><div class="line">say667(); //44，并未自增，是因为这又重新创建了一个闭包。</div><div class="line">var sayt = say667(); //44</div><div class="line">sayt(); //45</div><div class="line">sayt(); //46， 自增了，是因为say667并未重新创建闭包。</div><div class="line">         //sayt引用了里面的闭包，而且造成了num的值被保存了。在函数执行完后并未被销毁。</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注意：正是因为闭包有这些特点，它给我们带来了便利。但我们仍需要<br>小心使用。它有两个缺点：</p>
+<ul>
+<li>1、由于闭包会使得函数中的变量都被保存在内存中，内存消耗很大，所以不能滥用闭包，否则会造成网页的性能问题，在IE中可能导致内存泄露。解决方法是，在退出函数之前，将不使用的局部变量全部删除；</li>
+<li>2、闭包会在父函数外部，改变父函数内部变量的值。所以，如果你把父函数当作对象（object）使用，把闭包当作它的公用方法（Public Method），把内部变量当作它的私有属性（private value），这时一定要小心，不要随便改变父函数内部变量的值。</li>
+</ul>
+</blockquote>
+<h2 id="闭包的循环陷阱及补救方法"><a href="#闭包的循环陷阱及补救方法" class="headerlink" title="闭包的循环陷阱及补救方法"></a>闭包的循环陷阱及补救方法</h2><p>例6<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var arr = [];</div><div class="line">for(var i=0;i&lt;3;i++) &#123;</div><div class="line"> arr.push(function()&#123;console.log(i);&#125;);</div><div class="line"> &#125; </div><div class="line">arr[0](); //?</div><div class="line">arr[1](); //?</div><div class="line">arr[2](); //?</div></pre></td></tr></table></figure></p>
+<p>例6输出的结果：三个 “3” ，详情解析可以看这个<a href="https://www.zhihu.com/question/33468703" target="_blank" rel="external">知乎问答</a>，里面有人解释的很清楚。简要来说就是，由于执行顺序的关系，在三个闭包执行前，for循环早已循环完毕（for循环没有块级作用域），i 已经自增到3。到闭包执行时，取到的i自然是3。</p>
+<p>解决方案：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">//方案一</div><div class="line">for(var i=0,arr=[];i&lt;3;i++) &#123;</div><div class="line">		arr.push(</div><div class="line">  //既然是执行顺序的问题，那我们给闭包加上一个自执行函数</div><div class="line">  //内部函数引用自执行函数传入的 i ，这里的 i</div><div class="line"> 是正常的</div><div class="line">			(function(i)&#123;</div><div class="line">				return function()&#123;</div><div class="line">					console.log(i);</div><div class="line">				&#125;</div><div class="line">			&#125;)(i)</div><div class="line">		);</div><div class="line">	&#125;</div><div class="line">arr[0](); //0</div><div class="line">arr[1](); //1</div><div class="line">arr[2](); //2</div><div class="line"></div><div class="line">//方案2</div><div class="line">for(let i=0,arr=[];i&lt;3;i++)</div><div class="line">//把 i 的定义换成 let 就行，因为 let 定义的变量具有块级作用域，同样解决了这个问题</div></pre></td></tr></table></figure></p>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><ul>
+<li>闭包是指在 JavaScript 中，内部函数总是可以访问其所在的外部函数中声明的参数和变量，即使在其外部函数被返回（寿命终结）了之后。</li>
+<li>每当你在另一个函数里使用了关键字function，一个闭包就被创建了</li>
+<li>JavaScript中的闭包，就像一个副本，将某函数在退出时候的所有局部变量复制保存其中。</li>
+<li>使用闭包前，需要性能考量</li>
+</ul>
+<hr>
+<p>参考文章：</p>
+<ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures#Performance_considerations" target="_blank" rel="external">闭包 —MDN</a></li>
+<li><a href="https://segmentfault.com/a/1190000006150835" target="_blank" rel="external">Javascript中this与闭包学习笔记</a></li>
+<li><a href="https://gold.xitu.io/post/58832fe72f301e00697b672d" target="_blank" rel="external">JavaScript 闭包入门（译文）</a></li>
+<li><a href="http://imweb.io/topic/566567e4d91952db73b41f5d" target="_blank" rel="external">JavaScript的闭包</a></li>
+<li><a href="https://www.zhihu.com/question/33468703" target="_blank" rel="external">js关于for循环中的闭包问题？</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.josephong.me/2016/10/10/JavaScript之理解闭包/" data-id="cj2sthkft0007cw1cjk85nymt" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/12/01/JavaScript之深入理解this/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JavaScript之深入理解this
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/08/01/JavaScript之原型/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JavaScript之原型</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/05/10/CSS系列之圣杯布局/">CSS系列之圣杯布局</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/17/两道有趣的前端面试题/">两道有趣的前端面试题</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/20/洪家伟+前端实习+2018届/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/14/CSS系列之探秘BFC/">CSS系列之探秘BFC</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/08/JavaScript的异步编程/">JavaScript的异步编程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Howell<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

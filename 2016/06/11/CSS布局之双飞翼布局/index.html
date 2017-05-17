@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>CSS布局之双飞翼布局 | Howell</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="概念理解了上篇文章的圣杯布局，再来学习双飞翼布局就简单许多了。同样引用上次的元素命名。 圣杯布局是给包裹着三栏的container加一个padding,让padding-left和padding-right的数值是左栏和右栏的宽度，然后利用相对定位把他们再移动在两旁。 而双飞翼布局是在center里面再添加一个div，然后对这个div进行margin-left和margin-right，即：123">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS布局之双飞翼布局">
+<meta property="og:url" content="http://blog.josephong.me/2016/06/11/CSS布局之双飞翼布局/index.html">
+<meta property="og:site_name" content="Howell">
+<meta property="og:description" content="概念理解了上篇文章的圣杯布局，再来学习双飞翼布局就简单许多了。同样引用上次的元素命名。 圣杯布局是给包裹着三栏的container加一个padding,让padding-left和padding-right的数值是左栏和右栏的宽度，然后利用相对定位把他们再移动在两旁。 而双飞翼布局是在center里面再添加一个div，然后对这个div进行margin-left和margin-right，即：123">
+<meta property="og:image" content="https://segmentfault.com/image?src=https://cloud.githubusercontent.com/assets/7554325/13628574/2e28562c-e60e-11e5-9bae-905c4c7bf56a.png&objectId=1190000004579886&token=9bb8b342939860ca25c504a051283e89">
+<meta property="og:updated_time" content="2017-05-17T09:47:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS布局之双飞翼布局">
+<meta name="twitter:description" content="概念理解了上篇文章的圣杯布局，再来学习双飞翼布局就简单许多了。同样引用上次的元素命名。 圣杯布局是给包裹着三栏的container加一个padding,让padding-left和padding-right的数值是左栏和右栏的宽度，然后利用相对定位把他们再移动在两旁。 而双飞翼布局是在center里面再添加一个div，然后对这个div进行margin-left和margin-right，即：123">
+<meta name="twitter:image" content="https://segmentfault.com/image?src=https://cloud.githubusercontent.com/assets/7554325/13628574/2e28562c-e60e-11e5-9bae-905c4c7bf56a.png&objectId=1190000004579886&token=9bb8b342939860ca25c504a051283e89">
+  
+    <link rel="alternate" href="/atom.xml" title="Howell" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Howell</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.josephong.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-CSS布局之双飞翼布局" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/06/11/CSS布局之双飞翼布局/" class="article-date">
+  <time datetime="2016-06-10T16:00:00.000Z" itemprop="datePublished">2016-06-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CSS布局之双飞翼布局
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>理解了上篇文章的圣杯布局，再来学习双飞翼布局就简单许多了。同样引用上次的元素命名。</p>
+<p><strong>圣杯布局</strong>是给包裹着三栏的<code>container</code>加一个<code>padding</code>,让<code>padding-left</code>和<code>padding-right</code>的数值是左栏和右栏的宽度，然后利用相对定位把他们再移动在两旁。</p>
+<p>而<strong>双飞翼布局</strong>是在<code>center</code><strong>里面</strong>再添加一个div，然后对这个div进行<code>margin-left</code>和<code>margin-right</code>，即：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;header&quot;&gt;&lt;/div&gt;</div><div class="line">  &lt;div id=&quot;container&quot;&gt; </div><div class="line">    &lt;div id=&quot;center&quot; class=&quot;column&quot;&gt; &lt;div class=&quot;wrap&quot;&gt;&lt;/div&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">  &lt;div id=&quot;left&quot; class=&quot;column&quot;&gt;&lt;/div&gt;</div><div class="line">  &lt;div id=&quot;right&quot; class=&quot;column&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div id=&quot;footer&quot;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>wrap的 css 部分：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.wrap &#123;</div><div class="line">margin-left: 200px;</div><div class="line">margin-right: 150px;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>其他部分和圣杯布局都是一样的。它们要实现的样式都是下面的这种形式：<br><img src="https://segmentfault.com/image?src=https://cloud.githubusercontent.com/assets/7554325/13628574/2e28562c-e60e-11e5-9bae-905c4c7bf56a.png&amp;objectId=1190000004579886&amp;token=9bb8b342939860ca25c504a051283e89" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.josephong.me/2016/06/11/CSS布局之双飞翼布局/" data-id="cj2sthkf40001cw1c2t9ji67i" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/07/09/JavaScript之理解作用域/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JavaScript之理解作用域
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/17/简单移动web学习笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">简单移动web学习笔记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/05/10/CSS系列之圣杯布局/">CSS系列之圣杯布局</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/17/两道有趣的前端面试题/">两道有趣的前端面试题</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/20/洪家伟+前端实习+2018届/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/14/CSS系列之探秘BFC/">CSS系列之探秘BFC</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/08/JavaScript的异步编程/">JavaScript的异步编程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Howell<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

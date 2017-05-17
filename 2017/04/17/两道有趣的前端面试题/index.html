@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>两道有趣的前端面试题 | Howell</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在知乎上看到了两道有趣且知识点非常丰富的JavaScript面试题，所以引用过来，做个记录。   一、for循环内的输出”变形记”1、原型123for (var i = 0; i &amp;lt; 5; i++) &amp;#123;  console.log(i);&amp;#125; 这个不用说了，最简单的输出。会直接输出0，1，2，3，4 2、变形112345for (var i = 0; i &amp;lt; 5; i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="两道有趣的前端面试题">
+<meta property="og:url" content="http://blog.josephong.me/2017/04/17/两道有趣的前端面试题/index.html">
+<meta property="og:site_name" content="Howell">
+<meta property="og:description" content="在知乎上看到了两道有趣且知识点非常丰富的JavaScript面试题，所以引用过来，做个记录。   一、for循环内的输出”变形记”1、原型123for (var i = 0; i &amp;lt; 5; i++) &amp;#123;  console.log(i);&amp;#125; 这个不用说了，最简单的输出。会直接输出0，1，2，3，4 2、变形112345for (var i = 0; i &amp;lt; 5; i">
+<meta property="og:updated_time" content="2017-05-17T09:57:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="两道有趣的前端面试题">
+<meta name="twitter:description" content="在知乎上看到了两道有趣且知识点非常丰富的JavaScript面试题，所以引用过来，做个记录。   一、for循环内的输出”变形记”1、原型123for (var i = 0; i &amp;lt; 5; i++) &amp;#123;  console.log(i);&amp;#125; 这个不用说了，最简单的输出。会直接输出0，1，2，3，4 2、变形112345for (var i = 0; i &amp;lt; 5; i">
+  
+    <link rel="alternate" href="/atom.xml" title="Howell" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Howell</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.josephong.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-两道有趣的前端面试题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/17/两道有趣的前端面试题/" class="article-date">
+  <time datetime="2017-04-16T16:00:00.000Z" itemprop="datePublished">2017-04-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      两道有趣的前端面试题
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>在知乎上看到了两道有趣且知识点非常丰富的JavaScript面试题，所以引用过来，做个记录。 </p>
+</blockquote>
+<h2 id="一、for循环内的输出”变形记”"><a href="#一、for循环内的输出”变形记”" class="headerlink" title="一、for循环内的输出”变形记”"></a>一、for循环内的输出”变形记”</h2><h4 id="1、原型"><a href="#1、原型" class="headerlink" title="1、原型"></a>1、原型</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">for (var i = 0; i &lt; 5; i++) &#123;</div><div class="line">  console.log(i);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个不用说了，最简单的输出。会直接输出0，1，2，3，4</p>
+<h4 id="2、变形1"><a href="#2、变形1" class="headerlink" title="2、变形1"></a>2、变形1</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">for (var i = 0; i &lt; 5; i++) &#123;</div><div class="line">  setTimeout(function() &#123;</div><div class="line">    console.log(i);</div><div class="line">  &#125;, 1000 * i);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>哈！考到我们看过很多遍的闭包问题了。结果是 先输出5，然后 每隔1s输出一个5。最后显示5个5。做个简单解释：因为闭包，for循环没有块级作用域。在函数执行时，for循环早已完成。console里接受的i全都是5。但1000*i里i是正常被赋值的。所以 都会被放入时间队列中，而且时间每隔1s<br>。</p>
+<p>那么我们如何将输出变成0，1，2，3，4呢？在循环里加个自执行函数就行了。看下面</p>
+<h4 id="3、解决方法（变形2）"><a href="#3、解决方法（变形2）" class="headerlink" title="3、解决方法（变形2）"></a>3、解决方法（变形2）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">for (var i = 0; i &lt; 5; i++) &#123;</div><div class="line">  (function(i) &#123;</div><div class="line">    setTimeout(function() &#123;</div><div class="line">      console.log(i);</div><div class="line">    &#125;, i * 1000);</div><div class="line">  &#125;)(i);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个就是我们的解决方案了。详细解释可以看  <a href="http://www.jianshu.com/p/66951b1fcc77" target="_blank" rel="external">JavaScript之理解闭包</a> 这篇文章。</p>
+<h4 id="4、变形3"><a href="#4、变形3" class="headerlink" title="4、变形3"></a>4、变形3</h4><p>如果把这个自执行函数里的 i 拿掉呢？  代码变成下面这样:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">for (var i = 0; i &lt; 5; i++) &#123;</div><div class="line">  (function() &#123;</div><div class="line">    setTimeout(function() &#123;</div><div class="line">      console.log(i);</div><div class="line">    &#125;, i * 1000);</div><div class="line">  &#125;)(i);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这样的话， i 没有被内部引用，也就变回去了。自执行函数也就没了意义。输出和变形1一样。</p>
+<h4 id="5、变形4"><a href="#5、变形4" class="headerlink" title="5、变形4"></a>5、变形4</h4><p>我们把自执行函数放到里面去呢？ 代码变成这样:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">for (var i = 0; i &lt; 5; i++) &#123;</div><div class="line">  setTimeout((function(i) &#123;</div><div class="line">    console.log(i);</div><div class="line">  &#125;)(i), i * 1000);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>嗯？ 这样就有点意思了，考察了setTimeout的知识。setTimeout的第一个参数只接受字符串或函数。而这里却给了一个自执行函数，而且没有return。那么可以等价为setTimeout(undefined, …) 。那么自执行函数就会立即执行了。setTimeout()等于没起到作用，所以应该是直接输出0，1，2，3，4。</p>
+<h4 id="6、变形5-Promise"><a href="#6、变形5-Promise" class="headerlink" title="6、变形5 (Promise)"></a>6、变形5 (Promise)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">setTimeout(function() &#123;</div><div class="line">  console.log(1)</div><div class="line">&#125;, 0);</div><div class="line">new Promise(function executor(resolve) &#123;</div><div class="line">  console.log(2);</div><div class="line">  for( var i=0 ; i&lt;10000 ; i++ ) &#123;</div><div class="line">    i == 9999 &amp;&amp; resolve();</div><div class="line">  &#125;</div><div class="line">  console.log(3);</div><div class="line">&#125;).then(function() &#123;</div><div class="line">  console.log(4);</div><div class="line">&#125;);</div><div class="line">console.log(5);</div></pre></td></tr></table></figure>
+<p>这段代码会输出什么呢？<br>结果是：2，3，5，4，1</p>
+<p>这题在考察我们JavaScript的运行机制。慢慢分析：</p>
+<ol>
+<li>setTimeout 内代码执行被挂起，稍后执行。</li>
+<li>Promise 内的代码是自执行的，所以2，3先被输出。然后resolve 也被挂起。</li>
+<li>然后输出里面的5，接下来就是比较4和1谁先输出。</li>
+<li>这一点我们需要了解事件循环(event loop), Promise.then 和 setTimeout 都是异步任务，那究竟谁先执行？</li>
+<li>Promise.then的callback被添加到microtasks queue中; setTimeout的callback被添加到 tack(macro-task) queue 中。代码执行到当前task的end。执行microtasks的代码，输出4。</li>
+<li>到下一个task，执行setTimeout中代码输出1</li>
+</ol>
+<p>可能我解释的不大清楚，大家可以看这篇博文，解释<a href="https://github.com/creeperyang/blog/issues/21" target="_blank" rel="external">Promise.then和setTimeout的异步</a></p>
+<p>而关于macrotask 和 microtask 的机制，可以<a href="http://stackoverflow.com/questions/25915634/difference-between-microtask-and-macrotask-within-an-event-loop-context" target="_blank" rel="external">戳这</a>。</p>
+<p>这个面试题的知乎原地址：<a href="https://zhuanlan.zhihu.com/p/25407758" target="_blank" rel="external">Excuse me？这个前端面试在搞事！</a></p>
+<hr>
+<h2 id="二、模拟实现ES5中原生bind函数"><a href="#二、模拟实现ES5中原生bind函数" class="headerlink" title="二、模拟实现ES5中原生bind函数"></a>二、模拟实现ES5中原生bind函数</h2><h3 id="bind函数究竟是什么？"><a href="#bind函数究竟是什么？" class="headerlink" title="bind函数究竟是什么？"></a>bind函数究竟是什么？</h3><p>bind函数常与call，apply一起讨论出现。它们都是用于绑定this值指向的。与另外两个不同的是bind会创建一个新函数。而不是像其它两个一样立即执行。更多的信息可以上<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind" target="_blank" rel="external">MDN</a>查看。</p>
+<h3 id="初级实现"><a href="#初级实现" class="headerlink" title="初级实现"></a>初级实现</h3><p>了解了以上内容，我们来实现一个初级的bind函数Polyfill:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Function.prototype.bind = function (context) &#123;</div><div class="line">    var me = this;</div><div class="line">    var argsArray = Array.prototype.slice.call(arguments); //将所有传入的参数变成参数数组</div><div class="line">    return function () &#123;</div><div class="line">        return me.apply(context, argsArray.slice(1));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>我们先简要解读一下：<br>基本原理是使用apply进行模拟。函数体内的this，就是需要绑定this的实例函数，或者说是原函数。最后我们使用apply来进行参数（context）绑定，并返回。<br>同时，将第一个参数（context）以外的其他参数，作为提供给原函数的预设参数，这也是基本的“颗粒化（curring）”基础。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Function.prototype.bind = Function.prototype.bind || function (context) &#123;</div><div class="line">    var me = this;</div><div class="line">    var args = Array.prototype.slice.call(arguments, 1);</div><div class="line">    var F = function () &#123;&#125;;</div><div class="line">    F.prototype = this.prototype;</div><div class="line">    var bound = function () &#123;</div><div class="line">        var innerArgs = Array.prototype.slice.call(arguments);</div><div class="line">        var finalArgs = args.contact(innerArgs);</div><div class="line">        return me.apply(this instanceof F ? this : context || this, finalArgs);</div><div class="line">    &#125;</div><div class="line">    bound.prototype = new F();</div><div class="line">    return bound;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.josephong.me/2017/04/17/两道有趣的前端面试题/" data-id="cj2sthkg10008cw1coni55rwh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/05/10/CSS系列之圣杯布局/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          CSS系列之圣杯布局
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/03/20/洪家伟+前端实习+2018届/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/05/10/CSS系列之圣杯布局/">CSS系列之圣杯布局</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/17/两道有趣的前端面试题/">两道有趣的前端面试题</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/20/洪家伟+前端实习+2018届/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/14/CSS系列之探秘BFC/">CSS系列之探秘BFC</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/08/JavaScript的异步编程/">JavaScript的异步编程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Howell<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

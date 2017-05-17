@@ -61,10 +61,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-CSS系列之圣杯布局" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/05/17/hello-world/" class="article-date">
-  <time datetime="2017-05-16T16:15:33.000Z" itemprop="datePublished">2017-05-17</time>
+    <a href="/2017/05/10/CSS系列之圣杯布局/" class="article-date">
+  <time datetime="2017-05-09T16:00:00.000Z" itemprop="datePublished">2017-05-10</time>
 </a>
     
   </div>
@@ -75,7 +75,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/17/hello-world/">Hello World</a>
+      <a class="article-title" href="/2017/05/10/CSS系列之圣杯布局/">CSS系列之圣杯布局</a>
     </h1>
   
 
@@ -83,20 +83,649 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <h2 id="圣杯布局的概念"><a href="#圣杯布局的概念" class="headerlink" title="圣杯布局的概念"></a>圣杯布局的概念</h2><p><img src="http://alistapart.com/d/_made/d/ALA211_grail_300_348_421_81.jpg" alt=""></p>
+<p>即一种轻便，广泛使用的三栏流体布局。它具有以下的优秀特性：</p>
+<ul>
+<li>两边固定宽度而中间可以流动；</li>
+<li>允许中间栏代码最先出现；</li>
+<li>允许任一栏的高度都最高；</li>
+<li>仅需一个额外的div标签；</li>
+<li>仅需很少必要css代码及最少兼容性补丁代码</li>
+</ul>
+<p>我们先看看实现效果：<a href="http://alistapart.com/d/holygrail/example_1.html" target="_blank" rel="external">Take a look</a></p>
+<h2 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h2><h3 id="STEP-1：CREAT-THE-FRAME"><a href="#STEP-1：CREAT-THE-FRAME" class="headerlink" title="STEP 1：CREAT THE FRAME"></a>STEP 1：CREAT THE FRAME</h3><p>html代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;header&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;div id=&quot;container&quot;&gt;</div><div class="line">&lt;div id=&quot;footer&quot;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>给 container 设置padding，为两栏预留空间<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#container &#123;</div><div class="line">padding-left: 200px; /* LC width */</div><div class="line">padding-right: 150px; /* RC width */</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>效果像是这样：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2575359-614d835155f171d7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h3 id="STEP-2：ADD-THE-COLUMNS"><a href="#STEP-2：ADD-THE-COLUMNS" class="headerlink" title="STEP 2：ADD THE COLUMNS"></a>STEP 2：ADD THE COLUMNS</h3><p>加上三栏：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;center&quot; class=&quot;column&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;div id=&quot;left&quot; class=&quot;column&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;div id=&quot;right&quot; class=&quot;column&quot;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>给两边加上适合的宽度，然后让中间栏自适应，让三栏全部浮动，当然也要给底栏 footer 清除浮动：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">#container .column &#123;</div><div class="line">  float: left;</div><div class="line">&#125;</div><div class="line">#center &#123;</div><div class="line">  width: 100%;</div><div class="line">&#125;</div><div class="line">#left &#123;</div><div class="line">  width: 200px;  /* LC width */</div><div class="line">&#125;</div><div class="line">#right &#123;</div><div class="line">  width: 150px;  /* RC width */</div><div class="line">&#125;</div><div class="line">#footer &#123;</div><div class="line">  clear: both;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这时的效果图是这样的：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2575359-d7f8cd1b7442bc85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h3 id="STEP-3-PULL-THE-LEFT-COLUMN-INTO-PLACE"><a href="#STEP-3-PULL-THE-LEFT-COLUMN-INTO-PLACE" class="headerlink" title="STEP 3: PULL THE LEFT COLUMN INTO PLACE"></a>STEP 3: PULL THE LEFT COLUMN INTO PLACE</h3><p>这里才开始精妙的部分，我们先看代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#left &#123;</div><div class="line">width: 200px; /* LC width */</div><div class="line">margin-left: -100%;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><code>margin-left: -100%</code>这条语句使左栏向左浮动了100%，center和left栏就会重叠，效果是这样的：<br><img src="http://upload-images.jianshu.io/upload_images/2575359-4600ad4238e601d7.gif?imageMogr2/auto-orient/strip" alt=""><br>这时我们再利用relative的特性，使left移动到左栏，即：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#container .columns &#123;</div><div class="line">float: left;</div><div class="line">position: relative;</div><div class="line">&#125;</div><div class="line">#left &#123;</div><div class="line">width: 200px; /* LC width */</div><div class="line">margin-left: -100%;</div><div class="line">right: 200px; /* LC width */</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>左栏想要的效果就达到了：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2575359-5547d6bb1c628156.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h3 id="STEP-4-PULL-THE-RIGHT-COLUMN-INTO-PLACE"><a href="#STEP-4-PULL-THE-RIGHT-COLUMN-INTO-PLACE" class="headerlink" title="STEP 4: PULL THE RIGHT COLUMN INTO PLACE"></a>STEP 4: PULL THE RIGHT COLUMN INTO PLACE</h3><p>接下来我们把放置右栏就简单多了，利用margin的负值法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#right &#123;</div><div class="line">width: 150px; /* RC width */</div><div class="line">margin-right: -150px; /* RC width */</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>ok，每栏都到达了正确位置，效果是这样的：<br><img src="http://upload-images.jianshu.io/upload_images/2575359-0a7efedeb3f54424.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p><strong>圣杯布局就是这样了。如果想要更多了解，推荐看这篇原文</strong>：<a href="http://alistapart.com/article/holygrail" target="_blank" rel="external">In Search of the Holy Grail</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.josephong.me/2017/05/17/hello-world/" data-id="cj2smewkm0000071czlpuwjji" class="article-share-link">Share</a>
+      <a data-url="http://blog.josephong.me/2017/05/10/CSS系列之圣杯布局/" data-id="cj2sthkex0000cw1ceep5ioht" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-两道有趣的前端面试题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/17/两道有趣的前端面试题/" class="article-date">
+  <time datetime="2017-04-16T16:00:00.000Z" itemprop="datePublished">2017-04-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/17/两道有趣的前端面试题/">两道有趣的前端面试题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>在知乎上看到了两道有趣且知识点非常丰富的JavaScript面试题，所以引用过来，做个记录。 </p>
+</blockquote>
+<h2 id="一、for循环内的输出”变形记”"><a href="#一、for循环内的输出”变形记”" class="headerlink" title="一、for循环内的输出”变形记”"></a>一、for循环内的输出”变形记”</h2><h4 id="1、原型"><a href="#1、原型" class="headerlink" title="1、原型"></a>1、原型</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">for (var i = 0; i &lt; 5; i++) &#123;</div><div class="line">  console.log(i);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个不用说了，最简单的输出。会直接输出0，1，2，3，4</p>
+<h4 id="2、变形1"><a href="#2、变形1" class="headerlink" title="2、变形1"></a>2、变形1</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">for (var i = 0; i &lt; 5; i++) &#123;</div><div class="line">  setTimeout(function() &#123;</div><div class="line">    console.log(i);</div><div class="line">  &#125;, 1000 * i);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>哈！考到我们看过很多遍的闭包问题了。结果是 先输出5，然后 每隔1s输出一个5。最后显示5个5。做个简单解释：因为闭包，for循环没有块级作用域。在函数执行时，for循环早已完成。console里接受的i全都是5。但1000*i里i是正常被赋值的。所以 都会被放入时间队列中，而且时间每隔1s<br>。</p>
+<p>那么我们如何将输出变成0，1，2，3，4呢？在循环里加个自执行函数就行了。看下面</p>
+<h4 id="3、解决方法（变形2）"><a href="#3、解决方法（变形2）" class="headerlink" title="3、解决方法（变形2）"></a>3、解决方法（变形2）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">for (var i = 0; i &lt; 5; i++) &#123;</div><div class="line">  (function(i) &#123;</div><div class="line">    setTimeout(function() &#123;</div><div class="line">      console.log(i);</div><div class="line">    &#125;, i * 1000);</div><div class="line">  &#125;)(i);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个就是我们的解决方案了。详细解释可以看  <a href="http://www.jianshu.com/p/66951b1fcc77" target="_blank" rel="external">JavaScript之理解闭包</a> 这篇文章。</p>
+<h4 id="4、变形3"><a href="#4、变形3" class="headerlink" title="4、变形3"></a>4、变形3</h4><p>如果把这个自执行函数里的 i 拿掉呢？  代码变成下面这样:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">for (var i = 0; i &lt; 5; i++) &#123;</div><div class="line">  (function() &#123;</div><div class="line">    setTimeout(function() &#123;</div><div class="line">      console.log(i);</div><div class="line">    &#125;, i * 1000);</div><div class="line">  &#125;)(i);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这样的话， i 没有被内部引用，也就变回去了。自执行函数也就没了意义。输出和变形1一样。</p>
+<h4 id="5、变形4"><a href="#5、变形4" class="headerlink" title="5、变形4"></a>5、变形4</h4><p>我们把自执行函数放到里面去呢？ 代码变成这样:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">for (var i = 0; i &lt; 5; i++) &#123;</div><div class="line">  setTimeout((function(i) &#123;</div><div class="line">    console.log(i);</div><div class="line">  &#125;)(i), i * 1000);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>嗯？ 这样就有点意思了，考察了setTimeout的知识。setTimeout的第一个参数只接受字符串或函数。而这里却给了一个自执行函数，而且没有return。那么可以等价为setTimeout(undefined, …) 。那么自执行函数就会立即执行了。setTimeout()等于没起到作用，所以应该是直接输出0，1，2，3，4。</p>
+<h4 id="6、变形5-Promise"><a href="#6、变形5-Promise" class="headerlink" title="6、变形5 (Promise)"></a>6、变形5 (Promise)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">setTimeout(function() &#123;</div><div class="line">  console.log(1)</div><div class="line">&#125;, 0);</div><div class="line">new Promise(function executor(resolve) &#123;</div><div class="line">  console.log(2);</div><div class="line">  for( var i=0 ; i&lt;10000 ; i++ ) &#123;</div><div class="line">    i == 9999 &amp;&amp; resolve();</div><div class="line">  &#125;</div><div class="line">  console.log(3);</div><div class="line">&#125;).then(function() &#123;</div><div class="line">  console.log(4);</div><div class="line">&#125;);</div><div class="line">console.log(5);</div></pre></td></tr></table></figure>
+<p>这段代码会输出什么呢？<br>结果是：2，3，5，4，1</p>
+<p>这题在考察我们JavaScript的运行机制。慢慢分析：</p>
+<ol>
+<li>setTimeout 内代码执行被挂起，稍后执行。</li>
+<li>Promise 内的代码是自执行的，所以2，3先被输出。然后resolve 也被挂起。</li>
+<li>然后输出里面的5，接下来就是比较4和1谁先输出。</li>
+<li>这一点我们需要了解事件循环(event loop), Promise.then 和 setTimeout 都是异步任务，那究竟谁先执行？</li>
+<li>Promise.then的callback被添加到microtasks queue中; setTimeout的callback被添加到 tack(macro-task) queue 中。代码执行到当前task的end。执行microtasks的代码，输出4。</li>
+<li>到下一个task，执行setTimeout中代码输出1</li>
+</ol>
+<p>可能我解释的不大清楚，大家可以看这篇博文，解释<a href="https://github.com/creeperyang/blog/issues/21" target="_blank" rel="external">Promise.then和setTimeout的异步</a></p>
+<p>而关于macrotask 和 microtask 的机制，可以<a href="http://stackoverflow.com/questions/25915634/difference-between-microtask-and-macrotask-within-an-event-loop-context" target="_blank" rel="external">戳这</a>。</p>
+<p>这个面试题的知乎原地址：<a href="https://zhuanlan.zhihu.com/p/25407758" target="_blank" rel="external">Excuse me？这个前端面试在搞事！</a></p>
+<hr>
+<h2 id="二、模拟实现ES5中原生bind函数"><a href="#二、模拟实现ES5中原生bind函数" class="headerlink" title="二、模拟实现ES5中原生bind函数"></a>二、模拟实现ES5中原生bind函数</h2><h3 id="bind函数究竟是什么？"><a href="#bind函数究竟是什么？" class="headerlink" title="bind函数究竟是什么？"></a>bind函数究竟是什么？</h3><p>bind函数常与call，apply一起讨论出现。它们都是用于绑定this值指向的。与另外两个不同的是bind会创建一个新函数。而不是像其它两个一样立即执行。更多的信息可以上<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind" target="_blank" rel="external">MDN</a>查看。</p>
+<h3 id="初级实现"><a href="#初级实现" class="headerlink" title="初级实现"></a>初级实现</h3><p>了解了以上内容，我们来实现一个初级的bind函数Polyfill:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Function.prototype.bind = function (context) &#123;</div><div class="line">    var me = this;</div><div class="line">    var argsArray = Array.prototype.slice.call(arguments); //将所有传入的参数变成参数数组</div><div class="line">    return function () &#123;</div><div class="line">        return me.apply(context, argsArray.slice(1));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>我们先简要解读一下：<br>基本原理是使用apply进行模拟。函数体内的this，就是需要绑定this的实例函数，或者说是原函数。最后我们使用apply来进行参数（context）绑定，并返回。<br>同时，将第一个参数（context）以外的其他参数，作为提供给原函数的预设参数，这也是基本的“颗粒化（curring）”基础。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Function.prototype.bind = Function.prototype.bind || function (context) &#123;</div><div class="line">    var me = this;</div><div class="line">    var args = Array.prototype.slice.call(arguments, 1);</div><div class="line">    var F = function () &#123;&#125;;</div><div class="line">    F.prototype = this.prototype;</div><div class="line">    var bound = function () &#123;</div><div class="line">        var innerArgs = Array.prototype.slice.call(arguments);</div><div class="line">        var finalArgs = args.contact(innerArgs);</div><div class="line">        return me.apply(this instanceof F ? this : context || this, finalArgs);</div><div class="line">    &#125;</div><div class="line">    bound.prototype = new F();</div><div class="line">    return bound;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.josephong.me/2017/04/17/两道有趣的前端面试题/" data-id="cj2sthkg10008cw1coni55rwh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-洪家伟+前端实习+2018届" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/20/洪家伟+前端实习+2018届/" class="article-date">
+  <time datetime="2017-03-20T12:17:52.000Z" itemprop="datePublished">2017-03-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>求职意向：web前端实习生</p>
+<h2 id="个人简介"><a href="#个人简介" class="headerlink" title="个人简介"></a>个人简介</h2><p>洪家伟，男，大三，2018年本科毕业，就读于江西南昌的华东交通大学软件工程专业</p>
+<table>
+<thead>
+<tr>
+<th>手机</th>
+<th>email</th>
+<th>github</th>
+<th>个人博客</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>15279181729</td>
+<td>howell95@outlook.com</td>
+<td><a href="https://github.com/Howell5" target="_blank" rel="external">https://github.com/Howell5</a></td>
+<td><a href="http://howell5.github.io" target="_blank" rel="external">http://howell5.github.io</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="能力简述"><a href="#能力简述" class="headerlink" title="能力简述"></a>能力简述</h2><ul>
+<li>开发：于2016年开始学习前端，对前端领域知识有不错的掌握，能胜任大多数前端开发任务<ul>
+<li>能够语义化的编写HTML文档</li>
+<li>熟悉CSS2.1规范，了解外边距折叠等特性</li>
+<li>对原型、闭包、继承等有自己的理解</li>
+<li>了解 Vue.js, Node.js, ES6</li>
+</ul>
+</li>
+<li>工具平台：主要开发平台 mac， 熟悉 git，熟悉 sublime，了解 atom</li>
+<li>开源爱好者：有十几个项目的代码托管在 github。</li>
+<li>自学能力强：喜欢阅读经典书籍，写博客。擅长使用 google、stackoverflow，阅读英文文档。</li>
+</ul>
+<h2 id="项目经历"><a href="#项目经历" class="headerlink" title="项目经历"></a>项目经历</h2><h3 id="大三下：-HTML5-移动web-App阅读器"><a href="#大三下：-HTML5-移动web-App阅读器" class="headerlink" title="大三下： HTML5 移动web App阅读器"></a>大三下： HTML5 移动web App阅读器</h3><blockquote>
+<p>在线地址：<a href="http://howell5.github.io/ReaderH5/" target="_blank" rel="external">HTML5 移动webapp阅读器</a></p>
+</blockquote>
+<ul>
+<li>文本数据由JSONP跨域请求获得</li>
+<li>可实现基本的翻页，更换背景色，更改字体大小等交互。且这些操作数据会存入localStorage中</li>
+<li>使用ES6的Promise解决了回调过多的问题，base64格式图片优化了性能</li>
+</ul>
+<h3 id="大三上：-百度前端学院2015春季班任务"><a href="#大三上：-百度前端学院2015春季班任务" class="headerlink" title="大三上： 百度前端学院2015春季班任务"></a>大三上： 百度前端学院2015春季班任务</h3><blockquote>
+<p>在线地址: <a href="http://howell5.github.io/IFE-2015/intro.html" target="_blank" rel="external">IFE-2015-spring</a></p>
+</blockquote>
+<ul>
+<li>task2实现了轮播图组件，运动框架组件，拖拽，Ajax，事件代理等常用方法的封装库</li>
+<li>task3实现了一个SPA简易个人任务管理系统,数据存在localStorage中</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.josephong.me/2017/03/20/洪家伟+前端实习+2018届/" data-id="cj2sthkg9000bcw1clic76eei" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CSS系列之探秘BFC" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/14/CSS系列之探秘BFC/" class="article-date">
+  <time datetime="2017-03-13T16:00:00.000Z" itemprop="datePublished">2017-03-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/14/CSS系列之探秘BFC/">CSS系列之探秘BFC</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>BFC很早就知道这个名词，但却没有真正的去了解它。只知道它能解决margin折叠和清除浮动的问题。这篇文章攫取其他文章和官方文档写成。如有错误，欢迎指出。</p>
+</blockquote>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>Google完，我们得到这样一句话。“A block formatting context is a part of a visual CSS rendering of a Web page. It is the region in which the layout of block boxes occurs and in which floats interact with each other”.<br>大概句义：“块格式化上下文（block formatting context） 是Web页面的可视CSS渲染的一部分。它是块盒子的布局发生及浮动体彼此交互的区域。”<br>抓住关键词，它是CSS渲染的一块区域，在并且区域内部与区域外部交互有其的规则。具体查看 <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Block_formatting_context" target="_blank" rel="external">MDN_BFC</a> 。</p>
+<h2 id="触发BFC"><a href="#触发BFC" class="headerlink" title="触发BFC"></a>触发BFC</h2><ul>
+<li>根元素<br>根元素这个，很好理解。<br>html文档建立，就会触发根元素的BFC，我们在根元素内写几个div元素，会发现内部div垂直排列，本身没有兄弟元素，自然满足B、D、E、F这几条规则，内部块级盒子来自同一个BFC(html)，所以相邻margin会重叠，行内盒子横向就不会重叠。</li>
+<li>float属性不为none<br>当一个元素被设置为float:left or right,会触发这个元素，生成BFC区域，使他不仅拥有BFC的渲染规则，而且会给自身带来副作用，display:block,但是这个元素不会像行内元素通过设置display:block变为块级元素那样，宽度充满其父元素，而是表现的更像行内块级元素,只会使得行内元素不会收缩包裹其内容.</li>
+<li>position为absolute或fixed<br>这个触发器触发生成BFC后，margin重不重叠这个对于他都没有效果，可能定位流和一般的文档流浮动流不属于一个吧，，所以自然会与浮动元素重叠。</li>
+<li>display为inline-block, table-cell<br>基本上每一条渲染规则都满足</li>
+<li>overflow不为visible<br>这个对于来自不同BFC margin不会重叠这一条来说，不满足，其他都能满足<br>overflow:hidden通常是对父元素定义比较有效的。</li>
+</ul>
+<h2 id="BFC的规则"><a href="#BFC的规则" class="headerlink" title="BFC的规则"></a>BFC的规则</h2><ul>
+<li>内部的Box会在垂直方向，一个接一个地放置。</li>
+<li>Box垂直方向的距离由margin决定。属于同一个BFC的两个相邻Box的margin会发生重叠</li>
+<li>每个元素的margin box的左边， 与包含块border box的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此。</li>
+<li>BFC的区域不会与float box重叠。</li>
+<li>BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此。</li>
+<li>计算BFC的高度时，浮动元素也参与计算</li>
+</ul>
+<p>官方文档的说明见 <a href="https://www.w3.org/TR/CSS2/visuren.html#block-formatting" target="_blank" rel="external">CSS2.1 spec</a></p>
+<h2 id="BFC应用及原理"><a href="#BFC应用及原理" class="headerlink" title="BFC应用及原理"></a>BFC应用及原理</h2><p>看了上面罗列的规则和触发条件，很难理解。我们拿几个例子来帮助理解。（例子均来自<a href="http://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html" target="_blank" rel="external">蓝色天空_BFC</a>)</p>
+<h3 id="1、自适应两栏布局"><a href="#1、自适应两栏布局" class="headerlink" title="1、自适应两栏布局"></a>1、自适应两栏布局</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&lt;style&gt;</div><div class="line">    body &#123;</div><div class="line">        width: 300px;</div><div class="line">        position: relative;</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    .aside &#123;</div><div class="line">        width: 100px;</div><div class="line">        height: 150px;</div><div class="line">        float: left;</div><div class="line">        background: #f66;</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    .main &#123;</div><div class="line">        height: 200px;</div><div class="line">        background: #fcc;</div><div class="line">    &#125;</div><div class="line">&lt;/style&gt;</div><div class="line">&lt;body&gt;</div><div class="line">    &lt;div class=&quot;aside&quot;&gt;&lt;/div&gt;</div><div class="line">    &lt;div class=&quot;main&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;/body&gt;</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/2575359-cad958e92d9e3d9e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="未完成效果"><br>造成这个现象的原因是由于上述第一条触发条件和第三条规则：</p>
+<blockquote>
+<p>根元素</p>
+<p> 每个元素的margin box的左边， 与包含块border box的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此。</p>
+</blockquote>
+<p>为了达到我们想要的效果，利用第四条规则：</p>
+<blockquote>
+<p>BFC的区域不会与float box重叠。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 通过overflow: hidden触发BFC, 使main变成一个BFC而应用了第四条规则，达到了两栏自适应布局</div><div class="line">.main &#123;</div><div class="line">    overflow: hidden;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/2575359-7f76e9a5b4aa9f58.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="完成效果"></p>
+<h3 id="2、防止垂直margin折叠"><a href="#2、防止垂直margin折叠" class="headerlink" title="2、防止垂直margin折叠"></a>2、防止垂直margin折叠</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;style&gt;</div><div class="line">    p &#123;</div><div class="line">        color: #f55;</div><div class="line">        background: #fcc;</div><div class="line">        width: 200px;</div><div class="line">        line-height: 100px;</div><div class="line">        text-align:center;</div><div class="line">        margin: 100px;</div><div class="line">    &#125;</div><div class="line">&lt;/style&gt;</div><div class="line">&lt;body&gt;</div><div class="line">    &lt;p&gt;Haha&lt;/p&gt;</div><div class="line">    &lt;p&gt;Hehe&lt;/p&gt;</div><div class="line">&lt;/body&gt;</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/2575359-4c226a88d8588370.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="margin折叠"></p>
+<p>造成这种结果由于第二条规则：</p>
+<blockquote>
+<p>Box垂直方向的距离由margin决定。属于同一个BFC的两个相邻Box的margin会发生重叠</p>
+</blockquote>
+<p>为解决，我们只需往任一个P元素套一个父元素，并触发该父元素成为BFC，那么这两个P元素就不属于同一个BFC了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&lt;style&gt;</div><div class="line">    .wrap &#123;</div><div class="line">        overflow: hidden;</div><div class="line">    &#125;</div><div class="line">    p &#123;</div><div class="line">        color: #f55;</div><div class="line">        background: #fcc;</div><div class="line">        width: 200px;</div><div class="line">        line-height: 100px;</div><div class="line">        text-align:center;</div><div class="line">        margin: 100px;</div><div class="line">    &#125;</div><div class="line">&lt;/style&gt;</div><div class="line">&lt;body&gt;</div><div class="line">    &lt;p&gt;Haha&lt;/p&gt;</div><div class="line">    &lt;div class=&quot;wrap&quot;&gt;</div><div class="line">        &lt;p&gt;Hehe&lt;/p&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/body&gt;</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2575359-4ce9373867ad5d99.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="margin未折叠"></p>
+<h3 id="3、清除内部浮动"><a href="#3、清除内部浮动" class="headerlink" title="3、清除内部浮动"></a>3、清除内部浮动</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&lt;style&gt;</div><div class="line">    .par &#123;</div><div class="line">        border: 5px solid #fcc;</div><div class="line">        width: 300px;</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    .child &#123;</div><div class="line">        border: 5px solid #f66;</div><div class="line">        width:100px;</div><div class="line">        height: 100px;</div><div class="line">        float: left;</div><div class="line">    &#125;</div><div class="line">&lt;/style&gt;</div><div class="line">&lt;body&gt;</div><div class="line">    &lt;div class=&quot;par&quot;&gt;</div><div class="line">        &lt;div class=&quot;child&quot;&gt;&lt;/div&gt;</div><div class="line">        &lt;div class=&quot;child&quot;&gt;&lt;/div&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/body&gt;</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/2575359-9c535e8f5ed91f61.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="未完成的效果"></p>
+<p>根据第六条规则:</p>
+<blockquote>
+<p>计算BFC的高度时，浮动元素也参与计算</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 触发par生成BFC，那么par在计算高度时，par内部的浮动元素child也会参与计算。</div><div class="line">.par &#123;</div><div class="line">    overflow: hidden;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/2575359-1a9a92c37dd0f492.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="完成的效果"></p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="http://www.jianshu.com/p/e9394291b163" target="_blank" rel="external">BFC</a></p>
+<p><a href="http://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html" target="_blank" rel="external">BFC 神奇背后的原理</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.josephong.me/2017/03/14/CSS系列之探秘BFC/" data-id="cj2sthkf90002cw1cjyqnn8yq" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-JavaScript的异步编程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/08/JavaScript的异步编程/" class="article-date">
+  <time datetime="2017-03-07T16:00:00.000Z" itemprop="datePublished">2017-03-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/08/JavaScript的异步编程/">JavaScript的异步编程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>写JavaScript代码少不了处理回调函数，如果只是很少的回调嵌套，倒也还好。但是遇到需要用了过多回调嵌套的时候，就会很麻烦（主要是语法层面的难以阅读和不支持异常的捕捉），为了解决这一麻烦，主要有以下几种方法。</p>
+</blockquote>
+<h2 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h2><p>Promise 是 ES6 引入的解决办法，表示一个<strong>现在</strong>或<strong>将来</strong>可用，亦或<strong>永远不</strong>可用的值。把原来嵌套的回调改为了级联的方式<br>如果说原始的回调函数是这样</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2575359-7141d9b562ca062f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>那么Promise的示意图就是这样</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2575359-2f8d767ce860d5db.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">var a = new Promise(function(resolve, reject) &#123;</div><div class="line">  setTimeout(function() &#123;</div><div class="line">      resolve(&apos;a&apos;)</div><div class="line">  &#125;, 2000)</div><div class="line">&#125;)</div><div class="line"></div><div class="line"></div><div class="line">function b(val) &#123;</div><div class="line">  console.log(val)</div><div class="line"></div><div class="line">  return new Promise(function(resolve, reject) &#123;</div><div class="line">    setTimeout(function() &#123;</div><div class="line">        resolve(&apos;b&apos;)</div><div class="line">    &#125;, 2000)</div><div class="line">  &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">a.then(b)</div><div class="line"> .catch(r1 =&gt; console.log(&apos;rejected&apos; + r1))</div><div class="line"> .then(function(val) &#123;</div><div class="line">    console.log(val)</div><div class="line">  &#125;)</div><div class="line"> .catch(r2 =&gt; console.log(&apos;rejected&apos; + r2))</div><div class="line">// 等2秒输出 &quot;a&quot;，再等2秒输出 &quot;b&quot;</div></pre></td></tr></table></figure>
+<p>我们只需要 return 一个 Promise 即可实现这种多个异步操作的顺序执行。</p>
+<p>粗略来看，这是一个比较优雅的异步解决方案了，并且在 Promise 中我们也可以实现分级的 catch。</p>
+<h2 id="Generator"><a href="#Generator" class="headerlink" title="Generator"></a>Generator</h2><p>Generator 同样也是 ES6 出现的新语法简单来说，Generator 可以理解为一个可以遍历的状态机，调用 next 就可以切换到下一个状态。</p>
+<p>在 JavaScript 中，Generator 的 function 与 函数名之间有一个 *， 函数内部使用 yield 关键词，定义不同的状态。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">function* anotherGenerator(i) &#123;</div><div class="line">  yield i + 1;</div><div class="line">  yield i + 2;</div><div class="line">  yield i + 3;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function* generator(i)&#123;</div><div class="line">  yield i;</div><div class="line">  yield* anotherGenerator(i);</div><div class="line">  yield i + 10;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var gen = generator(10);</div><div class="line"></div><div class="line">console.log(gen.next().value); // 10</div><div class="line">console.log(gen.next().value); // 11</div><div class="line">console.log(gen.next().value); // 12</div><div class="line">console.log(gen.next().value); // 13</div><div class="line">console.log(gen.next().value); // 20</div></pre></td></tr></table></figure></p>
+<p>调用一个<strong>生成器函数</strong>并不马上执行它的主体，而是返回一个这个生成器函数的<strong>迭代器（iterator）对象</strong>。当这个迭代器的next()方法被调用时，<strong>生成器函数</strong>的主体会被执行直至第一个<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/yield" target="_blank" rel="external">yield
+</a>表达式，该表达式定义了迭代器返回的值，或者，被 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/yield*" target="_blank" rel="external">yield*
+</a>委派至另一个生成器函数。next()方法返回一个对象，该对象有一个value属性，表示产出的值，和一个done属性，表示生成器是否已经产出了它最后的值。</p>
+<h2 id="await-async"><a href="#await-async" class="headerlink" title="await/async"></a>await/async</h2><p>前面的两种似乎都不是最完美的写法，总有这样那样的问题。而 ES7 带来了 await/async，它是基于 Promise 的，它解决了 Promise 的一个痛点 — 每一个 then 方法内部是一个独立的作用域，要是想共享数据，就要将部分数据暴露在最外层，在 then 内部赋值一次。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">const f1 = () =&gt; &#123;</div><div class="line">  return new Promise((resolve, reject) =&gt; &#123;</div><div class="line">    setTimeout(() =&gt; &#123;</div><div class="line">      resolve(111);</div><div class="line">    &#125;, 2000);</div><div class="line">  &#125;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">const f2 = () =&gt; &#123;</div><div class="line">  return new Promise((resolve, reject) =&gt; &#123;</div><div class="line">    setTimeout(() =&gt; &#123;</div><div class="line">      reject(222);</div><div class="line">    &#125;, 3000);</div><div class="line">  &#125;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">const testAsync = async () =&gt; &#123;</div><div class="line">  try &#123;</div><div class="line">    const t1 = await f1();</div><div class="line">    console.log(t1);</div><div class="line">    const t2 = await f2();</div><div class="line">    console.log(t2);</div><div class="line">  &#125; catch (err) &#123;</div><div class="line">    console.log(&apos;err &apos; + err);</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">testAsync();</div></pre></td></tr></table></figure></p>
+<p>是不是就像是在写同步代码一样，可读性好。和try catch的配合使用，捕捉异常也很自然</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.josephong.me/2017/03/08/JavaScript的异步编程/" data-id="cj2sthkg5000acw1cahzkzeuh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-JavaScript之深入之事件轮询" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/02/JavaScript之深入之事件轮询/" class="article-date">
+  <time datetime="2017-03-01T16:00:00.000Z" itemprop="datePublished">2017-03-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/02/JavaScript之深入之事件轮询/">JavaScript之深入之事件轮询</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>在详细聊event-loop前，我们先厘清几个基本概念：JavaScript是单线程的，即同一个时间只能做一件事，但浏览器中是会存在异步任务的，总不能按着正常顺序等到异步任务（万一异步任务是请求一个很大的文件，耗时很长）结束了，才去执行下一步事。这显然是反人类的。而我们平常打开的网页也没有这样反人类的体验，这说明JavaScript的运行机制解决了这点。</p>
+</blockquote>
+<h2 id="执行栈与任务队列"><a href="#执行栈与任务队列" class="headerlink" title="执行栈与任务队列"></a>执行栈与任务队列</h2><p>当程序往下执行时，遇到了异步任务，主线程这时不管异步任务，挂起处于等待中的任务，先运行排在后面的任务。等到异步任务返回了结果，再回过头，把挂起的任务继续执行下去。<br>于是，所有任务可以分成两种，一种是同步任务（synchronous），另一种是异步任务（asynchronous）。同步任务指的是，在主线程上排队执行的任务，只有前一个任务执行完毕，才能执行后一个任务；异步任务指的是，不进入主线程、而进入”任务队列”（task queue）的任务，只有”任务队列”通知主线程，某个异步任务可以执行了，该任务才会进入主线程执行。</p>
+<p>具体来说，异步执行的运行机制如下：</p>
+<ul>
+<li>所有同步任务都在主线程上执行，形成一个<a href="http://www.ruanyifeng.com/blog/2013/11/stack.html" target="_blank" rel="external">执行栈</a>（execution context stack）。</li>
+<li>主线程之外，还存在一个”任务队列”（task queue）。只要异步任务有了运行结果，就在”任务队列”之中放置一个事件。</li>
+<li>一旦”执行栈”中的所有同步任务执行完毕，系统就会读取”任务队列”，看看里面有哪些事件。那些对应的异步任务，于是结束等待状态，进入执行栈，开始执行。</li>
+<li>主线程不断重复上面的第三步。</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/2575359-77bbd6427c25c6fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h2 id="Marcotask和Mircotask"><a href="#Marcotask和Mircotask" class="headerlink" title="Marcotask和Mircotask"></a>Marcotask和Mircotask</h2><p>上面所说的只是Event loop的基本知识，现在我们引入两个新概念 Marcotask 和 Mircotask ，在Event queue中不同的异步任务中，他们是被存入不同的queue中的，而且它们也并非简单的先进先出的执行的。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2575359-d8fe0a4efb36f750.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>如上图所示，在单次的迭代中，event loop首先检查macrotask队列，如果有一个macrotask等待执行，那么执行该任务。当该任务执行完毕后（或者macrotask队列为空），event loop继续执行microtask队列。如果microtask队列有等待执行的任务，那么event loop就一直取出任务执行知道microtask为空。这里我们注意到处理microtask和macrotask的不同之处：<strong>在单次循环中，一次最多处理一个macrotask（其他的仍然驻留在队列中），然而却可以处理完所有的microtask。</strong></p>
+<p>当microtask队列为空时，event loop检查是否需要执行UI重渲染，如果需要则重渲染UI。这样就结束了当次循环，继续从头开始检查macrotask队列。</p>
+<ul>
+<li>macrotasks: setTimeout setInterval setImmediate I/O UI渲染</li>
+<li>microtasks: Promise process.nextTick Object.observe MutationObserver</li>
+</ul>
+<p>拿个例子帮助我们理解这一点：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">(function () &#123;</div><div class="line">    setTimeout(function() &#123;console.log(4)&#125;, 0);</div><div class="line">    new Promise(function executor(resolve) &#123;</div><div class="line">        console.log(1);</div><div class="line">        for( var i=0 ; i&lt;10000 ; i++ ) &#123;</div><div class="line">            i == 9999 &amp;&amp; resolve();</div><div class="line">        &#125;</div><div class="line">        console.log(2);</div><div class="line">    &#125;).then(function() &#123;</div><div class="line">        console.log(5);</div><div class="line">    &#125;);</div><div class="line">    console.log(3);</div><div class="line">&#125;)()</div></pre></td></tr></table></figure></p>
+<p>分析过程：</p>
+<ol>
+<li>当前task运行，执行代码。首先setTimeout的callback被添加到tasks queue中；</li>
+<li>实例化promise，输出 1; promise resolved；输出 2;</li>
+<li>promise.then的callback被添加到microtasks queue中；</li>
+<li>输出 3;</li>
+<li>已到当前task的end，执行microtasks，输出 5;</li>
+<li>执行下一个task，输出4。</li>
+</ol>
+<h2 id="Web-Worker"><a href="#Web-Worker" class="headerlink" title="Web Worker"></a>Web Worker</h2><p>HTML5提出Web Worker标准，允许JavaScript脚本创建多个线程，但是子线程完全受主线程控制，且不得操作DOM，并未改变JavaScript单线程事实。</p>
+<p>专用web worker例子:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">// html</div><div class="line">    &lt;form&gt;</div><div class="line">      &lt;div&gt;</div><div class="line">        &lt;label for=&quot;number1&quot;&gt;Multiply number 1: &lt;/label&gt;    </div><div class="line">        &lt;input type=&quot;text&quot; id=&quot;number1&quot; value=&quot;0&quot;&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">      &lt;div&gt;</div><div class="line">        &lt;label for=&quot;number2&quot;&gt;Multiply number 2: &lt;/label&gt;   </div><div class="line">        &lt;input type=&quot;text&quot; id=&quot;number2&quot; value=&quot;0&quot;&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">    &lt;/form&gt;</div><div class="line"></div><div class="line">    &lt;p class=&quot;result&quot;&gt;Result: 0&lt;/p&gt;</div><div class="line">&lt;script&gt;</div><div class="line">var first = document.querySelector(&apos;#number1&apos;);</div><div class="line">var second = document.querySelector(&apos;#number2&apos;);</div><div class="line"></div><div class="line">var result = document.querySelector(&apos;.result&apos;);</div><div class="line"></div><div class="line">if (window.Worker) &#123; // Check if Browser supports the Worker api.</div><div class="line">	var myWorker = new Worker(&quot;worker.js&quot;);</div><div class="line"></div><div class="line">	first.onchange = function() &#123;</div><div class="line">	  myWorker.postMessage([first.value,second.value]); // Sending message as an array to the worker</div><div class="line">	  console.log(&apos;Message posted to worker&apos;);</div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	second.onchange = function() &#123;</div><div class="line">	  myWorker.postMessage([first.value,second.value]);</div><div class="line">	  console.log(&apos;Message posted to worker&apos;);</div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	myWorker.onmessage = function(e) &#123;</div><div class="line">		result.textContent = e.data;</div><div class="line">		console.log(&apos;Message received from worker&apos;);</div><div class="line">	&#125;;</div><div class="line">&#125;</div><div class="line">&lt;/script&gt;</div><div class="line"></div><div class="line">//work.js</div><div class="line"></div><div class="line">onmessage = function(e) &#123;</div><div class="line">  console.log(&apos;Message received from main script&apos;);</div><div class="line">  var workerResult = &apos;Result: &apos; + (e.data[0] * e.data[1]);</div><div class="line">  console.log(&apos;Posting message back to main script&apos;);</div><div class="line">  postMessage(workerResult);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>从上面代码可以看到，两者通过postMessage传递数据。</p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html" target="_blank" rel="external">JavaScript 运行机制详解：再谈Event Loop</a></p>
+<p><a href="https://github.com/creeperyang/blog/issues/21" target="_blank" rel="external">从Promise来看JavaScript中的Event Loop、Tasks和Microtasks</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/24460769" target="_blank" rel="external">HTML系列：macrotask和microtask</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.josephong.me/2017/03/02/JavaScript之深入之事件轮询/" data-id="cj2sthkfi0004cw1cmdjon4pc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-JavaScript数据结构与算法（一）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/22/JavaScript数据结构与算法（一）/" class="article-date">
+  <time datetime="2017-02-21T16:00:00.000Z" itemprop="datePublished">2017-02-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/22/JavaScript数据结构与算法（一）/">JavaScript数据结构与算法（一）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>作为软件开发者，我们要能够用编程语言和数据结构来解决问题。对于任何方向的编程人员来说数据结构和算法都是极其重要的，称之为程序的灵魂也不为过。然许多前端人员对由于错误的理解，认为前端不需学习算法，只需要熟练的实现网页布局和特效，便可万事大吉。首先持这种想法的前端人员显然是认为自己还是10年前的前端。面对如今日新月异的技术发展和前端职责。如果抱着这种思想工作的话，离被行业淘汰也就不远了。本系列将简要介绍JavaScript实现基本的数据结构和常见的算法。也是自己对这方面的知识做个简单的整理。</p>
+<p>本书主要参考<a href="https://book.douban.com/subject/26639401/" target="_blank" rel="external">《学习JavaScript数据结构与算法》</a>一书写成。文章如有错误，欢迎指出。</p>
+</blockquote>
+<h2 id="JavaScript中的数组"><a href="#JavaScript中的数组" class="headerlink" title="JavaScript中的数组"></a>JavaScript中的数组</h2><blockquote>
+<p>几乎所有编程语言都原生支持数组类型，它是一段线性分配的内存，通过整数计算偏移并访问其中的元素。但JavaScript中的数组和我们常见如Java中的数组有些不同，众所周知，“JavaScript中，一切皆为对象”。JavaScript中的数组是一种拥有类数组（array-like）特性的对象，它比一个真正的数组慢，但它使用起来十分方便。</p>
+</blockquote>
+<h3 id="数组的创建与初始化"><a href="#数组的创建与初始化" class="headerlink" title="数组的创建与初始化"></a>数组的创建与初始化</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var arr = [];   // var arr = new Array();</div></pre></td></tr></table></figure>
+<p>其中很重要的点是与大多数其它语言不同，JavaScript数组的length是没有上界的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var arr = [1, 2, 3];</div><div class="line">arr[10] = 10;  // 如果添加元素，它会动态增长</div><div class="line">console.log(arr.length);  //  11，也就是除了前3个和最后定义的10。中间的是8个undefined。</div></pre></td></tr></table></figure></p>
+<p>如果给数组的length设小，则将导致下标大于等于新length的属性被删除<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var arr = [1, 2, 3, 4];</div><div class="line">arr.length = 2;</div><div class="line">console.log(arr);  // [1, 2]</div></pre></td></tr></table></figure></p>
+<p>数组的的常见增删方法就不一一介绍了，大家可以看<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank" rel="external">MDN Array的详细介绍</a></p>
+<h3 id="二维数组及多维数组"><a href="#二维数组及多维数组" class="headerlink" title="二维数组及多维数组"></a>二维数组及多维数组</h3><p>JavaScript只支持一维数组，并不支持矩阵。但我们可以使用数组套数组实现多维数组。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var Matrix = [</div><div class="line">  [1, 2, 2],</div><div class="line">  [2, 5, 7],</div><div class="line">  [2, 6, 8]</div><div class="line">];</div><div class="line">Matrix[2][1];  //6</div></pre></td></tr></table></figure></p>
+<p>JavaScript应该对矩阵提供更好的支持，我们可以自己定义一个。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Array.Matrix = function () &#123;</div><div class="line"></div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>未完待续~~~</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.josephong.me/2017/02/22/JavaScript数据结构与算法（一）/" data-id="cj2sthkg30009cw1clfcgbrzv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-JavaScript之深入理解this" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/01/JavaScript之深入理解this/" class="article-date">
+  <time datetime="2016-11-30T16:00:00.000Z" itemprop="datePublished">2016-12-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/01/JavaScript之深入理解this/">JavaScript之深入理解this</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>此文参考 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this" target="_blank" rel="external">MDN_this</a> 写成</p>
+</blockquote>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>this是函数运行时自动生成的内部对象，即调用函数的那个对象。（不一定很准确的定义，但还算通俗易懂）<br> 在大多数情况下，this的值由函数调用方式决定，它不能在执行期间赋值来设置，它在每次执行下可能都有不同的值。</p>
+<h2 id="全局执行环境（outside-function）"><a href="#全局执行环境（outside-function）" class="headerlink" title="全局执行环境（outside function）"></a>全局执行环境（outside function）</h2><p>在全局执行环境中，this一直指向全局对象（global object），不管是在严格模式还是在非严格模式中。</p>
+<p><strong>代码1</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">console.log(this.document === document);   //true</div><div class="line"></div><div class="line">// 在浏览器中，window对象也就是全局对象（global object）</div><div class="line">console.log(this === window);   //true</div><div class="line"></div><div class="line">this.a  = 37;</div><div class="line">console.log(window.a);   //37</div></pre></td></tr></table></figure></p>
+<h2 id="函数执行环境（inside-function）"><a href="#函数执行环境（inside-function）" class="headerlink" title="函数执行环境（inside function）"></a>函数执行环境（inside function）</h2><p>在函数执行环境中，this的值取决于函数的调用方式。</p>
+<p><strong>而函数的调用方式主要有4种：</strong></p>
+<ul>
+<li>函数直接调用</li>
+<li>对象方法调用</li>
+<li>构造函数调用</li>
+<li>call / apply / bind</li>
+<li>箭头函数（ES6）</li>
+</ul>
+<h3 id="函数直接调用"><a href="#函数直接调用" class="headerlink" title="函数直接调用"></a>函数直接调用</h3><p>下面的代码在非严格模式执行时，this的值会指向全局对象；而在严格模式中，this的值将会默认为undefined。</p>
+<p><strong>代码2</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 非严格模式 */</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(f1() === <span class="built_in">window</span>);   <span class="comment">//true</span></div><div class="line"></div><div class="line"><span class="comment">// in node;</span></div><div class="line"><span class="built_in">console</span>.log(f1() === global);   <span class="comment">//true</span></div><div class="line"></div><div class="line"><span class="comment">/* 严格模式 */</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f2</span> (<span class="params"></span>) </span>&#123;</div><div class="line"><span class="meta">  'use strict'</span></div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(f1() === <span class="literal">undefined</span>);   <span class="comment">//true</span></div></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="call-apply-bind-改变this的指向"><a href="#call-apply-bind-改变this的指向" class="headerlink" title="call / apply / bind 改变this的指向"></a>call / apply / bind 改变this的指向</h3><h4 id="call-apply"><a href="#call-apply" class="headerlink" title="call / apply"></a>call / apply</h4><p>call和apply的用法很像，只是后面参数的传入形式不同。</p>
+<p><strong>代码3</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">function add(c, d) &#123;</div><div class="line">  return this.a + this.b + c + d;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var o = &#123;a: 1, b: 3&#125;;</div><div class="line"></div><div class="line">// call的第一个参数 是对象，也就是this的指向对象。后面的参数就是函数arguments对象的成员</div><div class="line">add.call(o, 5, 7); // 1 + 3 + 5 + 7 = 16</div><div class="line"></div><div class="line">// call的第一个参数 是对象，也就是this的指向对象。后面的参数是数组，数组里的成员也就是函数arguments对象成员</div><div class="line">add.apply(o, [10, 20]); // 1 + 3 + 10 + 20 = 34</div></pre></td></tr></table></figure></p>
+<p><strong>使用call和apply时需要注意的是</strong>，当传入的第一个参数的值不是对象时，JavaScript会尝试使用ToObject 操作将其转化为对象。</p>
+<p><strong>代码4</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function bar() &#123;</div><div class="line">  console.log(Object.prototype.toString.call(this));</div><div class="line">&#125;</div><div class="line"></div><div class="line">bar.call(7); // [object Number]</div></pre></td></tr></table></figure></p>
+<h4 id="bind-方法"><a href="#bind-方法" class="headerlink" title="bind 方法"></a>bind 方法</h4><p>ECMAScript 5 引入了 <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Function/bind" target="_blank" rel="external">Function.prototype.bind</a>。调用f.bind(someObject)会创建一个与f具有相同函数体和作用域的函数，但是在这个新函数中，this将永久地被绑定到了bind的第一个参数，无论这个函数是如何被调用的。</p>
+<p><strong>代码5</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function f() &#123;</div><div class="line">  return this.a;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var g = f.bind(&#123;a: &apos;azerty&apos;&#125;); //生成一个绑定函数g</div><div class="line">console.log(g()); // azerty</div><div class="line"></div><div class="line">var o = &#123;a: 10, f: f, g: g&#125;;</div><div class="line">console.log(o.f(), o.g());   //10, azerty</div><div class="line"></div><div class="line">//需要注意的是，绑定函数不可以再bind</div><div class="line">var h = g.bind(&#123;a: &apos;foo&apos;&#125;);</div><div class="line">console.log(h());  //azerty，不会变成foo</div></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="对象方法调用"><a href="#对象方法调用" class="headerlink" title="对象方法调用"></a>对象方法调用</h3><p>当以对象里的方法的方式调用函数时，它们的 this 是调用该函数的对象.</p>
+<p>下面的例子中，当 o.f() 被调用时，函数内的this将绑定到o对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var prop = 36;</div><div class="line">var o = &#123;</div><div class="line">  prop: 37,</div><div class="line">  bar: function() &#123;</div><div class="line">    return this.prop;</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line">console.log(o.bar());  //37</div></pre></td></tr></table></figure></p>
+<h3 id="构造函数调用"><a href="#构造函数调用" class="headerlink" title="构造函数调用"></a>构造函数调用</h3><p><strong>代码6</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function Person(name, age) &#123;</div><div class="line">  this.name = name;</div><div class="line">  this.age = age;</div><div class="line">  this.introduce = function () &#123;</div><div class="line">    console.log(&apos;My name is &apos; + this.name + &apos;, I\&apos;m &apos; + this.age);</div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line">var Joseph = new Person(&apos;Joseph&apos;, 19);</div><div class="line">Joseph.introduce();  // &quot;My name is Joseph, I&apos;m 19&quot;</div></pre></td></tr></table></figure></p>
+<p>由上述代码可以清晰的看到this与被新创建的对象绑定了。</p>
+<p><em>注意</em>：当构造器返回的默认值是一个this引用的对象时，可以手动设置返回其他的对象，如果返回值不是一个对象，返回this。（这句话看起来比较难理解，我们看下一个例子）。</p>
+<p><strong>代码7</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function Fn2() &#123;</div><div class="line">  this.a = 9;  // dead code</div><div class="line">  return &#123;a: 10&#125;;</div><div class="line">&#125;</div><div class="line">var o = new Fn2();</div><div class="line">console.log(o.a);  // 10</div></pre></td></tr></table></figure></p>
+<p>这个例子说明了当构造函数返回的是一个对象的话，此时this的值会变成此时返回的对象。‘this.a = 9’成了僵尸代码。</p>
+<h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><p>在箭头函数（ <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions" target="_blank" rel="external">Arrow functions</a>）中，this的值是封闭执行环境决定的。在全局环境中，那么被赋值为全局对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var globalObject = this;</div><div class="line">var foo = (() =&gt; this);</div><div class="line">console.log(foo() === globalObject); // true</div></pre></td></tr></table></figure></p>
+<p>更重要的是它与其他情况不同的是，不管函数如何调用，上面this的值一直都是全局对象。call / bind 也不能改变它的值。</p>
+<p><strong>代码8</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// 作为对象方法被调用</div><div class="line">var obj = &#123;foo: foo&#125;;</div><div class="line">console.log(obj.foo() === globalObject); // true</div><div class="line"></div><div class="line">// 尝试用 call 改变this的值</div><div class="line">console.log(foo.call(obj) === globalObject); // true //this的值并未变成obj</div><div class="line"></div><div class="line">// 尝试用 bind 改变this的值</div><div class="line">foo = foo.bind(obj);</div><div class="line">console.log(foo() === globalObject); // true</div></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><p>本文知识点都看完了。让我们看几个案例，检查自己的掌握情况。</p>
+<p>例1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">var prop = 36;</div><div class="line">var o = &#123;</div><div class="line">  prop: 37,</div><div class="line">  bar1: function() &#123;</div><div class="line">    function foo1() &#123;</div><div class="line">      return this.prop;</div><div class="line">    &#125;</div><div class="line">    return foo1;</div><div class="line">  &#125;,</div><div class="line">  bar2: function() &#123;</div><div class="line">    var foo2  = (() =&gt; this.prop); //ES6箭头函数</div><div class="line">    return foo2;</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line">console.log(&apos;result1:&apos;+o.bar1()()); // result1 ?</div><div class="line">console.log(&apos;result2:&apos;+o.bar2()()); // result2 ?</div><div class="line">var fn2 = o.bar2;</div><div class="line">console.log(&apos;result3:&apos;+fn2()()); // result3 ?</div></pre></td></tr></table></figure></p>
+<p>先揭晓答案：例1 result1 = 36，result2 = 37，result3 = 36。我的理解是，在result1中，o.bar1()执行导致foo函数return到了全局环境中，然后执行就变成了在全局中执行，所以得到的是全局中36的值。result2呢？因为this在箭头函数中。它的值不会改变。所以this仍指向o。那为什么result3又重新变了呢？因为此时‘var fn2  = o.bar2’相当于重新定义了一个函数，而this的值当然也就变为了全局对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// 相当于这样</div><div class="line">var fn2 = function() &#123;</div><div class="line">    function foo1() &#123;</div><div class="line">      return this.prop;</div><div class="line">    &#125;</div><div class="line">    return foo1;</div><div class="line">  &#125;</div><div class="line">fn2()();</div></pre></td></tr></table></figure></p>
+<p>例2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function sum(a,b) &#123;</div><div class="line"> return a+b;</div><div class="line">&#125;;</div><div class="line">var o = &#123;</div><div class="line">  num: 1,</div><div class="line">  fn: function() &#123;</div><div class="line">        function handle() &#123;</div><div class="line">          return this.num = sum(this.num, this.num);</div><div class="line">        &#125;</div><div class="line">    handle();</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line">console.log(&apos;result:&apos;+o.fn());  // result ?</div></pre></td></tr></table></figure></p>
+<p>同样先揭晓答案：result = undefined，用控制台可以看到此时this指向window，而不是o。这是个比较容易掉进去的坑（一般认为是当初的语言设计错误，被人诟病不少）。看似函数是由对象方法调用的，其实细心的话，我们可以看到。handle函数的执行，前面的没有对象的。这种情况下，this指向全局对象。解决办法也很简单。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// 1、取消 handle函数的定义，直接在对象的方法中使用this</div><div class="line">fn2: function() &#123;</div><div class="line">    this.value = sum(this.value, this.value);  //2</div><div class="line">&#125;,</div><div class="line">///2、使用变量保存外部函数的this。</div><div class="line">fn3: function() &#123;</div><div class="line">    var that = this;   // that == o</div><div class="line">    function handle() &#123;</div><div class="line">        that.value = add(that.value, that.value);</div><div class="line">    &#125;</div><div class="line">    handle();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<hr>
+<p>参考文章：</p>
+<ul>
+<li><a href="https://segmentfault.com/a/1190000006150835" target="_blank" rel="external">Javascript中this与闭包学习笔记</a></li>
+<li><a href="https://segmentfault.com/a/1190000004905145" target="_blank" rel="external">理解JS中的this</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.josephong.me/2016/12/01/JavaScript之深入理解this/" data-id="cj2sthkfl0005cw1cpgpabodh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-JavaScript之理解闭包" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/10/JavaScript之理解闭包/" class="article-date">
+  <time datetime="2016-10-09T16:00:00.000Z" itemprop="datePublished">2016-10-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/10/JavaScript之理解闭包/">JavaScript之理解闭包</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一个简单的闭包"><a href="#一个简单的闭包" class="headerlink" title="一个简单的闭包"></a>一个简单的闭包</h2><p>例1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function sayHello(name) &#123;</div><div class="line">  var text = &apos;Hello &apos; + name;</div><div class="line">  var say = function() &#123; console.log(text); &#125;  </div><div class="line">  //say()是个内部函数，</div><div class="line">  //a closures use variable declared in the parent function </div><div class="line">  say();</div><div class="line">&#125;</div><div class="line">sayHello(&apos;Joe&apos;);</div></pre></td></tr></table></figure></p>
+<h2 id="理解闭包"><a href="#理解闭包" class="headerlink" title="理解闭包"></a>理解闭包</h2><p>闭包是指在 JavaScript 中，内部函数总是可以访问其所在的外部函数中声明的参数和变量，即使在其外部函数被返回（寿命终结）了之后。</p>
+<p>闭包是一个集合（combination）；它由两部分组成：函数，以及<strong>创建</strong>该函数的环境。环境由闭包创建时在作用域中的任何局部变量组成。可以赋值给某个变量，可以作为参数传递给函数，也可以作为一个函数返回值返回。</p>
+<p>在我们的例子中say就是个闭包，因为它含有创建函数的环境，而环境中有着被定义的变量 text，所以它能使用该变量。</p>
+<h2 id="闭包的用途"><a href="#闭包的用途" class="headerlink" title="闭包的用途"></a>闭包的用途</h2><p> 可以访问函数内部的量，闭包允许将函数与其所操作的某些数据（环境）关连起来。这显然类似于面向对象编程。在面对象编程中，对象允许我们将某些数据（对象的属性）与一个或者多个方法相关联。</p>
+<p>因而，一般说来，可以使用只有一个方法的对象的地方，都可以使用闭包</p>
+<p>例2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">function makeAdder(x) &#123;</div><div class="line">  return function(y) &#123;</div><div class="line">    return x + y;</div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var add5 = makeAdder(5);  //闭包</div><div class="line">var add10 = makeAdder(10);  //闭包</div><div class="line"></div><div class="line">console.log(add5(2));  // 7</div><div class="line">console.log(add10(2)); // 12</div></pre></td></tr></table></figure></p>
+<p>例3<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">var invrement,decrement,value;</div><div class="line"></div><div class="line">var makeCounter = function() &#123;</div><div class="line">  var privateCounter = 0;</div><div class="line">  increment = function ()&#123;</div><div class="line">    privateCounter += 1;</div><div class="line">  &#125;;</div><div class="line">  decrement = function ()&#123;</div><div class="line">    privateCounter -= 1;</div><div class="line">  &#125;;</div><div class="line">  setCounter = function (x) &#123;</div><div class="line">    privateCounter = x;</div><div class="line">  &#125;;</div><div class="line">  value = function () &#123;</div><div class="line">    return privateCounter;</div><div class="line">  &#125;;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">makeCounter();</div><div class="line">increment();</div><div class="line">console.log(value());  //1</div><div class="line"></div><div class="line">setCounter(5);</div><div class="line">console.log(value());  //5</div><div class="line"></div><div class="line">var oldCounter = value;</div><div class="line"></div><div class="line">makeCounter();</div><div class="line">decrement();</div><div class="line">console.log(value());  //-1</div><div class="line"></div><div class="line">console.log(oldCounter());  //5</div></pre></td></tr></table></figure></p>
+<p>从例3我们可以看到，setupSomeGlobals每次执行，都会重新创建一个闭包。而且两个闭包互不影响。即它们具有独立性。</p>
+<p>我们将例3稍稍改变一下，就可以看到如何用闭包<strong>模仿私有方法</strong></p>
+<p>例4<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">var makeCounter = function() &#123;</div><div class="line">  var privateCounter = 0;</div><div class="line">  function changeBy(val) &#123;</div><div class="line">    privateCounter += val;</div><div class="line">  &#125;</div><div class="line">  return &#123;</div><div class="line">    increment: function() &#123;</div><div class="line">      changeBy(1);</div><div class="line">    &#125;,</div><div class="line">    decrement: function() &#123;</div><div class="line">      changeBy(-1);</div><div class="line">    &#125;,</div><div class="line">    setCouter: function(x) &#123;</div><div class="line">      privateCounter = x;</div><div class="line">    &#125;,</div><div class="line">    value: function() &#123;</div><div class="line">      return privateCounter;</div><div class="line">    &#125;</div><div class="line">  &#125;  </div><div class="line">&#125;;</div><div class="line"></div><div class="line">var Counter1 = makeCounter();</div><div class="line">var Counter2 = makeCounter();</div><div class="line">console.log(Counter1.value()); /* logs 0 */</div><div class="line">Counter1.increment();</div><div class="line">Counter1.increment();</div><div class="line">console.log(Counter1.value()); /* logs 2 */</div><div class="line">Counter1.decrement();</div><div class="line">console.log(Counter1.value()); /* logs 1 */</div><div class="line">console.log(Counter2.value()); /* logs 0 */</div></pre></td></tr></table></figure></p>
+<p>在例4中，changeBy就是一个私有方法，无法从外部直接调用。</p>
+<p>另一特点就是 保存变量。这是通俗的说法。</p>
+<p>从根本上说，闭包是函数开始执行的时候被分配的一个<a href="http://baike.baidu.com/link?url=x9za8fl-K8Gsdc0IFBbC5fTininX3H8qVBuSPsChIJd8bmzTRXvd8scDL1uCYKLS26m6GMbXgHFC5K8yXz7nZ3eImibufpfwiBWzlBDAyT_" target="_blank" rel="external">栈帧</a>，在函数执行结束返回后仍不会被释放(就好像一个栈帧被分配在堆里而不是栈里！)</p>
+<p>例5<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">function say667() &#123;</div><div class="line">  var num = 42;</div><div class="line">    num+=1;</div><div class="line">  </div><div class="line">  var say3 = function() &#123;</div><div class="line">    console.log(num+=1);</div><div class="line">  &#125;;</div><div class="line">  say3();</div><div class="line">  var say4 = function() &#123;</div><div class="line">    console.log(num+=1);</div><div class="line">  &#125;;</div><div class="line">  return say4;</div><div class="line">&#125;</div><div class="line">say667(); //44</div><div class="line">say667(); //44，并未自增，是因为这又重新创建了一个闭包。</div><div class="line">var sayt = say667(); //44</div><div class="line">sayt(); //45</div><div class="line">sayt(); //46， 自增了，是因为say667并未重新创建闭包。</div><div class="line">         //sayt引用了里面的闭包，而且造成了num的值被保存了。在函数执行完后并未被销毁。</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注意：正是因为闭包有这些特点，它给我们带来了便利。但我们仍需要<br>小心使用。它有两个缺点：</p>
+<ul>
+<li>1、由于闭包会使得函数中的变量都被保存在内存中，内存消耗很大，所以不能滥用闭包，否则会造成网页的性能问题，在IE中可能导致内存泄露。解决方法是，在退出函数之前，将不使用的局部变量全部删除；</li>
+<li>2、闭包会在父函数外部，改变父函数内部变量的值。所以，如果你把父函数当作对象（object）使用，把闭包当作它的公用方法（Public Method），把内部变量当作它的私有属性（private value），这时一定要小心，不要随便改变父函数内部变量的值。</li>
+</ul>
+</blockquote>
+<h2 id="闭包的循环陷阱及补救方法"><a href="#闭包的循环陷阱及补救方法" class="headerlink" title="闭包的循环陷阱及补救方法"></a>闭包的循环陷阱及补救方法</h2><p>例6<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var arr = [];</div><div class="line">for(var i=0;i&lt;3;i++) &#123;</div><div class="line"> arr.push(function()&#123;console.log(i);&#125;);</div><div class="line"> &#125; </div><div class="line">arr[0](); //?</div><div class="line">arr[1](); //?</div><div class="line">arr[2](); //?</div></pre></td></tr></table></figure></p>
+<p>例6输出的结果：三个 “3” ，详情解析可以看这个<a href="https://www.zhihu.com/question/33468703" target="_blank" rel="external">知乎问答</a>，里面有人解释的很清楚。简要来说就是，由于执行顺序的关系，在三个闭包执行前，for循环早已循环完毕（for循环没有块级作用域），i 已经自增到3。到闭包执行时，取到的i自然是3。</p>
+<p>解决方案：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">//方案一</div><div class="line">for(var i=0,arr=[];i&lt;3;i++) &#123;</div><div class="line">		arr.push(</div><div class="line">  //既然是执行顺序的问题，那我们给闭包加上一个自执行函数</div><div class="line">  //内部函数引用自执行函数传入的 i ，这里的 i</div><div class="line"> 是正常的</div><div class="line">			(function(i)&#123;</div><div class="line">				return function()&#123;</div><div class="line">					console.log(i);</div><div class="line">				&#125;</div><div class="line">			&#125;)(i)</div><div class="line">		);</div><div class="line">	&#125;</div><div class="line">arr[0](); //0</div><div class="line">arr[1](); //1</div><div class="line">arr[2](); //2</div><div class="line"></div><div class="line">//方案2</div><div class="line">for(let i=0,arr=[];i&lt;3;i++)</div><div class="line">//把 i 的定义换成 let 就行，因为 let 定义的变量具有块级作用域，同样解决了这个问题</div></pre></td></tr></table></figure></p>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><ul>
+<li>闭包是指在 JavaScript 中，内部函数总是可以访问其所在的外部函数中声明的参数和变量，即使在其外部函数被返回（寿命终结）了之后。</li>
+<li>每当你在另一个函数里使用了关键字function，一个闭包就被创建了</li>
+<li>JavaScript中的闭包，就像一个副本，将某函数在退出时候的所有局部变量复制保存其中。</li>
+<li>使用闭包前，需要性能考量</li>
+</ul>
+<hr>
+<p>参考文章：</p>
+<ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures#Performance_considerations" target="_blank" rel="external">闭包 —MDN</a></li>
+<li><a href="https://segmentfault.com/a/1190000006150835" target="_blank" rel="external">Javascript中this与闭包学习笔记</a></li>
+<li><a href="https://gold.xitu.io/post/58832fe72f301e00697b672d" target="_blank" rel="external">JavaScript 闭包入门（译文）</a></li>
+<li><a href="http://imweb.io/topic/566567e4d91952db73b41f5d" target="_blank" rel="external">JavaScript的闭包</a></li>
+<li><a href="https://www.zhihu.com/question/33468703" target="_blank" rel="external">js关于for循环中的闭包问题？</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.josephong.me/2016/10/10/JavaScript之理解闭包/" data-id="cj2sthkft0007cw1cjk85nymt" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-JavaScript之原型" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/01/JavaScript之原型/" class="article-date">
+  <time datetime="2016-07-31T16:00:00.000Z" itemprop="datePublished">2016-08-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/01/JavaScript之原型/">JavaScript之原型</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>在 JavaScript 中，每个对象都有一个指向它的原型（prototype）对象的内部链接。这个原型对象又有自己的原型，直到某个对象的原型为 null 为止（也就是不再有原型指向），组成这条链的最后一环。这种一级一级的链结构就称为原型链（prototype chain）。          — MDN</p>
+</blockquote>
+<h3 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">//创建构造函数</div><div class="line">function Person(name)&#123;</div><div class="line">    this.name = name</div><div class="line">&#125;</div><div class="line"></div><div class="line">//每个构造函数JS引擎都会自动添加一个prototype属性，我们称之为原型，这是一个对象</div><div class="line">//每个由构造函数创建的对象都会共享prototype上面的属性与方法</div><div class="line">console.log(typeof Person.prototype) // &apos;object&apos;</div><div class="line"></div><div class="line"></div><div class="line">//我们为Person.prototype添加sayName方法</div><div class="line">Person.prototype.sayName = function()&#123;</div><div class="line">    console.log(this.name)</div><div class="line">&#125;</div><div class="line"></div><div class="line">//创建实例</div><div class="line">var person1 = new Person(&apos;Messi&apos;)</div><div class="line">var person2 = new Person(&apos;Suarez&apos;)</div><div class="line"></div><div class="line">person1.sayName() // &apos;Messi&apos;</div><div class="line">person2.sayName() // &apos;Suarez&apos;</div><div class="line"></div><div class="line">person1.sayName === person2.sayName //true</div></pre></td></tr></table></figure>
+<p>借助这个例子，我们理清几个概念</p>
+<ul>
+<li>原型指针<code>__proto__</code>，向上游找原型对象</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">person1.__proto__ === Person.prototype; //true</div><div class="line">Person.__proto__ === Object.prototype; //true</div></pre></td></tr></table></figure>
+<ul>
+<li>对象都有一个<code>constructor</code>属性，指向构造它的函数</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">console.log(person1.constructor = Person); //true</div><div class="line">console.log(Person.constructor = Function); //true</div><div class="line">var o = &#123;&#125;;</div><div class="line">console.log(o.constructor === Object); //true</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/2575359-9e891bdd0eb3485f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图1"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2575359-28c82cb4080e2919.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图2"><br>注：Op是Object.prototype的简写。Fp是Function.prototype的简写</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.josephong.me/2016/08/01/JavaScript之原型/" data-id="cj2sthkfd0003cw1c81iovyjq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -107,6 +736,10 @@
 
   
 
+
+  <nav id="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
+  </nav>
 </section>
         
           <aside id="sidebar">
@@ -123,7 +756,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li></ul>
     </div>
   </div>
 
@@ -136,7 +769,23 @@
       <ul>
         
           <li>
-            <a href="/2017/05/17/hello-world/">Hello World</a>
+            <a href="/2017/05/10/CSS系列之圣杯布局/">CSS系列之圣杯布局</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/17/两道有趣的前端面试题/">两道有趣的前端面试题</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/20/洪家伟+前端实习+2018届/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/14/CSS系列之探秘BFC/">CSS系列之探秘BFC</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/08/JavaScript的异步编程/">JavaScript的异步编程</a>
           </li>
         
       </ul>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>CSS系列之圣杯布局 | Howell</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="圣杯布局的概念 即一种轻便，广泛使用的三栏流体布局。它具有以下的优秀特性：  两边固定宽度而中间可以流动； 允许中间栏代码最先出现； 允许任一栏的高度都最高； 仅需一个额外的div标签； 仅需很少必要css代码及最少兼容性补丁代码  我们先看看实现效果：Take a look 实现步骤STEP 1：CREAT THE FRAMEhtml代码:123&amp;lt;div id=&amp;quot;header&amp;q">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS系列之圣杯布局">
+<meta property="og:url" content="http://blog.josephong.me/2017/05/10/CSS系列之圣杯布局/index.html">
+<meta property="og:site_name" content="Howell">
+<meta property="og:description" content="圣杯布局的概念 即一种轻便，广泛使用的三栏流体布局。它具有以下的优秀特性：  两边固定宽度而中间可以流动； 允许中间栏代码最先出现； 允许任一栏的高度都最高； 仅需一个额外的div标签； 仅需很少必要css代码及最少兼容性补丁代码  我们先看看实现效果：Take a look 实现步骤STEP 1：CREAT THE FRAMEhtml代码:123&amp;lt;div id=&amp;quot;header&amp;q">
+<meta property="og:image" content="http://alistapart.com/d/_made/d/ALA211_grail_300_348_421_81.jpg">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2575359-614d835155f171d7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2575359-d7f8cd1b7442bc85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2575359-4600ad4238e601d7.gif?imageMogr2/auto-orient/strip">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2575359-5547d6bb1c628156.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2575359-0a7efedeb3f54424.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-05-17T09:46:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS系列之圣杯布局">
+<meta name="twitter:description" content="圣杯布局的概念 即一种轻便，广泛使用的三栏流体布局。它具有以下的优秀特性：  两边固定宽度而中间可以流动； 允许中间栏代码最先出现； 允许任一栏的高度都最高； 仅需一个额外的div标签； 仅需很少必要css代码及最少兼容性补丁代码  我们先看看实现效果：Take a look 实现步骤STEP 1：CREAT THE FRAMEhtml代码:123&amp;lt;div id=&amp;quot;header&amp;q">
+<meta name="twitter:image" content="http://alistapart.com/d/_made/d/ALA211_grail_300_348_421_81.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Howell" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Howell</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.josephong.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-CSS系列之圣杯布局" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/10/CSS系列之圣杯布局/" class="article-date">
+  <time datetime="2017-05-09T16:00:00.000Z" itemprop="datePublished">2017-05-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CSS系列之圣杯布局
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="圣杯布局的概念"><a href="#圣杯布局的概念" class="headerlink" title="圣杯布局的概念"></a>圣杯布局的概念</h2><p><img src="http://alistapart.com/d/_made/d/ALA211_grail_300_348_421_81.jpg" alt=""></p>
+<p>即一种轻便，广泛使用的三栏流体布局。它具有以下的优秀特性：</p>
+<ul>
+<li>两边固定宽度而中间可以流动；</li>
+<li>允许中间栏代码最先出现；</li>
+<li>允许任一栏的高度都最高；</li>
+<li>仅需一个额外的div标签；</li>
+<li>仅需很少必要css代码及最少兼容性补丁代码</li>
+</ul>
+<p>我们先看看实现效果：<a href="http://alistapart.com/d/holygrail/example_1.html" target="_blank" rel="external">Take a look</a></p>
+<h2 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h2><h3 id="STEP-1：CREAT-THE-FRAME"><a href="#STEP-1：CREAT-THE-FRAME" class="headerlink" title="STEP 1：CREAT THE FRAME"></a>STEP 1：CREAT THE FRAME</h3><p>html代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;header&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;div id=&quot;container&quot;&gt;</div><div class="line">&lt;div id=&quot;footer&quot;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>给 container 设置padding，为两栏预留空间<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#container &#123;</div><div class="line">padding-left: 200px; /* LC width */</div><div class="line">padding-right: 150px; /* RC width */</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>效果像是这样：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2575359-614d835155f171d7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h3 id="STEP-2：ADD-THE-COLUMNS"><a href="#STEP-2：ADD-THE-COLUMNS" class="headerlink" title="STEP 2：ADD THE COLUMNS"></a>STEP 2：ADD THE COLUMNS</h3><p>加上三栏：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;center&quot; class=&quot;column&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;div id=&quot;left&quot; class=&quot;column&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;div id=&quot;right&quot; class=&quot;column&quot;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>给两边加上适合的宽度，然后让中间栏自适应，让三栏全部浮动，当然也要给底栏 footer 清除浮动：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">#container .column &#123;</div><div class="line">  float: left;</div><div class="line">&#125;</div><div class="line">#center &#123;</div><div class="line">  width: 100%;</div><div class="line">&#125;</div><div class="line">#left &#123;</div><div class="line">  width: 200px;  /* LC width */</div><div class="line">&#125;</div><div class="line">#right &#123;</div><div class="line">  width: 150px;  /* RC width */</div><div class="line">&#125;</div><div class="line">#footer &#123;</div><div class="line">  clear: both;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这时的效果图是这样的：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2575359-d7f8cd1b7442bc85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h3 id="STEP-3-PULL-THE-LEFT-COLUMN-INTO-PLACE"><a href="#STEP-3-PULL-THE-LEFT-COLUMN-INTO-PLACE" class="headerlink" title="STEP 3: PULL THE LEFT COLUMN INTO PLACE"></a>STEP 3: PULL THE LEFT COLUMN INTO PLACE</h3><p>这里才开始精妙的部分，我们先看代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#left &#123;</div><div class="line">width: 200px; /* LC width */</div><div class="line">margin-left: -100%;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><code>margin-left: -100%</code>这条语句使左栏向左浮动了100%，center和left栏就会重叠，效果是这样的：<br><img src="http://upload-images.jianshu.io/upload_images/2575359-4600ad4238e601d7.gif?imageMogr2/auto-orient/strip" alt=""><br>这时我们再利用relative的特性，使left移动到左栏，即：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#container .columns &#123;</div><div class="line">float: left;</div><div class="line">position: relative;</div><div class="line">&#125;</div><div class="line">#left &#123;</div><div class="line">width: 200px; /* LC width */</div><div class="line">margin-left: -100%;</div><div class="line">right: 200px; /* LC width */</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>左栏想要的效果就达到了：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2575359-5547d6bb1c628156.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h3 id="STEP-4-PULL-THE-RIGHT-COLUMN-INTO-PLACE"><a href="#STEP-4-PULL-THE-RIGHT-COLUMN-INTO-PLACE" class="headerlink" title="STEP 4: PULL THE RIGHT COLUMN INTO PLACE"></a>STEP 4: PULL THE RIGHT COLUMN INTO PLACE</h3><p>接下来我们把放置右栏就简单多了，利用margin的负值法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#right &#123;</div><div class="line">width: 150px; /* RC width */</div><div class="line">margin-right: -150px; /* RC width */</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>ok，每栏都到达了正确位置，效果是这样的：<br><img src="http://upload-images.jianshu.io/upload_images/2575359-0a7efedeb3f54424.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p><strong>圣杯布局就是这样了。如果想要更多了解，推荐看这篇原文</strong>：<a href="http://alistapart.com/article/holygrail" target="_blank" rel="external">In Search of the Holy Grail</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.josephong.me/2017/05/10/CSS系列之圣杯布局/" data-id="cj2sthkex0000cw1ceep5ioht" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/04/17/两道有趣的前端面试题/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">两道有趣的前端面试题</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/05/10/CSS系列之圣杯布局/">CSS系列之圣杯布局</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/17/两道有趣的前端面试题/">两道有趣的前端面试题</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/20/洪家伟+前端实习+2018届/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/14/CSS系列之探秘BFC/">CSS系列之探秘BFC</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/08/JavaScript的异步编程/">JavaScript的异步编程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Howell<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

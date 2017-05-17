@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Howell</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Howell">
+<meta property="og:url" content="http://blog.josephong.me/page/2/index.html">
+<meta property="og:site_name" content="Howell">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Howell">
+  
+    <link rel="alternate" href="/atom.xml" title="Howell" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Howell</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.josephong.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-JavaScript之理解作用域" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/09/JavaScript之理解作用域/" class="article-date">
+  <time datetime="2016-07-08T16:00:00.000Z" itemprop="datePublished">2016-07-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/09/JavaScript之理解作用域/">JavaScript之理解作用域</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>在javascript的学习中，执行环境、作用域是2个非常非常重要和基本的概念，理解了这2个概念对于javsacript中很多脚本的运行结果就能明白其中的道理了，比如搞清作用域和执行环境对于闭包的理解至关重要。</p>
+</blockquote>
+<h2 id="一、执行环境（exection-context-也有称之为执行上下文）"><a href="#一、执行环境（exection-context-也有称之为执行上下文）" class="headerlink" title="一、执行环境（exection context,也有称之为执行上下文）"></a>一、执行环境（exection context,也有称之为执行上下文）</h2><blockquote>
+<p>执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的<strong>变量对象</strong> (variable object)，环境中定义的所有变量和函数都保存在这个对象中。虽然我们编写的代码无法访问这个对象，但解析器会处理数据时会在后台使用它。                                  —《JavaScript高程》</p>
+</blockquote>
+<p>当这个执行环境是函数的时候，这个变量对象就是函数的活动对象。活动对象最开始时只包含一个变量，即 arguments 对象（这个对象在全局环境中是不存在的）。</p>
+<h2 id="二、作用域链（scope-chain）"><a href="#二、作用域链（scope-chain）" class="headerlink" title="二、作用域链（scope chain）"></a>二、作用域链（scope chain）</h2><p>了解了变量对象之后，理解作用域链就容易了。</p>
+<blockquote>
+<p>在代码在一个环境执行时，会创建变量对象的一个 <strong>作用域链</strong>。作用域链的用途，是保证对执行环境有权访问的所有变量和函数的有序访问。</p>
+</blockquote>
+<p><strong>整个作用域链是由不同执行位置上的变量对象（Variable Object）按照规则所构建一个链表。</strong></p>
+<p>作用域链的前端，始终都是当前执行的代码所在环境的变量对象。下一个变量对象来自包含（外部）环境，而下一个变量对象则来自下一个包含对象。这样，一直延续到全局执行环境；全局执行环境的变量对象始终都是作用域链的最后一个对象。</p>
+<p>引用高程中的例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"> var color=&quot;blue&quot;;</div><div class="line"> function changecolor()&#123;</div><div class="line">    var anothercolor=&quot;red&quot;;</div><div class="line">    function swapcolors()&#123;</div><div class="line">	var tempcolor=anothercolor;</div><div class="line">	anothercolor=color;</div><div class="line">	color=tempcolor;</div><div class="line">       // Todo something		</div><div class="line">     &#125;</div><div class="line">    swapcolors();</div><div class="line">&#125;</div><div class="line">changecolor();</div><div class="line"> //这里不能访问tempcolor和anocolor;但是可以访问color;</div><div class="line">alert(&quot;Color is now  &quot;+color);</div></pre></td></tr></table></figure></p>
+<p>上面例子涉及了3个执行环境：全局变量、changeColor()的局部变量环境和swapColors()的局部变量环境。swapcolor（）的局部环境开始先在自己的Variable Object中搜索变量和函数名，找不到，则向上搜索changecolor作用域链。。。。。以此类推。但是，changecolor()函数是无法访问swapcolor中的变量。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2575359-31c07041f11d1e92.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="作用域链"></p>
+<hr>
+<p>通过上面的分析，我们可以得知内部环境可以通过作用域链访问所有的外部环境，但外部环境不能访问内部环境中的任何变量和函数。这些环境之间是线性、有次序的。每个环境都可以向上搜索作用域链，以便查询变量和函数名；</p>
+<p>tip:通过下面两种情况，即当执行流进入下列任何语句时，作用域链就会得到加长：</p>
+<ul>
+<li>try-catch 语句的 catch 块;</li>
+<li>with 语句。</li>
+</ul>
+<h2 id="三、没有块级作用域（在-let-出现以前）"><a href="#三、没有块级作用域（在-let-出现以前）" class="headerlink" title="三、没有块级作用域（在 let 出现以前）"></a>三、没有块级作用域（在 let 出现以前）</h2><p>看两个例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">情况1：</div><div class="line">for (var i = 0;i&lt;10;i++) &#123;</div><div class="line">  // do something</div><div class="line">&#125;</div><div class="line">console.info(i);  // 10</div><div class="line">情况2：</div><div class="line">for (let i = 0;i&lt;10;i++) &#123;</div><div class="line">  // do something</div><div class="line">&#125;</div><div class="line">console.info(i);  // error</div></pre></td></tr></table></figure>
+<p>从上面的例子中可以看出，JavaScript没有像其他类C的语言（由花括号封闭的代码块都有自己的作用域）一样。在使用for语句时尤其记住这点。</p>
+<h2 id="四、声明变量"><a href="#四、声明变量" class="headerlink" title="四、声明变量"></a>四、声明变量</h2><p>使用var声明变量时，这个变量将被自动添加到距离最近的可用环境中。对于函数而言，自然声明的变量就会被添加到函数的局部环境中，变量在整个函数环境内都是可用的。</p>
+<p>   但是，如果变量没有是用var进行声明，将会被添加到全局环境，也就是说成位全局变量了。（只有当执行流执行到该语句时，才会被添加到全局变量的变量对象中）</p>
+<p>看一个例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">情况1：</div><div class="line">var x = 1;</div><div class="line">function rain() &#123;</div><div class="line">  console.info(x);  // 1</div><div class="line">&#125;</div><div class="line">rain(); </div><div class="line">情况2：</div><div class="line">var x = 1;</div><div class="line">function rain() &#123;</div><div class="line">  console.info(x);  //undefined</div><div class="line">  var x = 10;</div><div class="line">  console.info(x); // 10 </div><div class="line">&#125;</div><div class="line">rain();</div></pre></td></tr></table></figure></p>
+<p>情况1中得到的1 和 情况2中得到的10，通过上述作用域链的关系，我们较为容易理解。那情况2中的 undefined 是怎么回事儿呢？答案是预解析，我们看下面一段代码，和上面的代码等价</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var x = 1;</div><div class="line">function rain() &#123;</div><div class="line">  var x;</div><div class="line">  console.info(x);  //undefined</div><div class="line">  x = 10;</div><div class="line">  console.info(x); // 10 </div><div class="line">&#125;</div><div class="line">rain();</div></pre></td></tr></table></figure>
+<p>因为JavaScript引擎会预解析代码中变量和函数的定义。导致调用x的时候，局部执行环境已经有了x，就不向上继续寻找x，也就访问不到全局变量的x。而此时局部变量x还未赋值，这时候输出也就是 undefined 了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.josephong.me/2016/07/09/JavaScript之理解作用域/" data-id="cj2sthkfq0006cw1cm9j71wwl" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CSS布局之双飞翼布局" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/06/11/CSS布局之双飞翼布局/" class="article-date">
+  <time datetime="2016-06-10T16:00:00.000Z" itemprop="datePublished">2016-06-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/11/CSS布局之双飞翼布局/">CSS布局之双飞翼布局</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>理解了上篇文章的圣杯布局，再来学习双飞翼布局就简单许多了。同样引用上次的元素命名。</p>
+<p><strong>圣杯布局</strong>是给包裹着三栏的<code>container</code>加一个<code>padding</code>,让<code>padding-left</code>和<code>padding-right</code>的数值是左栏和右栏的宽度，然后利用相对定位把他们再移动在两旁。</p>
+<p>而<strong>双飞翼布局</strong>是在<code>center</code><strong>里面</strong>再添加一个div，然后对这个div进行<code>margin-left</code>和<code>margin-right</code>，即：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;header&quot;&gt;&lt;/div&gt;</div><div class="line">  &lt;div id=&quot;container&quot;&gt; </div><div class="line">    &lt;div id=&quot;center&quot; class=&quot;column&quot;&gt; &lt;div class=&quot;wrap&quot;&gt;&lt;/div&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">  &lt;div id=&quot;left&quot; class=&quot;column&quot;&gt;&lt;/div&gt;</div><div class="line">  &lt;div id=&quot;right&quot; class=&quot;column&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div id=&quot;footer&quot;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>wrap的 css 部分：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.wrap &#123;</div><div class="line">margin-left: 200px;</div><div class="line">margin-right: 150px;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>其他部分和圣杯布局都是一样的。它们要实现的样式都是下面的这种形式：<br><img src="https://segmentfault.com/image?src=https://cloud.githubusercontent.com/assets/7554325/13628574/2e28562c-e60e-11e5-9bae-905c4c7bf56a.png&amp;objectId=1190000004579886&amp;token=9bb8b342939860ca25c504a051283e89" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.josephong.me/2016/06/11/CSS布局之双飞翼布局/" data-id="cj2sthkf40001cw1c2t9ji67i" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-简单移动web学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/17/简单移动web学习笔记/" class="article-date">
+  <time datetime="2016-04-16T16:00:00.000Z" itemprop="datePublished">2016-04-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/17/简单移动web学习笔记/">简单移动web学习笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>近期学了较多移动web开发的相关知识，所以在这里写点东西，也算坐个简单总结。</p>
+<p><a href="http://blog.josephong.me/2016/08/10/%E7%A7%BB%E5%8A%A8web%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#pixel像素基础"></a></p>
+<h2 id="pixel像素基础"><a href="#pixel像素基础" class="headerlink" title="pixel像素基础"></a>pixel像素基础</h2><ul>
+<li>px：CSS pixels 逻辑像素，浏览器使用的抽象单位</li>
+<li>dp，pt：device independent pixels 设备独立像素</li>
+<li>dpr：devicePixelRatio 设备像素缩放比</li>
+</ul>
+<blockquote>
+<p>计算公式：1px=(dpr)² * dp<br>在JavaScript中，可以通过window.devicePixelRatio<br>获取当前设备的dpr</p>
+</blockquote>
+<ul>
+<li>DPI:打印机每英寸可以喷的墨汁点（印刷行业）</li>
+<li>PPI:屏幕每英寸的像素数量，即单位英寸内的像素密度(ppi越高，像素越高，图像越清晰)</li>
+</ul>
+<p><strong>这几个属性之间的关系，以iPhone5为例</strong>：iPhone5设备分辨率1136<em>640dp –&gt;根号[(1136²+640²)]/4 = 326ppi –&gt; 326ppi属于Retina屏幕,所以根据规定dpr=2 –&gt;1px = dpr² </em>dp –&gt;iphone5的屏幕宽高为320*568px。</p>
+<p>例如这样，设计师可以根据320px为基准设计视觉稿。</p>
+<p><a href="http://blog.josephong.me/2016/08/10/%E7%A7%BB%E5%8A%A8web%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#Viewport视图"></a></p>
+<h3 id="Viewport视图"><a href="#Viewport视图" class="headerlink" title="Viewport视图"></a>Viewport视图</h3><p>为了让手机能获得良好的网页浏览体验，Apple 找到了一个办法：在移动版的 Safari（iOS平台）中定义了 viewport meta 标签，它的作用就是创建一个虚拟的窗口（viewport），而且这个虚拟窗口的分辨率接近于桌面显示器，Apple 将其定位为 980px.手机浏览器默认为我们做了两件事情</p>
+<p>一、页面渲染在一个980px（ios）的Viewport<br>二、缩放</p>
+<ul>
+<li>visual viewport（度量/视口）= 窗口缩放 scalce，让手机页面可以看到多少</li>
+<li>layout viewport（布局）负责渲染底层页面</li>
+</ul>
+<p><strong>最常用移动web viewport设置</strong><br>【布局viewport】=【设备宽度】=【度量viewport】<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">//常见viewport设置</div><div class="line">&lt;meta name=&quot;viewport&quot;</div><div class="line">content=&quot;width=device-width, //根据设备调整width</div><div class="line">initial-scale=1, //比例为1</div><div class="line">user-scalable=no&quot; //不允许用户缩放</div><div class="line"></div><div class="line">//在开发调试过程中，可以通过JS代码获得当前layout和visual的值</div><div class="line">document.body.clientWidth //获得layout viewport值</div><div class="line">window.innerWidth //获得visual viewport值</div></pre></td></tr></table></figure></p>
+<h3 id="设计移动Web"><a href="#设计移动Web" class="headerlink" title="设计移动Web"></a>设计移动Web</h3><p>方案一：根据设备的实际宽度来设计（常用）手机宽320 px，我们就拿320 px设计<br>方案二：1px=1dp缩放0.5（initial-scale=0.5）。根据设备的物理像素 dp 等于抽象像素 px 来设计。1像素边框和高清图片都不需要额外处理。</p>
+<h2 id="移动web特别样式"><a href="#移动web特别样式" class="headerlink" title="移动web特别样式"></a>移动web特别样式</h2><h3 id="一像素边框"><a href="#一像素边框" class="headerlink" title="一像素边框"></a>一像素边框</h3><p>比如想让border的线更细些，我们虽然会设置成border：1px；但在是retina屏幕下，1px使用2dp渲染。使之看起来有2px，那我们就用border：0.5px咯。但很可惜，这种语法只在ios8以上的情况下有用，所以不是好方案。<br>这时我们就常用到scaleY(0.5),大致代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">.scale&#123;</div><div class="line">position: relative;</div><div class="line">&#125;</div><div class="line">.scale:after&#123;</div><div class="line">content:&quot;&quot;;</div><div class="line">position: absolute;</div><div class="line">bottom:0px;</div><div class="line">left:0px;</div><div class="line">right:0px;</div><div class="line">border-bottom:1px solid #ddd;</div><div class="line">-webkit-transform:scaleY(.5);</div><div class="line">-webkit-transform-origin:0 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="相对单位-rem"><a href="#相对单位-rem" class="headerlink" title="相对单位 rem"></a>相对单位 rem</h3><ul>
+<li><p>为了适应各大屏幕的手机，px略显固定,不能根据尺寸的大小而改变，使用相对单位更能体验页面兼容性</p>
+<ul>
+<li><p>em：是根据父节点的font-size为相对单位但em在多层嵌套下，变得非常难以操作</p>
+</li>
+<li><p>rem：是根据html的font-size为相对单位rem更加能作为全局统一设置的度量（但在实际产品交互体验上还需考量是否使用）</p>
+</li>
+</ul>
+</li>
+<li><p>引出另一个问题rem的基值设置多少好？回归我们的目的：为了适应各大手机屏幕rem = screen.width/20有时我们也会看到在业界中会用如下方案：</p>
+<blockquote>
+<p>将scale设置为1/dpr, 而<html>的font-size计算为screen.width * dpr / &gt;10,然后再以less将UE图上得到的尺寸透明转换为对应的rem值。</html></p>
+</blockquote>
+</li>
+</ul>
+<p>关于这一方案的实现</p>
+<ul>
+<li><p>iphone5上的rem基值为32px，渲染一张64 <em>64px的div，则用2rem </em>2rem去渲染。换算公式非常简单：<br>width：px/rem基值<br>height：px/rem基值</p>
+</li>
+<li><p>不使用rem的情况：font-size<br>一般来说font-size是不应该使用rem等相对单位的。因为字体的大小是趋向于阅读的实用性，并不适合与排版布局。<br>同理趋向于一些固定的元素的特性。我们不使用rem而改为使用px去确保在不同屏幕上表现一致（和rem的目的相反）。</p>
+</li>
+</ul>
+<h2 id="多行文本溢出···"><a href="#多行文本溢出···" class="headerlink" title="多行文本溢出···"></a>多行文本溢出···</h2><p>单行文本溢出，对title类的使用非常多，而多行文本类，在详情介绍则用的比较多。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">//单行文本溢出...</div><div class="line">.inaline &#123;</div><div class="line">overflow: hidden;</div><div class="line">white-space: nowrap;</div><div class="line">text-flow: ellipsis;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//多行文本溢出...</div><div class="line">.intwoline &#123;</div><div class="line">display: -webkit-box !important;</div><div class="line">overflow: hidden;</div><div class="line"></div><div class="line">text-overflow: ellipsis;</div><div class="line">word-break: break-all;</div><div class="line"></div><div class="line">-webkit-box-orient: vertical;</div><div class="line">-webkit-line-clamp: 2; //关键属性，限制行数</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>大概就是这些了，写的比较乱。如有错误欢迎指正。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.josephong.me/2016/04/17/简单移动web学习笔记/" data-id="cj2sthkgc000ccw1c313j4h6w" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/05/10/CSS系列之圣杯布局/">CSS系列之圣杯布局</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/17/两道有趣的前端面试题/">两道有趣的前端面试题</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/20/洪家伟+前端实习+2018届/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/14/CSS系列之探秘BFC/">CSS系列之探秘BFC</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/08/JavaScript的异步编程/">JavaScript的异步编程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Howell<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

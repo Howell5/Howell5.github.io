@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>简单移动web学习笔记 | Howell</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="近期学了较多移动web开发的相关知识，所以在这里写点东西，也算坐个简单总结。  pixel像素基础 px：CSS pixels 逻辑像素，浏览器使用的抽象单位 dp，pt：device independent pixels 设备独立像素 dpr：devicePixelRatio 设备像素缩放比   计算公式：1px=(dpr)² * dp在JavaScript中，可以通过window.device">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单移动web学习笔记">
+<meta property="og:url" content="http://blog.josephong.me/2016/04/17/简单移动web学习笔记/index.html">
+<meta property="og:site_name" content="Howell">
+<meta property="og:description" content="近期学了较多移动web开发的相关知识，所以在这里写点东西，也算坐个简单总结。  pixel像素基础 px：CSS pixels 逻辑像素，浏览器使用的抽象单位 dp，pt：device independent pixels 设备独立像素 dpr：devicePixelRatio 设备像素缩放比   计算公式：1px=(dpr)² * dp在JavaScript中，可以通过window.device">
+<meta property="og:updated_time" content="2017-05-17T09:45:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="简单移动web学习笔记">
+<meta name="twitter:description" content="近期学了较多移动web开发的相关知识，所以在这里写点东西，也算坐个简单总结。  pixel像素基础 px：CSS pixels 逻辑像素，浏览器使用的抽象单位 dp，pt：device independent pixels 设备独立像素 dpr：devicePixelRatio 设备像素缩放比   计算公式：1px=(dpr)² * dp在JavaScript中，可以通过window.device">
+  
+    <link rel="alternate" href="/atom.xml" title="Howell" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Howell</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.josephong.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-简单移动web学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/17/简单移动web学习笔记/" class="article-date">
+  <time datetime="2016-04-16T16:00:00.000Z" itemprop="datePublished">2016-04-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      简单移动web学习笔记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>近期学了较多移动web开发的相关知识，所以在这里写点东西，也算坐个简单总结。</p>
+<p><a href="http://blog.josephong.me/2016/08/10/%E7%A7%BB%E5%8A%A8web%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#pixel像素基础"></a></p>
+<h2 id="pixel像素基础"><a href="#pixel像素基础" class="headerlink" title="pixel像素基础"></a>pixel像素基础</h2><ul>
+<li>px：CSS pixels 逻辑像素，浏览器使用的抽象单位</li>
+<li>dp，pt：device independent pixels 设备独立像素</li>
+<li>dpr：devicePixelRatio 设备像素缩放比</li>
+</ul>
+<blockquote>
+<p>计算公式：1px=(dpr)² * dp<br>在JavaScript中，可以通过window.devicePixelRatio<br>获取当前设备的dpr</p>
+</blockquote>
+<ul>
+<li>DPI:打印机每英寸可以喷的墨汁点（印刷行业）</li>
+<li>PPI:屏幕每英寸的像素数量，即单位英寸内的像素密度(ppi越高，像素越高，图像越清晰)</li>
+</ul>
+<p><strong>这几个属性之间的关系，以iPhone5为例</strong>：iPhone5设备分辨率1136<em>640dp –&gt;根号[(1136²+640²)]/4 = 326ppi –&gt; 326ppi属于Retina屏幕,所以根据规定dpr=2 –&gt;1px = dpr² </em>dp –&gt;iphone5的屏幕宽高为320*568px。</p>
+<p>例如这样，设计师可以根据320px为基准设计视觉稿。</p>
+<p><a href="http://blog.josephong.me/2016/08/10/%E7%A7%BB%E5%8A%A8web%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#Viewport视图"></a></p>
+<h3 id="Viewport视图"><a href="#Viewport视图" class="headerlink" title="Viewport视图"></a>Viewport视图</h3><p>为了让手机能获得良好的网页浏览体验，Apple 找到了一个办法：在移动版的 Safari（iOS平台）中定义了 viewport meta 标签，它的作用就是创建一个虚拟的窗口（viewport），而且这个虚拟窗口的分辨率接近于桌面显示器，Apple 将其定位为 980px.手机浏览器默认为我们做了两件事情</p>
+<p>一、页面渲染在一个980px（ios）的Viewport<br>二、缩放</p>
+<ul>
+<li>visual viewport（度量/视口）= 窗口缩放 scalce，让手机页面可以看到多少</li>
+<li>layout viewport（布局）负责渲染底层页面</li>
+</ul>
+<p><strong>最常用移动web viewport设置</strong><br>【布局viewport】=【设备宽度】=【度量viewport】<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">//常见viewport设置</div><div class="line">&lt;meta name=&quot;viewport&quot;</div><div class="line">content=&quot;width=device-width, //根据设备调整width</div><div class="line">initial-scale=1, //比例为1</div><div class="line">user-scalable=no&quot; //不允许用户缩放</div><div class="line"></div><div class="line">//在开发调试过程中，可以通过JS代码获得当前layout和visual的值</div><div class="line">document.body.clientWidth //获得layout viewport值</div><div class="line">window.innerWidth //获得visual viewport值</div></pre></td></tr></table></figure></p>
+<h3 id="设计移动Web"><a href="#设计移动Web" class="headerlink" title="设计移动Web"></a>设计移动Web</h3><p>方案一：根据设备的实际宽度来设计（常用）手机宽320 px，我们就拿320 px设计<br>方案二：1px=1dp缩放0.5（initial-scale=0.5）。根据设备的物理像素 dp 等于抽象像素 px 来设计。1像素边框和高清图片都不需要额外处理。</p>
+<h2 id="移动web特别样式"><a href="#移动web特别样式" class="headerlink" title="移动web特别样式"></a>移动web特别样式</h2><h3 id="一像素边框"><a href="#一像素边框" class="headerlink" title="一像素边框"></a>一像素边框</h3><p>比如想让border的线更细些，我们虽然会设置成border：1px；但在是retina屏幕下，1px使用2dp渲染。使之看起来有2px，那我们就用border：0.5px咯。但很可惜，这种语法只在ios8以上的情况下有用，所以不是好方案。<br>这时我们就常用到scaleY(0.5),大致代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">.scale&#123;</div><div class="line">position: relative;</div><div class="line">&#125;</div><div class="line">.scale:after&#123;</div><div class="line">content:&quot;&quot;;</div><div class="line">position: absolute;</div><div class="line">bottom:0px;</div><div class="line">left:0px;</div><div class="line">right:0px;</div><div class="line">border-bottom:1px solid #ddd;</div><div class="line">-webkit-transform:scaleY(.5);</div><div class="line">-webkit-transform-origin:0 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="相对单位-rem"><a href="#相对单位-rem" class="headerlink" title="相对单位 rem"></a>相对单位 rem</h3><ul>
+<li><p>为了适应各大屏幕的手机，px略显固定,不能根据尺寸的大小而改变，使用相对单位更能体验页面兼容性</p>
+<ul>
+<li><p>em：是根据父节点的font-size为相对单位但em在多层嵌套下，变得非常难以操作</p>
+</li>
+<li><p>rem：是根据html的font-size为相对单位rem更加能作为全局统一设置的度量（但在实际产品交互体验上还需考量是否使用）</p>
+</li>
+</ul>
+</li>
+<li><p>引出另一个问题rem的基值设置多少好？回归我们的目的：为了适应各大手机屏幕rem = screen.width/20有时我们也会看到在业界中会用如下方案：</p>
+<blockquote>
+<p>将scale设置为1/dpr, 而<html>的font-size计算为screen.width * dpr / &gt;10,然后再以less将UE图上得到的尺寸透明转换为对应的rem值。</html></p>
+</blockquote>
+</li>
+</ul>
+<p>关于这一方案的实现</p>
+<ul>
+<li><p>iphone5上的rem基值为32px，渲染一张64 <em>64px的div，则用2rem </em>2rem去渲染。换算公式非常简单：<br>width：px/rem基值<br>height：px/rem基值</p>
+</li>
+<li><p>不使用rem的情况：font-size<br>一般来说font-size是不应该使用rem等相对单位的。因为字体的大小是趋向于阅读的实用性，并不适合与排版布局。<br>同理趋向于一些固定的元素的特性。我们不使用rem而改为使用px去确保在不同屏幕上表现一致（和rem的目的相反）。</p>
+</li>
+</ul>
+<h2 id="多行文本溢出···"><a href="#多行文本溢出···" class="headerlink" title="多行文本溢出···"></a>多行文本溢出···</h2><p>单行文本溢出，对title类的使用非常多，而多行文本类，在详情介绍则用的比较多。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">//单行文本溢出...</div><div class="line">.inaline &#123;</div><div class="line">overflow: hidden;</div><div class="line">white-space: nowrap;</div><div class="line">text-flow: ellipsis;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//多行文本溢出...</div><div class="line">.intwoline &#123;</div><div class="line">display: -webkit-box !important;</div><div class="line">overflow: hidden;</div><div class="line"></div><div class="line">text-overflow: ellipsis;</div><div class="line">word-break: break-all;</div><div class="line"></div><div class="line">-webkit-box-orient: vertical;</div><div class="line">-webkit-line-clamp: 2; //关键属性，限制行数</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>大概就是这些了，写的比较乱。如有错误欢迎指正。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.josephong.me/2016/04/17/简单移动web学习笔记/" data-id="cj2sthkgc000ccw1c313j4h6w" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/06/11/CSS布局之双飞翼布局/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          CSS布局之双飞翼布局
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/05/10/CSS系列之圣杯布局/">CSS系列之圣杯布局</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/17/两道有趣的前端面试题/">两道有趣的前端面试题</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/20/洪家伟+前端实习+2018届/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/14/CSS系列之探秘BFC/">CSS系列之探秘BFC</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/08/JavaScript的异步编程/">JavaScript的异步编程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Howell<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>JavaScript之深入理解this | Howell</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="此文参考 MDN_this 写成  定义this是函数运行时自动生成的内部对象，即调用函数的那个对象。（不一定很准确的定义，但还算通俗易懂） 在大多数情况下，this的值由函数调用方式决定，它不能在执行期间赋值来设置，它在每次执行下可能都有不同的值。 全局执行环境（outside function）在全局执行环境中，this一直指向全局对象（global object），不管是在严格模式还是在非">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript之深入理解this">
+<meta property="og:url" content="http://blog.josephong.me/2016/12/01/JavaScript之深入理解this/index.html">
+<meta property="og:site_name" content="Howell">
+<meta property="og:description" content="此文参考 MDN_this 写成  定义this是函数运行时自动生成的内部对象，即调用函数的那个对象。（不一定很准确的定义，但还算通俗易懂） 在大多数情况下，this的值由函数调用方式决定，它不能在执行期间赋值来设置，它在每次执行下可能都有不同的值。 全局执行环境（outside function）在全局执行环境中，this一直指向全局对象（global object），不管是在严格模式还是在非">
+<meta property="og:updated_time" content="2017-05-17T09:52:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript之深入理解this">
+<meta name="twitter:description" content="此文参考 MDN_this 写成  定义this是函数运行时自动生成的内部对象，即调用函数的那个对象。（不一定很准确的定义，但还算通俗易懂） 在大多数情况下，this的值由函数调用方式决定，它不能在执行期间赋值来设置，它在每次执行下可能都有不同的值。 全局执行环境（outside function）在全局执行环境中，this一直指向全局对象（global object），不管是在严格模式还是在非">
+  
+    <link rel="alternate" href="/atom.xml" title="Howell" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Howell</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.josephong.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JavaScript之深入理解this" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/01/JavaScript之深入理解this/" class="article-date">
+  <time datetime="2016-11-30T16:00:00.000Z" itemprop="datePublished">2016-12-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JavaScript之深入理解this
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>此文参考 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this" target="_blank" rel="external">MDN_this</a> 写成</p>
+</blockquote>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>this是函数运行时自动生成的内部对象，即调用函数的那个对象。（不一定很准确的定义，但还算通俗易懂）<br> 在大多数情况下，this的值由函数调用方式决定，它不能在执行期间赋值来设置，它在每次执行下可能都有不同的值。</p>
+<h2 id="全局执行环境（outside-function）"><a href="#全局执行环境（outside-function）" class="headerlink" title="全局执行环境（outside function）"></a>全局执行环境（outside function）</h2><p>在全局执行环境中，this一直指向全局对象（global object），不管是在严格模式还是在非严格模式中。</p>
+<p><strong>代码1</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">console.log(this.document === document);   //true</div><div class="line"></div><div class="line">// 在浏览器中，window对象也就是全局对象（global object）</div><div class="line">console.log(this === window);   //true</div><div class="line"></div><div class="line">this.a  = 37;</div><div class="line">console.log(window.a);   //37</div></pre></td></tr></table></figure></p>
+<h2 id="函数执行环境（inside-function）"><a href="#函数执行环境（inside-function）" class="headerlink" title="函数执行环境（inside function）"></a>函数执行环境（inside function）</h2><p>在函数执行环境中，this的值取决于函数的调用方式。</p>
+<p><strong>而函数的调用方式主要有4种：</strong></p>
+<ul>
+<li>函数直接调用</li>
+<li>对象方法调用</li>
+<li>构造函数调用</li>
+<li>call / apply / bind</li>
+<li>箭头函数（ES6）</li>
+</ul>
+<h3 id="函数直接调用"><a href="#函数直接调用" class="headerlink" title="函数直接调用"></a>函数直接调用</h3><p>下面的代码在非严格模式执行时，this的值会指向全局对象；而在严格模式中，this的值将会默认为undefined。</p>
+<p><strong>代码2</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 非严格模式 */</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(f1() === <span class="built_in">window</span>);   <span class="comment">//true</span></div><div class="line"></div><div class="line"><span class="comment">// in node;</span></div><div class="line"><span class="built_in">console</span>.log(f1() === global);   <span class="comment">//true</span></div><div class="line"></div><div class="line"><span class="comment">/* 严格模式 */</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f2</span> (<span class="params"></span>) </span>&#123;</div><div class="line"><span class="meta">  'use strict'</span></div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(f1() === <span class="literal">undefined</span>);   <span class="comment">//true</span></div></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="call-apply-bind-改变this的指向"><a href="#call-apply-bind-改变this的指向" class="headerlink" title="call / apply / bind 改变this的指向"></a>call / apply / bind 改变this的指向</h3><h4 id="call-apply"><a href="#call-apply" class="headerlink" title="call / apply"></a>call / apply</h4><p>call和apply的用法很像，只是后面参数的传入形式不同。</p>
+<p><strong>代码3</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">function add(c, d) &#123;</div><div class="line">  return this.a + this.b + c + d;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var o = &#123;a: 1, b: 3&#125;;</div><div class="line"></div><div class="line">// call的第一个参数 是对象，也就是this的指向对象。后面的参数就是函数arguments对象的成员</div><div class="line">add.call(o, 5, 7); // 1 + 3 + 5 + 7 = 16</div><div class="line"></div><div class="line">// call的第一个参数 是对象，也就是this的指向对象。后面的参数是数组，数组里的成员也就是函数arguments对象成员</div><div class="line">add.apply(o, [10, 20]); // 1 + 3 + 10 + 20 = 34</div></pre></td></tr></table></figure></p>
+<p><strong>使用call和apply时需要注意的是</strong>，当传入的第一个参数的值不是对象时，JavaScript会尝试使用ToObject 操作将其转化为对象。</p>
+<p><strong>代码4</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function bar() &#123;</div><div class="line">  console.log(Object.prototype.toString.call(this));</div><div class="line">&#125;</div><div class="line"></div><div class="line">bar.call(7); // [object Number]</div></pre></td></tr></table></figure></p>
+<h4 id="bind-方法"><a href="#bind-方法" class="headerlink" title="bind 方法"></a>bind 方法</h4><p>ECMAScript 5 引入了 <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Function/bind" target="_blank" rel="external">Function.prototype.bind</a>。调用f.bind(someObject)会创建一个与f具有相同函数体和作用域的函数，但是在这个新函数中，this将永久地被绑定到了bind的第一个参数，无论这个函数是如何被调用的。</p>
+<p><strong>代码5</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function f() &#123;</div><div class="line">  return this.a;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var g = f.bind(&#123;a: &apos;azerty&apos;&#125;); //生成一个绑定函数g</div><div class="line">console.log(g()); // azerty</div><div class="line"></div><div class="line">var o = &#123;a: 10, f: f, g: g&#125;;</div><div class="line">console.log(o.f(), o.g());   //10, azerty</div><div class="line"></div><div class="line">//需要注意的是，绑定函数不可以再bind</div><div class="line">var h = g.bind(&#123;a: &apos;foo&apos;&#125;);</div><div class="line">console.log(h());  //azerty，不会变成foo</div></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="对象方法调用"><a href="#对象方法调用" class="headerlink" title="对象方法调用"></a>对象方法调用</h3><p>当以对象里的方法的方式调用函数时，它们的 this 是调用该函数的对象.</p>
+<p>下面的例子中，当 o.f() 被调用时，函数内的this将绑定到o对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var prop = 36;</div><div class="line">var o = &#123;</div><div class="line">  prop: 37,</div><div class="line">  bar: function() &#123;</div><div class="line">    return this.prop;</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line">console.log(o.bar());  //37</div></pre></td></tr></table></figure></p>
+<h3 id="构造函数调用"><a href="#构造函数调用" class="headerlink" title="构造函数调用"></a>构造函数调用</h3><p><strong>代码6</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function Person(name, age) &#123;</div><div class="line">  this.name = name;</div><div class="line">  this.age = age;</div><div class="line">  this.introduce = function () &#123;</div><div class="line">    console.log(&apos;My name is &apos; + this.name + &apos;, I\&apos;m &apos; + this.age);</div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line">var Joseph = new Person(&apos;Joseph&apos;, 19);</div><div class="line">Joseph.introduce();  // &quot;My name is Joseph, I&apos;m 19&quot;</div></pre></td></tr></table></figure></p>
+<p>由上述代码可以清晰的看到this与被新创建的对象绑定了。</p>
+<p><em>注意</em>：当构造器返回的默认值是一个this引用的对象时，可以手动设置返回其他的对象，如果返回值不是一个对象，返回this。（这句话看起来比较难理解，我们看下一个例子）。</p>
+<p><strong>代码7</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function Fn2() &#123;</div><div class="line">  this.a = 9;  // dead code</div><div class="line">  return &#123;a: 10&#125;;</div><div class="line">&#125;</div><div class="line">var o = new Fn2();</div><div class="line">console.log(o.a);  // 10</div></pre></td></tr></table></figure></p>
+<p>这个例子说明了当构造函数返回的是一个对象的话，此时this的值会变成此时返回的对象。‘this.a = 9’成了僵尸代码。</p>
+<h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><p>在箭头函数（ <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions" target="_blank" rel="external">Arrow functions</a>）中，this的值是封闭执行环境决定的。在全局环境中，那么被赋值为全局对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var globalObject = this;</div><div class="line">var foo = (() =&gt; this);</div><div class="line">console.log(foo() === globalObject); // true</div></pre></td></tr></table></figure></p>
+<p>更重要的是它与其他情况不同的是，不管函数如何调用，上面this的值一直都是全局对象。call / bind 也不能改变它的值。</p>
+<p><strong>代码8</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// 作为对象方法被调用</div><div class="line">var obj = &#123;foo: foo&#125;;</div><div class="line">console.log(obj.foo() === globalObject); // true</div><div class="line"></div><div class="line">// 尝试用 call 改变this的值</div><div class="line">console.log(foo.call(obj) === globalObject); // true //this的值并未变成obj</div><div class="line"></div><div class="line">// 尝试用 bind 改变this的值</div><div class="line">foo = foo.bind(obj);</div><div class="line">console.log(foo() === globalObject); // true</div></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><p>本文知识点都看完了。让我们看几个案例，检查自己的掌握情况。</p>
+<p>例1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">var prop = 36;</div><div class="line">var o = &#123;</div><div class="line">  prop: 37,</div><div class="line">  bar1: function() &#123;</div><div class="line">    function foo1() &#123;</div><div class="line">      return this.prop;</div><div class="line">    &#125;</div><div class="line">    return foo1;</div><div class="line">  &#125;,</div><div class="line">  bar2: function() &#123;</div><div class="line">    var foo2  = (() =&gt; this.prop); //ES6箭头函数</div><div class="line">    return foo2;</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line">console.log(&apos;result1:&apos;+o.bar1()()); // result1 ?</div><div class="line">console.log(&apos;result2:&apos;+o.bar2()()); // result2 ?</div><div class="line">var fn2 = o.bar2;</div><div class="line">console.log(&apos;result3:&apos;+fn2()()); // result3 ?</div></pre></td></tr></table></figure></p>
+<p>先揭晓答案：例1 result1 = 36，result2 = 37，result3 = 36。我的理解是，在result1中，o.bar1()执行导致foo函数return到了全局环境中，然后执行就变成了在全局中执行，所以得到的是全局中36的值。result2呢？因为this在箭头函数中。它的值不会改变。所以this仍指向o。那为什么result3又重新变了呢？因为此时‘var fn2  = o.bar2’相当于重新定义了一个函数，而this的值当然也就变为了全局对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// 相当于这样</div><div class="line">var fn2 = function() &#123;</div><div class="line">    function foo1() &#123;</div><div class="line">      return this.prop;</div><div class="line">    &#125;</div><div class="line">    return foo1;</div><div class="line">  &#125;</div><div class="line">fn2()();</div></pre></td></tr></table></figure></p>
+<p>例2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function sum(a,b) &#123;</div><div class="line"> return a+b;</div><div class="line">&#125;;</div><div class="line">var o = &#123;</div><div class="line">  num: 1,</div><div class="line">  fn: function() &#123;</div><div class="line">        function handle() &#123;</div><div class="line">          return this.num = sum(this.num, this.num);</div><div class="line">        &#125;</div><div class="line">    handle();</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line">console.log(&apos;result:&apos;+o.fn());  // result ?</div></pre></td></tr></table></figure></p>
+<p>同样先揭晓答案：result = undefined，用控制台可以看到此时this指向window，而不是o。这是个比较容易掉进去的坑（一般认为是当初的语言设计错误，被人诟病不少）。看似函数是由对象方法调用的，其实细心的话，我们可以看到。handle函数的执行，前面的没有对象的。这种情况下，this指向全局对象。解决办法也很简单。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// 1、取消 handle函数的定义，直接在对象的方法中使用this</div><div class="line">fn2: function() &#123;</div><div class="line">    this.value = sum(this.value, this.value);  //2</div><div class="line">&#125;,</div><div class="line">///2、使用变量保存外部函数的this。</div><div class="line">fn3: function() &#123;</div><div class="line">    var that = this;   // that == o</div><div class="line">    function handle() &#123;</div><div class="line">        that.value = add(that.value, that.value);</div><div class="line">    &#125;</div><div class="line">    handle();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<hr>
+<p>参考文章：</p>
+<ul>
+<li><a href="https://segmentfault.com/a/1190000006150835" target="_blank" rel="external">Javascript中this与闭包学习笔记</a></li>
+<li><a href="https://segmentfault.com/a/1190000004905145" target="_blank" rel="external">理解JS中的this</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.josephong.me/2016/12/01/JavaScript之深入理解this/" data-id="cj2sthkfl0005cw1cpgpabodh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/02/22/JavaScript数据结构与算法（一）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JavaScript数据结构与算法（一）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/10/10/JavaScript之理解闭包/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JavaScript之理解闭包</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/05/10/CSS系列之圣杯布局/">CSS系列之圣杯布局</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/17/两道有趣的前端面试题/">两道有趣的前端面试题</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/20/洪家伟+前端实习+2018届/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/14/CSS系列之探秘BFC/">CSS系列之探秘BFC</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/08/JavaScript的异步编程/">JavaScript的异步编程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Howell<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

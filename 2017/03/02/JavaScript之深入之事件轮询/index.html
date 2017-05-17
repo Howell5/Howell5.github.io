@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>JavaScript之深入之事件轮询 | Howell</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在详细聊event-loop前，我们先厘清几个基本概念：JavaScript是单线程的，即同一个时间只能做一件事，但浏览器中是会存在异步任务的，总不能按着正常顺序等到异步任务（万一异步任务是请求一个很大的文件，耗时很长）结束了，才去执行下一步事。这显然是反人类的。而我们平常打开的网页也没有这样反人类的体验，这说明JavaScript的运行机制解决了这点。  执行栈与任务队列当程序往下执行时，遇到">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript之深入之事件轮询">
+<meta property="og:url" content="http://blog.josephong.me/2017/03/02/JavaScript之深入之事件轮询/index.html">
+<meta property="og:site_name" content="Howell">
+<meta property="og:description" content="在详细聊event-loop前，我们先厘清几个基本概念：JavaScript是单线程的，即同一个时间只能做一件事，但浏览器中是会存在异步任务的，总不能按着正常顺序等到异步任务（万一异步任务是请求一个很大的文件，耗时很长）结束了，才去执行下一步事。这显然是反人类的。而我们平常打开的网页也没有这样反人类的体验，这说明JavaScript的运行机制解决了这点。  执行栈与任务队列当程序往下执行时，遇到">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2575359-77bbd6427c25c6fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2575359-d8fe0a4efb36f750.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-05-17T09:54:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript之深入之事件轮询">
+<meta name="twitter:description" content="在详细聊event-loop前，我们先厘清几个基本概念：JavaScript是单线程的，即同一个时间只能做一件事，但浏览器中是会存在异步任务的，总不能按着正常顺序等到异步任务（万一异步任务是请求一个很大的文件，耗时很长）结束了，才去执行下一步事。这显然是反人类的。而我们平常打开的网页也没有这样反人类的体验，这说明JavaScript的运行机制解决了这点。  执行栈与任务队列当程序往下执行时，遇到">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2575359-77bbd6427c25c6fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  
+    <link rel="alternate" href="/atom.xml" title="Howell" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Howell</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.josephong.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JavaScript之深入之事件轮询" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/02/JavaScript之深入之事件轮询/" class="article-date">
+  <time datetime="2017-03-01T16:00:00.000Z" itemprop="datePublished">2017-03-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JavaScript之深入之事件轮询
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>在详细聊event-loop前，我们先厘清几个基本概念：JavaScript是单线程的，即同一个时间只能做一件事，但浏览器中是会存在异步任务的，总不能按着正常顺序等到异步任务（万一异步任务是请求一个很大的文件，耗时很长）结束了，才去执行下一步事。这显然是反人类的。而我们平常打开的网页也没有这样反人类的体验，这说明JavaScript的运行机制解决了这点。</p>
+</blockquote>
+<h2 id="执行栈与任务队列"><a href="#执行栈与任务队列" class="headerlink" title="执行栈与任务队列"></a>执行栈与任务队列</h2><p>当程序往下执行时，遇到了异步任务，主线程这时不管异步任务，挂起处于等待中的任务，先运行排在后面的任务。等到异步任务返回了结果，再回过头，把挂起的任务继续执行下去。<br>于是，所有任务可以分成两种，一种是同步任务（synchronous），另一种是异步任务（asynchronous）。同步任务指的是，在主线程上排队执行的任务，只有前一个任务执行完毕，才能执行后一个任务；异步任务指的是，不进入主线程、而进入”任务队列”（task queue）的任务，只有”任务队列”通知主线程，某个异步任务可以执行了，该任务才会进入主线程执行。</p>
+<p>具体来说，异步执行的运行机制如下：</p>
+<ul>
+<li>所有同步任务都在主线程上执行，形成一个<a href="http://www.ruanyifeng.com/blog/2013/11/stack.html" target="_blank" rel="external">执行栈</a>（execution context stack）。</li>
+<li>主线程之外，还存在一个”任务队列”（task queue）。只要异步任务有了运行结果，就在”任务队列”之中放置一个事件。</li>
+<li>一旦”执行栈”中的所有同步任务执行完毕，系统就会读取”任务队列”，看看里面有哪些事件。那些对应的异步任务，于是结束等待状态，进入执行栈，开始执行。</li>
+<li>主线程不断重复上面的第三步。</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/2575359-77bbd6427c25c6fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h2 id="Marcotask和Mircotask"><a href="#Marcotask和Mircotask" class="headerlink" title="Marcotask和Mircotask"></a>Marcotask和Mircotask</h2><p>上面所说的只是Event loop的基本知识，现在我们引入两个新概念 Marcotask 和 Mircotask ，在Event queue中不同的异步任务中，他们是被存入不同的queue中的，而且它们也并非简单的先进先出的执行的。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2575359-d8fe0a4efb36f750.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>如上图所示，在单次的迭代中，event loop首先检查macrotask队列，如果有一个macrotask等待执行，那么执行该任务。当该任务执行完毕后（或者macrotask队列为空），event loop继续执行microtask队列。如果microtask队列有等待执行的任务，那么event loop就一直取出任务执行知道microtask为空。这里我们注意到处理microtask和macrotask的不同之处：<strong>在单次循环中，一次最多处理一个macrotask（其他的仍然驻留在队列中），然而却可以处理完所有的microtask。</strong></p>
+<p>当microtask队列为空时，event loop检查是否需要执行UI重渲染，如果需要则重渲染UI。这样就结束了当次循环，继续从头开始检查macrotask队列。</p>
+<ul>
+<li>macrotasks: setTimeout setInterval setImmediate I/O UI渲染</li>
+<li>microtasks: Promise process.nextTick Object.observe MutationObserver</li>
+</ul>
+<p>拿个例子帮助我们理解这一点：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">(function () &#123;</div><div class="line">    setTimeout(function() &#123;console.log(4)&#125;, 0);</div><div class="line">    new Promise(function executor(resolve) &#123;</div><div class="line">        console.log(1);</div><div class="line">        for( var i=0 ; i&lt;10000 ; i++ ) &#123;</div><div class="line">            i == 9999 &amp;&amp; resolve();</div><div class="line">        &#125;</div><div class="line">        console.log(2);</div><div class="line">    &#125;).then(function() &#123;</div><div class="line">        console.log(5);</div><div class="line">    &#125;);</div><div class="line">    console.log(3);</div><div class="line">&#125;)()</div></pre></td></tr></table></figure></p>
+<p>分析过程：</p>
+<ol>
+<li>当前task运行，执行代码。首先setTimeout的callback被添加到tasks queue中；</li>
+<li>实例化promise，输出 1; promise resolved；输出 2;</li>
+<li>promise.then的callback被添加到microtasks queue中；</li>
+<li>输出 3;</li>
+<li>已到当前task的end，执行microtasks，输出 5;</li>
+<li>执行下一个task，输出4。</li>
+</ol>
+<h2 id="Web-Worker"><a href="#Web-Worker" class="headerlink" title="Web Worker"></a>Web Worker</h2><p>HTML5提出Web Worker标准，允许JavaScript脚本创建多个线程，但是子线程完全受主线程控制，且不得操作DOM，并未改变JavaScript单线程事实。</p>
+<p>专用web worker例子:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">// html</div><div class="line">    &lt;form&gt;</div><div class="line">      &lt;div&gt;</div><div class="line">        &lt;label for=&quot;number1&quot;&gt;Multiply number 1: &lt;/label&gt;    </div><div class="line">        &lt;input type=&quot;text&quot; id=&quot;number1&quot; value=&quot;0&quot;&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">      &lt;div&gt;</div><div class="line">        &lt;label for=&quot;number2&quot;&gt;Multiply number 2: &lt;/label&gt;   </div><div class="line">        &lt;input type=&quot;text&quot; id=&quot;number2&quot; value=&quot;0&quot;&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">    &lt;/form&gt;</div><div class="line"></div><div class="line">    &lt;p class=&quot;result&quot;&gt;Result: 0&lt;/p&gt;</div><div class="line">&lt;script&gt;</div><div class="line">var first = document.querySelector(&apos;#number1&apos;);</div><div class="line">var second = document.querySelector(&apos;#number2&apos;);</div><div class="line"></div><div class="line">var result = document.querySelector(&apos;.result&apos;);</div><div class="line"></div><div class="line">if (window.Worker) &#123; // Check if Browser supports the Worker api.</div><div class="line">	var myWorker = new Worker(&quot;worker.js&quot;);</div><div class="line"></div><div class="line">	first.onchange = function() &#123;</div><div class="line">	  myWorker.postMessage([first.value,second.value]); // Sending message as an array to the worker</div><div class="line">	  console.log(&apos;Message posted to worker&apos;);</div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	second.onchange = function() &#123;</div><div class="line">	  myWorker.postMessage([first.value,second.value]);</div><div class="line">	  console.log(&apos;Message posted to worker&apos;);</div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	myWorker.onmessage = function(e) &#123;</div><div class="line">		result.textContent = e.data;</div><div class="line">		console.log(&apos;Message received from worker&apos;);</div><div class="line">	&#125;;</div><div class="line">&#125;</div><div class="line">&lt;/script&gt;</div><div class="line"></div><div class="line">//work.js</div><div class="line"></div><div class="line">onmessage = function(e) &#123;</div><div class="line">  console.log(&apos;Message received from main script&apos;);</div><div class="line">  var workerResult = &apos;Result: &apos; + (e.data[0] * e.data[1]);</div><div class="line">  console.log(&apos;Posting message back to main script&apos;);</div><div class="line">  postMessage(workerResult);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>从上面代码可以看到，两者通过postMessage传递数据。</p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html" target="_blank" rel="external">JavaScript 运行机制详解：再谈Event Loop</a></p>
+<p><a href="https://github.com/creeperyang/blog/issues/21" target="_blank" rel="external">从Promise来看JavaScript中的Event Loop、Tasks和Microtasks</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/24460769" target="_blank" rel="external">HTML系列：macrotask和microtask</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.josephong.me/2017/03/02/JavaScript之深入之事件轮询/" data-id="cj2sthkfi0004cw1cmdjon4pc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/03/08/JavaScript的异步编程/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JavaScript的异步编程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/02/22/JavaScript数据结构与算法（一）/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JavaScript数据结构与算法（一）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/05/10/CSS系列之圣杯布局/">CSS系列之圣杯布局</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/17/两道有趣的前端面试题/">两道有趣的前端面试题</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/20/洪家伟+前端实习+2018届/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/14/CSS系列之探秘BFC/">CSS系列之探秘BFC</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/08/JavaScript的异步编程/">JavaScript的异步编程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Howell<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
