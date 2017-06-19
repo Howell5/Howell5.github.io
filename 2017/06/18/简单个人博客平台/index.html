@@ -5,19 +5,19 @@
   
   <title>个人博客项目总结（一） | Howell</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一直就有要做一个前后端完整的个人项目的想法，但因为学校和面试的事一直没开始。两个星期前开始了行动，选定Vue + express + mongoDB 的技术栈。Vue框架的文档还是非常友好易懂的，一个星期看官方文档和写小demo，一个星期开始正式开发。总算完成了主体功能的开发。现在写个文章做个阶段性总结。  项目架构图 client 技术框架和基本库： 用了Vue-cli 构建基本项目目录，Vu">
+  <meta name="description" content="一直就有要做一个前后端完整的个人项目的想法，但因为学校和面试的事一直没开始。两个星期前开始了行动，选定Vue + express + mongoDB 的技术栈。Vue框架的文档还是非常友好易懂的，一个星期看官方文档和写小demo，一个星期开始正式开发。总算完成了主体功能的开发。现在写个文章做个阶段性总结。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="个人博客项目总结（一）">
 <meta property="og:url" content="http://blog.josephong.me/2017/06/18/简单个人博客平台/index.html">
 <meta property="og:site_name" content="Howell">
-<meta property="og:description" content="一直就有要做一个前后端完整的个人项目的想法，但因为学校和面试的事一直没开始。两个星期前开始了行动，选定Vue + express + mongoDB 的技术栈。Vue框架的文档还是非常友好易懂的，一个星期看官方文档和写小demo，一个星期开始正式开发。总算完成了主体功能的开发。现在写个文章做个阶段性总结。  项目架构图 client 技术框架和基本库： 用了Vue-cli 构建基本项目目录，Vu">
+<meta property="og:description" content="一直就有要做一个前后端完整的个人项目的想法，但因为学校和面试的事一直没开始。两个星期前开始了行动，选定Vue + express + mongoDB 的技术栈。Vue框架的文档还是非常友好易懂的，一个星期看官方文档和写小demo，一个星期开始正式开发。总算完成了主体功能的开发。现在写个文章做个阶段性总结。">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2575359-3cdbc655b2f026e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2575359-a4915b5e97e419ec.gif?imageMogr2/auto-orient/strip">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2575359-770cfb9e8898a329.gif?imageMogr2/auto-orient/strip">
-<meta property="og:updated_time" content="2017-06-19T18:08:37.000Z">
+<meta property="og:updated_time" content="2017-06-19T18:28:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="个人博客项目总结（一）">
-<meta name="twitter:description" content="一直就有要做一个前后端完整的个人项目的想法，但因为学校和面试的事一直没开始。两个星期前开始了行动，选定Vue + express + mongoDB 的技术栈。Vue框架的文档还是非常友好易懂的，一个星期看官方文档和写小demo，一个星期开始正式开发。总算完成了主体功能的开发。现在写个文章做个阶段性总结。  项目架构图 client 技术框架和基本库： 用了Vue-cli 构建基本项目目录，Vu">
+<meta name="twitter:description" content="一直就有要做一个前后端完整的个人项目的想法，但因为学校和面试的事一直没开始。两个星期前开始了行动，选定Vue + express + mongoDB 的技术栈。Vue框架的文档还是非常友好易懂的，一个星期看官方文档和写小demo，一个星期开始正式开发。总算完成了主体功能的开发。现在写个文章做个阶段性总结。">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2575359-3cdbc655b2f026e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternate" href="/atom.xml" title="Howell" type="application/atom+xml">
@@ -56,9 +56,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.josephong.me"></form>
@@ -92,6 +92,7 @@
         <blockquote>
 <p>一直就有要做一个前后端完整的个人项目的想法，但因为学校和面试的事一直没开始。两个星期前开始了行动，选定<em>Vue</em> + <em>express</em> + <em>mongoDB</em> 的技术栈。Vue框架的文档还是非常友好易懂的，一个星期看官方文档和写小demo，一个星期开始正式开发。总算完成了主体功能的开发。现在写个文章做个阶段性总结。</p>
 </blockquote>
+<a id="more"></a>
 <h2 id="项目架构图"><a href="#项目架构图" class="headerlink" title="项目架构图"></a>项目架构图</h2><p><img src="http://upload-images.jianshu.io/upload_images/2575359-3cdbc655b2f026e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="个人博客项目架构图.png"></p>
 <h2 id="client"><a href="#client" class="headerlink" title="client"></a>client</h2><ul>
 <li>技术框架和基本库：<ul>
@@ -129,7 +130,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.josephong.me/2017/06/18/简单个人博客平台/" data-id="cj44gh8ae000c0j1c5ltxsf6l" class="article-share-link">Delen</a>
+      <a data-url="http://blog.josephong.me/2017/06/18/简单个人博客平台/" data-id="cj44h65xy000c8j1chqebqskj" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -140,7 +141,7 @@
   
   
     <a href="/2017/04/17/两道有趣的前端面试题/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ouder</strong>
+      <strong class="article-nav-caption">Ancien</strong>
       <div class="article-nav-title">两道有趣的前端面试题</div>
     </a>
   
@@ -163,7 +164,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archieven</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li></ul>
     </div>
@@ -173,7 +174,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recente berichten</h3>
+    <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
         
@@ -210,7 +211,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 Howell<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
