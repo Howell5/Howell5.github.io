@@ -3,20 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>CSS布局之双飞翼布局 | Howell</title>
+  <title>我的简历 | Howell</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="概念理解了上篇文章的圣杯布局，再来学习双飞翼布局就简单许多了。同样引用上次的元素命名。">
+  <meta name="description" content="校招简历">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CSS布局之双飞翼布局">
-<meta property="og:url" content="http://blog.josephong.me/2016/06/11/CSS布局之双飞翼布局/index.html">
+<meta property="og:title" content="我的简历">
+<meta property="og:url" content="http://blog.josephong.me/2018/02/01/洪家伟+前端实习+2018届/index.html">
 <meta property="og:site_name" content="Howell">
-<meta property="og:description" content="概念理解了上篇文章的圣杯布局，再来学习双飞翼布局就简单许多了。同样引用上次的元素命名。">
-<meta property="og:image" content="https://segmentfault.com/image?src=https://cloud.githubusercontent.com/assets/7554325/13628574/2e28562c-e60e-11e5-9bae-905c4c7bf56a.png&objectId=1190000004579886&token=9bb8b342939860ca25c504a051283e89">
-<meta property="og:updated_time" content="2017-05-17T10:58:33.000Z">
+<meta property="og:description" content="校招简历">
+<meta property="og:updated_time" content="2018-03-05T12:43:07.002Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CSS布局之双飞翼布局">
-<meta name="twitter:description" content="概念理解了上篇文章的圣杯布局，再来学习双飞翼布局就简单许多了。同样引用上次的元素命名。">
-<meta name="twitter:image" content="https://segmentfault.com/image?src=https://cloud.githubusercontent.com/assets/7554325/13628574/2e28562c-e60e-11e5-9bae-905c4c7bf56a.png&objectId=1190000004579886&token=9bb8b342939860ca25c504a051283e89">
+<meta name="twitter:title" content="我的简历">
+<meta name="twitter:description" content="校招简历">
   
     <link rel="alternate" href="/atom.xml" title="Howell" type="application/atom+xml">
   
@@ -65,10 +63,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-CSS布局之双飞翼布局" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-洪家伟+前端实习+2018届" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/06/11/CSS布局之双飞翼布局/" class="article-date">
-  <time datetime="2016-06-10T16:00:00.000Z" itemprop="datePublished">2016-06-11</time>
+    <a href="/2018/02/01/洪家伟+前端实习+2018届/" class="article-date">
+  <time datetime="2018-01-31T16:00:00.000Z" itemprop="datePublished">2018-02-01</time>
 </a>
     
   </div>
@@ -79,7 +77,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      CSS布局之双飞翼布局
+      我的简历
     </h1>
   
 
@@ -87,17 +85,66 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>理解了上篇文章的圣杯布局，再来学习双飞翼布局就简单许多了。同样引用上次的元素命名。</p>
+        <blockquote>
+<p>校招简历</p>
+</blockquote>
 <a id="more"></a>
-<p><strong>圣杯布局</strong>是给包裹着三栏的<code>container</code>加一个<code>padding</code>,让<code>padding-left</code>和<code>padding-right</code>的数值是左栏和右栏的宽度，然后利用相对定位把他们再移动在两旁。</p>
-<p>而<strong>双飞翼布局</strong>是在<code>center</code><strong>里面</strong>再添加一个div，然后对这个div进行<code>margin-left</code>和<code>margin-right</code>，即：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;header&quot;&gt;&lt;/div&gt;</div><div class="line">  &lt;div id=&quot;container&quot;&gt; </div><div class="line">    &lt;div id=&quot;center&quot; class=&quot;column&quot;&gt; &lt;div class=&quot;wrap&quot;&gt;&lt;/div&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">  &lt;div id=&quot;left&quot; class=&quot;column&quot;&gt;&lt;/div&gt;</div><div class="line">  &lt;div id=&quot;right&quot; class=&quot;column&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div id=&quot;footer&quot;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure></p>
-<p>wrap的 css 部分：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.wrap &#123;</div><div class="line">margin-left: 200px;</div><div class="line">margin-right: 150px;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>其他部分和圣杯布局都是一样的。它们要实现的样式都是下面的这种形式：<br><img src="https://segmentfault.com/image?src=https://cloud.githubusercontent.com/assets/7554325/13628574/2e28562c-e60e-11e5-9bae-905c4c7bf56a.png&amp;objectId=1190000004579886&amp;token=9bb8b342939860ca25c504a051283e89" alt=""></p>
+<p>求职意向：web前端工程师</p>
+<h3 id="个人简介"><a href="#个人简介" class="headerlink" title="个人简介"></a>个人简介</h3><p>洪家伟，男，2018年本科毕业，就读于华东交通大学软件工程专业，现在北京实习</p>
+<table>
+<thead>
+<tr>
+<th>手机</th>
+<th>email</th>
+<th>github</th>
+<th>个人博客</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>18600373023</td>
+<td>howell95@outlook.com</td>
+<td><a href="https://github.com/Howell5" target="_blank" rel="external">https://github.com/Howell5</a></td>
+<td><a href="http://howell5.github.io" target="_blank" rel="external">http://howell5.github.io</a></td>
+</tr>
+</tbody>
+</table>
+<!--more-->
+<h3 id="实习经历（北京-weego-旅行）"><a href="#实习经历（北京-weego-旅行）" class="headerlink" title="实习经历（北京 weego 旅行）"></a>实习经历（北京 weego 旅行）</h3><p> 2017.7 - 2017.12</p>
+<ul>
+<li>维护并负责公司内部运营平台及公共 API 支持，系统项目名为 Hub ，即中枢之意。系统有两项功能：建立起给编辑人员用的 CMS 运营平台；提供给 APP 端及 H5 项目端用的 RESTful 架构的 API 。因 CMS 系统和 API 拥有相同的数据模型（使用 MongoDB 存储），所以两套代码写在了一起。基于 gulp 和 webpack，实现拥有不同的启动指令。</li>
+<li>CMS系统基于开源框架 Keystone.js（ React 和 Node 编写）建立，由于框架本身的功能有时不足以达到有些需求，所以需要修改并修复了部分框架源码及 bug .</li>
+<li>API 共同支持了 APP 端和 H5 端项目。使用 memcached 缓存，提高了 api 缓存性能。对接三家第三方报价平台，根据文档完成了酒店的查价、prepare、预定功能。将 csv 文件相应数据写入数据库的 api 接口。</li>
+</ul>
+<hr>
+<h3 id="个人项目"><a href="#个人项目" class="headerlink" title="个人项目"></a>个人项目</h3><p><strong>2017.4 - 2017.6， 2017-12 - now：个人博客网站</strong></p>
+<blockquote>
+<p>github地址：<a href="https://github.com/Howell5/Josephong.me" target="_blank" rel="external">Josephong.me</a></p>
+</blockquote>
+<ul>
+<li>Vue.js, Express 为基础，前后端通过 RESTful 规范进行通信。实习以来，工作以 react 为主，所以正在将网站进行 react+koa2 的重构</li>
+<li>前台展示页（/psot 和 /postDetail）<br>用 Marked.js 和 highlight.js 处理 Markdow 转化为 HTML。从服务器拿到数据进行渲染。</li>
+<li>后台管理页（/admin 和 /admin/articleEdit）<br>这里用到了嵌套路由。编辑器用了第三方插件 simplemde。<br>UI 用 element-ui 很快能搭建好，毕竟不是展示页，简洁好用就行。</li>
+</ul>
+<p><strong>2017.2 - 2017.3： HTML5 移动 web App 阅读器</strong></p>
+<blockquote>
+<p>在线地址：<a href="http://howell5.github.io/ReaderH5/" target="_blank" rel="external">HTML5 移动webapp阅读器</a></p>
+</blockquote>
+<ul>
+<li>文本数据由JSONP跨域请求在线 api 获得</li>
+<li>可实现基本的翻页，更换背景色，更改字体大小等交互。且这些操作数据会存入 localStorage 中</li>
+<li>使用 ES6 的 Promise 解决了回调过多的问题，base64 格式图片优化了性能</li>
+</ul>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
+<li>热爱足球、电影。喜欢阅读技术、历史、科幻类书籍。</li>
+<li>技术订阅以 twitter、medium 为主要接触源</li>
+<li>参加过在北京举办的 前端体验大会 和杭州举办的 蚂蚁金服技术体验大会</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.josephong.me/2016/06/11/CSS布局之双飞翼布局/" data-id="cjee7uzah0000az1xqvb1iwqp" class="article-share-link">Share</a>
+      <a data-url="http://blog.josephong.me/2018/02/01/洪家伟+前端实习+2018届/" data-id="cjee7uzb1000baz1xsh8cqgjn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -106,19 +153,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/07/09/JavaScript之理解作用域/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          JavaScript之理解作用域
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/05/10/CSS系列之圣杯布局/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/06/18/简单个人博客平台/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">CSS系列之圣杯布局</div>
+      <div class="article-nav-title">个人博客项目总结（一）</div>
     </a>
   
 </nav>
