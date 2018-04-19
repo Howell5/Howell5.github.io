@@ -90,14 +90,14 @@
         <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>理解了上篇文章的圣杯布局，再来学习双飞翼布局就简单许多了。同样引用上次的元素命名。</p>
 <a id="more"></a>
 <p><strong>圣杯布局</strong>是给包裹着三栏的<code>container</code>加一个<code>padding</code>,让<code>padding-left</code>和<code>padding-right</code>的数值是左栏和右栏的宽度，然后利用相对定位把他们再移动在两旁。</p>
-<p>而<strong>双飞翼布局</strong>是在<code>center</code><strong>里面</strong>再添加一个div，然后对这个div进行<code>margin-left</code>和<code>margin-right</code>，即：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;header&quot;&gt;&lt;/div&gt;</div><div class="line">  &lt;div id=&quot;container&quot;&gt; </div><div class="line">    &lt;div id=&quot;center&quot; class=&quot;column&quot;&gt; &lt;div class=&quot;wrap&quot;&gt;&lt;/div&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">  &lt;div id=&quot;left&quot; class=&quot;column&quot;&gt;&lt;/div&gt;</div><div class="line">  &lt;div id=&quot;right&quot; class=&quot;column&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div id=&quot;footer&quot;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure></p>
-<p>wrap的 css 部分：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.wrap &#123;</div><div class="line">margin-left: 200px;</div><div class="line">margin-right: 150px;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>而<strong>双飞翼布局</strong>是在<code>center</code><strong>里面</strong>再添加一个div，然后对这个div进行<code>margin-left</code>和<code>margin-right</code>，即：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;header&quot;&gt;&lt;/div&gt;</span><br><span class="line">  &lt;div id=&quot;container&quot;&gt; </span><br><span class="line">    &lt;div id=&quot;center&quot; class=&quot;column&quot;&gt; &lt;div class=&quot;wrap&quot;&gt;&lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;div id=&quot;left&quot; class=&quot;column&quot;&gt;&lt;/div&gt;</span><br><span class="line">  &lt;div id=&quot;right&quot; class=&quot;column&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div id=&quot;footer&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>wrap的 css 部分：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.wrap &#123;</span><br><span class="line">margin-left: 200px;</span><br><span class="line">margin-right: 150px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>其他部分和圣杯布局都是一样的。它们要实现的样式都是下面的这种形式：<br><img src="https://segmentfault.com/image?src=https://cloud.githubusercontent.com/assets/7554325/13628574/2e28562c-e60e-11e5-9bae-905c4c7bf56a.png&amp;objectId=1190000004579886&amp;token=9bb8b342939860ca25c504a051283e89" alt=""></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.josephong.me/2016/06/11/CSS布局之双飞翼布局/" data-id="cjeefrwig0000e71xbq5mqeei" class="article-share-link">Share</a>
+      <a data-url="http://blog.josephong.me/2016/06/11/CSS布局之双飞翼布局/" data-id="cjg6b036o0005fl8y1277eaxr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -142,7 +142,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li></ul>
     </div>
   </div>
 
@@ -155,7 +155,7 @@
       <ul>
         
           <li>
-            <a href="/2018/02/01/洪家伟+前端实习+2018届/">我的简历</a>
+            <a href="/2018/04/01/洪家伟+前端实习+2018届/">我的简历</a>
           </li>
         
           <li>
